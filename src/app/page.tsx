@@ -1,16 +1,15 @@
-import HomePage from "@/components/ui/Home";
-import Image from "next/image";
+import WelcomePage from "@/components/ui/Home";
 
 export default function Home() {
   return (
     <>
-      <div className="relative flex min-h-[100svh] flex-col bg-[#CACACA]">
+      <div className="font-inter relative flex min-h-[100svh] flex-col bg-[#CACACA]">
         <section
-          className="absolute w-full h-[302px] bg-cover bg-no-repeat bg-center scale-x-[-1]"
-          style={{ backgroundImage: "url('/top-background.jpeg')" }}
+          className="absolute w-full h-full lg:h-[302px] bg-cover bg-no-repeat bg-center"
+          style={{ backgroundImage: "url('/image-cover-1.png')" }}
         ></section>
         <section>
-          <HomePage />
+          <WelcomePage />
         </section>
       </div>
     </>

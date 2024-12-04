@@ -1,8 +1,12 @@
+"use client";
+
 import { Container } from "@/ui/Container";
 import { Button } from "./button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-const HomePage = () => {
+const WelcomePage = () => {
+  const router = useRouter();
   return (
     <>
       <Container className="h-[302px] relative px-0 mb-96">
@@ -31,6 +35,7 @@ const HomePage = () => {
           Министерства по чрезвычайным ситуациям Республики Казахстан
         </h2>
         <Button
+          onClick={() => router.push("/auth/login")}
           variant={"link"}
           size={"2xl"}
           className=" border border-[#525252] text-[#525252] hover:bg-[#525252] hover:text-white transition-all"
@@ -48,4 +53,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default WelcomePage;
