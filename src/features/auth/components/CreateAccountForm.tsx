@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -52,7 +51,7 @@ const createAccountSchema = z
 
 type FormData = z.infer<typeof createAccountSchema>;
 
-export const CreateAccountForm: React.FC = () => {
+export const LoginForm: React.FC = () => {
   const searchParams = useSearchParams();
   const allParams = searchParams.toString()
     ? `?${searchParams.toString()}`
