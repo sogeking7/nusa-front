@@ -17,7 +17,6 @@ const WelcomePage = () => {
           alt="rezerv-logo"
           className="absolute w-[117px] h-[117px] md:w-[243px] md:h-[243px] md:top-[181px] md:left-[100px] right-4 top-7"
         />
-        {/* <div className="absolute max-w-[447px] top-[53px] right-[40px] flex flex-col gap-[77px] text-wrap break-words"> */}
         <h1 className="text-[#D9D9D9] text-wrap break-words absolute top-[26px] left-[24px] max-w-[219px] md:max-w-[447px] md:top-[53px] md:right-[40px] md:left-auto md:leading-[70px] md:text-[60px] text-[32px] leading-[32px] tracking-wide uppercase">
           Analytical monitoring system
         </h1>
@@ -25,7 +24,6 @@ const WelcomePage = () => {
           Централизованное отображение данных, полученных от разных интеграторов
           со всех филиалов и транслирование данных в реальном времени
         </p>
-        {/* </div> */}
       </div>
 
       <div className="lg:px-20 flex justify-between mb-10">
@@ -43,11 +41,9 @@ const WelcomePage = () => {
         </Button>
       </div>
 
-      <div className="pb-9">
-        <span className="text-center absolute bottom-3 left-0 right-0 md:static text-[#1C1C1D99] tracking-tight">
-          © 2024 AMS. All rights reserved.
-        </span>
-      </div>
+      <span className="pb-9 text-center absolute bottom-3 left-0 right-0 md:static text-[#1C1C1D99] tracking-tight">
+        © 2024 AMS. All rights reserved.
+      </span>
     </Container>
   );
 };
