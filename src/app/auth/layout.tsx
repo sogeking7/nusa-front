@@ -12,8 +12,8 @@ export default function AuthLayout({
         className="absolute w-full h-[215px] bg-cover bg-no-repeat bg-center"
         style={{ backgroundImage: "url('/image-cover-1.png')" }}
       ></section>
-      <Container className="pb-10">
-        <div className="relative px-0 md:mb-80">
+      <Container className="">
+        <div className="relative px-0">
           <Image
             width={243}
             height={243}
