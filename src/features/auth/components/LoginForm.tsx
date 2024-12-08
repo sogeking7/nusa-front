@@ -22,32 +22,17 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { PasswordInput } from "@/components/ui/password-input";
+import Link from "next/link";
 
-const createAccountSchema = z
-  .object({
-    fullname: z
-      .string()
-      .trim()
-      .min(1, { message: "Поле обязательно для заполнения" }),
-    username: z
-      .string()
-      .trim()
-      .min(1, { message: "Поле обязательно для заполнения" }),
-    email: z.string().email("Неверный адрес электронной почты"),
-    password: z
-      .string()
-      .min(8, { message: "Пароль должен содержать минимум 8 символов" })
-      .regex(/[A-Z]/, {
-        message: "Пароль должен содержать хотя бы одну заглавную букву",
-      }),
-    passwordConfirm: z
-      .string()
-      .min(8, { message: "Пароль должен содержать минимум 8 символов" }),
-  })
-  .refine((data) => data.password === data.passwordConfirm, {
-    path: ["passwordConfirm"],
-    message: "Пароли не совпадают",
-  });
+const createAccountSchema = z.object({
+  email: z.string().email("Неверный адрес электронной почты"),
+  password: z
+    .string()
+    .min(8, { message: "Пароль должен содержать минимум 8 символов" })
+    .regex(/[A-Z]/, {
+      message: "Пароль должен содержать хотя бы одну заглавную букву",
+    }),
+});
 
 type FormData = z.infer<typeof createAccountSchema>;
 
@@ -66,9 +51,6 @@ export const LoginForm: React.FC = () => {
     defaultValues: {
       email: "",
       password: "",
-      passwordConfirm: "",
-      fullname: "-",
-      username: "-",
     },
   });
 
@@ -108,8 +90,8 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <Card className="max-w-md w-full">
-      <CardHeader className="pl-11">
+    <Card className="max-w-lg w-full">
+      <CardHeader className="pl-11 pt-10 pb-12 md:p-6 md:pt-0">
         <h1 className="text-sm text-[#D9D9D966]">Вход в систему</h1>
         <div className="w-10 h-[1px] bg-[#E31E24]" />
       </CardHeader>
@@ -117,7 +99,7 @@ export const LoginForm: React.FC = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-3 items-end mt-12"
+            className="flex flex-col gap-3 items-end"
           >
             <FormMessage className="mb-2">{error}</FormMessage>
 
@@ -125,7 +107,10 @@ export const LoginForm: React.FC = () => {
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="w-full">
+                <FormItem className="w-full flex gap-16 items-center">
+                  <FormLabel className="md:min-w-[60px] text-base text-white hidden md:block">
+                    Логин
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Почта" {...field} />
                   </FormControl>
@@ -138,9 +123,12 @@ export const LoginForm: React.FC = () => {
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormControl>
-                    <PasswordInput placeholder="Пароль" {...field} />
+                <FormItem className="w-full flex gap-16 items-center">
+                  <FormLabel className="md:min-w-[60px] text-base text-white hidden md:block">
+                    Пароль
+                  </FormLabel>
+                  <FormControl className="w-full">
+                    <PasswordInput placeholder="Новый пароль" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -153,15 +141,15 @@ export const LoginForm: React.FC = () => {
               className="text-[#FFFFFF33] text-base no-underline"
               size={"sm"}
             >
-              Забыли пароль?
+              <Link href="/auth/forgot-password">Забыли пароль?</Link>
             </Button>
 
             <Button
               variant={"link"}
               type="submit"
-              className="w-full py-6 text-base rounded-[50px] border border-[#898989] text-white transition-all"
+              className="mt-10 w-full mx-auto md:w-fit py-6 text-base rounded-[50px] border border-[#898989] md:text-[#FFFFFF99] text-white transition-all"
             >
-              Вход
+              <p className="px-12">Вход</p>
             </Button>
           </form>
         </Form>

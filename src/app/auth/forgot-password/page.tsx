@@ -1,10 +1,10 @@
-import { LoginForm } from "@/features/auth/components/LoginForm";
+import { ForgotPasswordForm } from "@/features/auth/components/ForgotPasswordForm";
 import { Suspense } from "react";
 
 export default async function CreateAccount() {
   return (
     <Suspense>
-      <LoginForm />
+      <ForgotPasswordForm />
     </Suspense>
   );
 }
