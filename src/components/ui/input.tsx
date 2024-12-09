@@ -1,25 +1,77 @@
+"use client";
+
 import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
+const inputWrapperVariants = cva(
+  "relative flex items-center w-full rounded-full border border-white/20 bg-transparent focus-within:ring-1 focus-within:ring-white",
+  {
+    variants: {
+      size: {
+        default: "h-10",
+        lg: "h-14",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  },
+);
+
+const inputVariants = cva(
+  "w-full bg-transparent text-sm text-white placeholder-[#FFFFFF66] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  {
+    variants: {
+      size: {
+        default: "h-10",
+        lg: "h-14",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  },
+);
+
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
+    VariantProps<typeof inputWrapperVariants> {
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
+  ({ className, type, size, leftIcon, rightIcon, ...props }, ref) => {
     return (
-      <input
-        type={type}
-        className={cn(
-          "flex h-14 w-full rounded-[50px] border border-[#FFFFFF33] bg-transparent px-7 text-sm text-[#FFFFFF66] placeholder-[#FFFFFF66] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFFFFF55] focus-visible:ring-offset-[#00000052] disabled:cursor-not-allowed disabled:opacity-100",
-          className,
+      <div className={cn(inputWrapperVariants({ size }))}>
+        {leftIcon && (
+          <div className="absolute left-3 flex items-center justify-center">
+            {leftIcon}
+          </div>
         )}
-        ref={ref}
-        {...props}
-      />
+        <input
+          type={type}
+          className={cn(
+            inputVariants({ size }),
+            leftIcon ? "pl-10" : "pl-7",
+            rightIcon ? "pr-10" : "pr-7",
+            className,
+          )}
+          ref={ref}
+          {...props}
+        />
+        {rightIcon && (
+          <div className="absolute right-3 flex items-center justify-center">
+            {rightIcon}
+          </div>
+        )}
+      </div>
     );
   },
 );
+
 Input.displayName = "Input";
 
 export { Input };

@@ -112,7 +112,7 @@ export const LoginForm: React.FC = () => {
                     Логин
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="Почта" {...field} />
+                    <Input size={"lg"} placeholder="Почта" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,7 +128,7 @@ export const LoginForm: React.FC = () => {
                     Пароль
                   </FormLabel>
                   <FormControl className="w-full">
-                    <PasswordInput placeholder="Новый пароль" {...field} />
+                    <PasswordInput size={"lg"}  placeholder="Новый пароль" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

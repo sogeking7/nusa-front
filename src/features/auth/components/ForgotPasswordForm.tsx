@@ -115,7 +115,7 @@ export const ForgotPasswordForm: React.FC = () => {
                     Логин
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="Почта" {...field} />
+                    <Input size={"lg"} placeholder="Почта" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -131,7 +131,11 @@ export const ForgotPasswordForm: React.FC = () => {
                     Пароль
                   </FormLabel>
                   <FormControl className="w-full">
-                    <PasswordInput placeholder="Новый пароль" {...field} />
+                    <PasswordInput
+                      size={"lg"}
+                      placeholder="Новый пароль"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -147,7 +151,11 @@ export const ForgotPasswordForm: React.FC = () => {
                     Пароль
                   </FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="Повторите пароль" {...field} />
+                    <PasswordInput
+                      size={"lg"}
+                      placeholder="Повторите пароль"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
