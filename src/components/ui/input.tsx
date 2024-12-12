@@ -6,11 +6,11 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const inputWrapperVariants = cva(
-  "relative flex items-center w-full rounded-full border border-white/20 bg-transparent focus-within:ring-1 focus-within:ring-white",
+  "relative flex items-center w-full rounded-full border border-white/20 bg-transparent focus-within:ring-1 focus-within:ring-[#B3F040]",
   {
     variants: {
       size: {
-        default: "h-10",
+        default: "h-12",
         lg: "h-14",
       },
     },
@@ -25,7 +25,7 @@ const inputVariants = cva(
   {
     variants: {
       size: {
-        default: "h-10",
+        default: "h-12",
         lg: "h-14",
       },
     },
