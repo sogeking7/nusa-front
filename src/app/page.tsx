@@ -48,7 +48,7 @@ export default function Home() {
             <Link href={"/auth/login"}>
               <Button
                 variant={"link"}
-                className="md:max-w-sm w-full border h-12 md:h-16 rounded-full py-5 px-10 text-sm md:text-base max-md:w-full border-[#525252] text-[#525252] hover:bg-[#525252] hover:text-white"
+                className="md:max-w-sm hover:no-underline w-full border h-12 md:h-16 rounded-full py-5 px-10 text-sm md:text-base max-md:w-full border-[#525252] text-[#525252] hover:bg-[#525252] hover:text-white"
               >
                 Вход
               </Button>
