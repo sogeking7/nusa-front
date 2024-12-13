@@ -9,7 +9,7 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-cols-[104px_1fr] lg:grid-cols-[120px_1fr] grid-rows-[90px_1fr_90px] w-full min-h-screen bg-[#1C1C1D] text-white">
+    <div className="grid min-h-screen w-full grid-cols-[104px_1fr] grid-rows-[90px_1fr] bg-[#1C1C1D] text-white lg:grid-cols-[120px_1fr]">
       <div className="col-span-2">
         <AppHeader />
       </div>
@@ -21,7 +21,7 @@ export default function HomeLayout({
           {children}
         </Container>
       </div>
-      <div className="col-span-2 md:hidden">
+      <div className="col-span-2 md:col-span-1 md:hidden">
         <AppMobilebar />
       </div>
     </div>

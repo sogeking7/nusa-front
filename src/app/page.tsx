@@ -6,41 +6,41 @@ export default function Home() {
   return (
     <div className="relative min-h-[100svh] bg-[#CACACA]">
       <div
-        className="absolute w-full h-[250px] md:h-[302px] bg-cover bg-no-repeat bg-center"
+        className="absolute h-[250px] w-full bg-cover bg-center bg-no-repeat md:h-[302px]"
         style={{ backgroundImage: "url('/image-cover-1.png')" }}
       ></div>
       <Container
         variant={"largePadded"}
-        className="max-w-screen-xl min-h-[100svh] relative "
+        className="relative min-h-[100svh] max-w-screen-xl"
       >
-        <div className="h-[250px] md:h-[302px] relative flex gap-4 md:gap-0 md:flex-row flex-col justify-center md:justify-end">
+        <div className="relative flex h-[250px] flex-col justify-center gap-4 md:h-[302px] md:flex-row md:justify-end md:gap-0">
           <img
             src={"/logo-lg.png"}
             alt="rezerv-logo"
-            className="absolute size-[117px] md:size-[243px] max-md:top-0 max-md:right-0 md:bottom-0 md:left-0 translate-y-1/3 md:translate-y-1/2"
+            className="absolute size-[117px] translate-y-1/3 max-md:right-0 max-md:top-0 md:bottom-0 md:left-0 md:size-[243px] md:translate-y-1/2"
           />
-          <div className="md:w-[450px] text-[#D9D9D9] flex flex-col justify-center md:leading-[70px] md:text-[60px] text-[32px] leading-[32px] tracking-wide uppercase">
+          <div className="flex flex-col justify-center text-[32px] uppercase leading-[32px] tracking-wide text-[#D9D9D9] md:w-[450px] md:text-[60px] md:leading-[70px]">
             <h1>Analytical</h1>
             <h1>monitoring</h1>
             <h1>system</h1>
           </div>
-          <h2 className="text-[#FFFFFF99] md:text-[#525252] text-[10px] md:hidden">
+          <h2 className="text-[10px] text-[#FFFFFF99] md:hidden md:text-[#525252]">
             РГП на ПХВ «Резерв» Комитета <br />
             по государственным <br />
             материальным резервам Министерства <br />
             по чрезвычайным ситуациям Республики Казахстан
           </h2>
         </div>
-        <div className="flex w-full gap-6 justify-between pt-[calc(243px/6)]">
-          <div className="md:max-w-[450px] flex items-end max-md:hidden">
-            <h2 className="text-[#FFFFFF99] md:text-[#525252] md:text-lg">
+        <div className="flex w-full justify-between gap-6 pt-[calc(243px/6)]">
+          <div className="flex items-end max-md:hidden md:max-w-[450px]">
+            <h2 className="text-[#FFFFFF99] md:text-lg md:text-[#525252]">
               РГП на ПХВ «Резерв» Комитета по государственным материальным
               резервам Министерства по чрезвычайным ситуациям Республики
               Казахстан
             </h2>
           </div>
           <div className="md:max-w-[450px] md:flex-shrink-0">
-            <p className="max-md:text-center text-[#525252] md:text-lg mb-[80px] md:mb-[250px]">
+            <p className="mb-[80px] text-[#525252] max-md:text-center md:mb-[250px] md:text-lg">
               Централизованное отображение данных, полученных от разных
               интеграторов со всех филиалов и транслирование данных в реальном
               времени
@@ -48,14 +48,14 @@ export default function Home() {
             <Link href={"/auth/login"}>
               <Button
                 variant={"link"}
-                className="md:max-w-sm hover:no-underline w-full border h-12 md:h-16 rounded-full py-5 px-10 text-sm md:text-base max-md:w-full border-[#525252] text-[#525252] hover:bg-[#525252] hover:text-white"
+                className="h-12 w-full rounded-full border border-[#525252] px-10 py-5 text-sm text-[#525252] hover:bg-[#525252] hover:text-white hover:no-underline max-md:w-full md:h-16 md:max-w-sm md:text-base"
               >
                 Вход
               </Button>
             </Link>
           </div>
         </div>
-        <p className="text-sm max-md:text-center w-full max-md:left-0 absolute bottom-6 text-[#1C1C1D99] tracking-tight">
+        <p className="absolute bottom-6 w-full text-sm tracking-tight text-[#1C1C1D99] max-md:left-0 max-md:text-center">
           © 2024 AMS. All rights reserved.
         </p>
       </Container>
