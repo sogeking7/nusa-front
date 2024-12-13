@@ -32,14 +32,14 @@ export const AppLeftSheet = () => {
         </Button>
       </SheetTrigger>
       <SheetContent
-        className={cn("bg-[#1C1C1D]", "text-white border-none")}
+        className={cn("bg-[#1C1C1D]", "border-none text-white")}
         side={"left"}
       >
         <SheetHeader>
           <SheetTitle className={"text-white/2"}></SheetTitle>
           <SheetDescription className={"flex flex-col space-y-16"}>
             <div className="flex flex-col space-y-4">
-              <div className="flex space-x-3 items-center">
+              <div className="flex items-center space-x-3">
                 <Avatar>
                   <AvatarImage
                     src="https://github.com/shadcn.png"
@@ -51,7 +51,7 @@ export const AppLeftSheet = () => {
                   Morty Smith
                 </Link>
               </div>
-              <div className="flex space-x-3 items-center">
+              <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
                   onClick={() => router.push("#")}
@@ -64,7 +64,7 @@ export const AppLeftSheet = () => {
                 </Link>
               </div>
 
-              <div className="flex space-x-3 items-center">
+              <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
                   onClick={() => router.push("#")}
@@ -79,7 +79,7 @@ export const AppLeftSheet = () => {
             </div>
 
             <div className="flex flex-col space-y-4">
-              <div className="flex space-x-3 items-center">
+              <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
                   onClick={() => router.push("#")}
@@ -92,7 +92,7 @@ export const AppLeftSheet = () => {
                 </Link>
               </div>
 
-              <div className="flex space-x-3 items-center">
+              <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
                   onClick={() => router.push("#")}
@@ -105,7 +105,7 @@ export const AppLeftSheet = () => {
                 </Link>
               </div>
 
-              <div className="flex space-x-3 items-center">
+              <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
                   onClick={() => router.push("#")}
@@ -118,7 +118,7 @@ export const AppLeftSheet = () => {
                 </Link>
               </div>
 
-              <div className="flex space-x-3 items-center">
+              <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
                   onClick={() => router.push("#")}

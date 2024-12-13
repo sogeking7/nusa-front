@@ -15,10 +15,10 @@ export default function AppHeader() {
   const router = useRouter();
 
   return (
-    <header className="w-full h-[90px] bg-transparent md:border-b-white/20 md:border-b-[1px] flex items-center justify-between">
+    <header className="flex h-[90px] w-full items-center justify-between bg-transparent md:border-b-[1px] md:border-b-white/20">
       <Link
         href={"/home"}
-        className="max-md:hidden md:px-6 lg:px-8 flex-shrink-0"
+        className="flex-shrink-0 max-md:hidden md:px-6 lg:px-8"
       >
         <img alt="logo" src={"/rezerv-logo.svg"} className="size-[56px]" />
       </Link>
@@ -27,9 +27,9 @@ export default function AppHeader() {
         variant={"largePadded"}
         className="flex items-center justify-between gap-4"
       >
-        <div className="flex items-center gap-4 flex-1">
+        <div className="flex flex-1 items-center gap-4">
           <AppLeftSheet />
-          <div className="md:max-w-sm w-full">
+          <div className="w-full md:max-w-sm">
             <Input
               leftIcon={<SearchIcon size={20} className="text-white/40" />}
               type="text"
@@ -41,8 +41,8 @@ export default function AppHeader() {
           </div>
         </div>
         <div className="flex items-center space-x-4 max-md:hidden">
-          <div className="flex space-x-3 items-center">
-            <Link href="#" className="text-white/40 text-sm">
+          <div className="flex items-center space-x-3">
+            <Link href="#" className="text-sm text-white/40">
               Темный режим
             </Link>
             <Button
