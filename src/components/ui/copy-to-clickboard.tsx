@@ -21,8 +21,8 @@ export default function CopyToClipboard({
   };
 
   return (
-    <div className="flex items-center space-x-2 w-max ">
-      <p className="font-medium text-right">{text}</p>
+    <div className="flex w-max items-center space-x-2">
+      <p className="text-right font-medium">{text}</p>
       <button
         onClick={copyToClipboard}
         className="text-info hover:text-gray-700"

@@ -26,7 +26,7 @@ export function SalaryCard({
         className,
       )}
     >
-      <CardContent className="sm:p-5">
+      <CardContent className="p-4 sm:p-5">
         <Button
           variant="outline"
           size="icon"
@@ -37,7 +37,7 @@ export function SalaryCard({
 
         <div className="space-y-2 text-white">
           <h2 className="font-bold">{title}</h2>
-          <div className="bg-primary-purple h-[1px] w-10" />
+          <div className="h-[1px] w-10 bg-primary-purple" />
           <p className="font-medium">{subtitle}</p>
         </div>
 

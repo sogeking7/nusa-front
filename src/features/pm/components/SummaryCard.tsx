@@ -22,7 +22,7 @@ export function SummaryCard({
 
   return (
     <Card className={cn("rounded-lg border border-white/20", className)}>
-      <CardContent className="space-y-6 sm:p-5">
+      <CardContent className="space-y-6 p-4 sm:p-5">
         <div>
           <h2
             className={cn(
@@ -32,7 +32,7 @@ export function SummaryCard({
           >
             {label}
           </h2>
-          <div className="bg-primary-purple mt-3 h-[1px] w-10" />
+          <div className="mt-3 h-[1px] w-10 bg-primary-purple" />
         </div>
         <p className="text-3xl font-light tracking-wider text-white/50">
           {typeof value === "number" ? value.toLocaleString() : value}

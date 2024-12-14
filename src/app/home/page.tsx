@@ -37,58 +37,63 @@ const employeeStats = [
 
 export default function HomePage() {
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-[2fr_auto_1fr]">
-      <ListContainer />
-      {/* <div className="flex max-h-56 w-full max-w-[422px] items-center justify-between space-x-8 rounded-lg border border-white/20 p-5 pl-9">
+    <>
+      <h1 className="mb-3 text-sm text-white md:mb-8 md:text-5xl">
+        Панель управления кадрами
+      </h1>
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[2fr_auto_1fr]">
+        <ListContainer />
+        {/* <div className="flex max-h-56 w-full max-w-[422px] items-center justify-between space-x-8 rounded-lg border border-white/20 p-5 pl-9">
         <div className="flex flex-col space-y-6">
-          {chartData.map((data, index) => {
-            return (
-              <div key={index} className="flex items-center">
-                <p className="min-w-36 font-medium">{data.label}:</p>
-                <span className="ml-2 text-sm" style={{ color: data.color }}>
-                  {data.value}
-                </span>
-              </div>
+        {chartData.map((data, index) => {
+          return (
+            <div key={index} className="flex items-center">
+            <p className="min-w-36 font-medium">{data.label}:</p>
+            <span className="ml-2 text-sm" style={{ color: data.color }}>
+            {data.value}
+            </span>
+            </div>
             );
-          })}
+            })}
+            </div>
+            </div> */}
+        <div className="space-y-5">
+          <h2 className="font-bold text-white">Состав по полу</h2>
+          {/* <DonutChart /> */}
+          <SalaryCard
+            title="Заработные платы по должностям"
+            subtitle="Главный специалист"
+            value="258 000, 00 ₸"
+          />
+          <EmployeeStatsCard
+            title="Работники за отчетный период"
+            subtitle="В начале года / за отчетный квартал"
+            stats={employeeStats}
+          />
         </div>
-      </div> */}
-      <div className="space-y-5">
-        <h2 className="font-bold text-white">Состав по полу</h2>
-        {/* <DonutChart /> */}
-        <SalaryCard
-          title="Заработные платы по должностям"
-          subtitle="Главный специалист"
-          value="258 000, 00 ₸"
-        />
-        <EmployeeStatsCard
-          title="Работники за отчетный период"
-          subtitle="В начале года / за отчетный квартал"
-          stats={employeeStats}
-        />
-      </div>
-      <div className="space-y-4">
-        <h2 className="font-bold text-white">Заработные платы</h2>
-        <SalaryStats salaryRange={mockData.salaryRange} />
         <div className="space-y-4">
-          <h2 className="font-bold text-white">Свод по заработной плате</h2>
-          <SummaryCard
-            label="Начислено"
-            value={mockData.salarySummary.accrued}
-            color="purple"
-          />
-          <SummaryCard
-            label="Удержано"
-            value={mockData.salarySummary.withheld}
-            color="orange"
-          />
-          <SummaryCard
-            label="Перечисление"
-            value={mockData.salarySummary.transferred}
-            color="green"
-          />
+          <h2 className="font-bold text-white">Заработные платы</h2>
+          <SalaryStats salaryRange={mockData.salaryRange} />
+          <div className="space-y-4">
+            <h2 className="font-bold text-white">Свод по заработной плате</h2>
+            <SummaryCard
+              label="Начислено"
+              value={mockData.salarySummary.accrued}
+              color="purple"
+            />
+            <SummaryCard
+              label="Удержано"
+              value={mockData.salarySummary.withheld}
+              color="orange"
+            />
+            <SummaryCard
+              label="Перечисление"
+              value={mockData.salarySummary.transferred}
+              color="green"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

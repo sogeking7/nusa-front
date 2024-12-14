@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 export default async function CreateAccount() {
   return (
-    <Suspense>
+    <Suspense fallback={"Loading..."}>
       <ForgotPasswordForm />
     </Suspense>
   );

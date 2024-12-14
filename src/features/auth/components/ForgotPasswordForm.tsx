@@ -50,26 +50,26 @@ export const ForgotPasswordForm = () => {
   const onSubmit = async (values: FormData) => {};
 
   return (
-    <div className="max-w-lg w-full px-4">
+    <div className="w-full max-w-lg px-4">
       <div>
         <h1 className="text-sm text-[#D9D9D966]">Восстановление пароля</h1>
-        <div className="w-10 h-[1px] bg-[#E31E24] mt-3" />
+        <div className="mt-3 h-[1px] w-10 bg-[#E31E24]" />
       </div>
       <div className="mt-6">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-3 items-end"
+            className="flex flex-col items-end gap-3"
           >
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="w-full flex gap-16 items-center">
-                  <FormLabel className="md:min-w-16 text-base text-white hidden md:block">
+                <FormItem className="flex w-full items-center gap-16">
+                  <FormLabel className="hidden text-base text-white md:block md:min-w-16">
                     Логин
                   </FormLabel>
-                  <div className="flex flex-col space-y-2 w-full">
+                  <div className="flex w-full flex-col space-y-2">
                     <FormControl className="w-full">
                       <Input placeholder="Почта" {...field} />
                     </FormControl>
@@ -83,11 +83,11 @@ export const ForgotPasswordForm = () => {
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem className="w-full flex gap-16 items-center">
-                  <FormLabel className="md:min-w-16 text-base text-white hidden md:block">
+                <FormItem className="flex w-full items-center gap-16">
+                  <FormLabel className="hidden text-base text-white md:block md:min-w-16">
                     Пароль
                   </FormLabel>
-                  <div className="flex flex-col space-y-2 w-full">
+                  <div className="flex w-full flex-col space-y-2">
                     <FormControl className="w-full">
                       <PasswordInput placeholder="Новый пароль" {...field} />
                     </FormControl>
@@ -101,11 +101,11 @@ export const ForgotPasswordForm = () => {
               control={form.control}
               name="passwordConfirm"
               render={({ field }) => (
-                <FormItem className="w-full flex gap-16 items-center">
-                  <FormLabel className="md:min-w-16 invisible text-base text-white hidden md:block">
+                <FormItem className="flex w-full items-center gap-16">
+                  <FormLabel className="invisible hidden text-base text-white md:block md:min-w-16">
                     Пароль
                   </FormLabel>
-                  <div className="flex flex-col space-y-2 w-full">
+                  <div className="flex w-full flex-col space-y-2">
                     <FormControl className="w-full">
                       <PasswordInput
                         placeholder="Повторите пароль"
@@ -118,12 +118,12 @@ export const ForgotPasswordForm = () => {
               )}
             />
 
-            <div className="md:max-w-[350px] mt-6 w-full">
+            <div className="mt-6 w-full md:max-w-[350px]">
               <Button
                 type="submit"
                 className={cn(
-                  "md:w-[70%] w-full",
-                  "text-white/60 bg-transparent shadow-none border-white/40 border",
+                  "w-full md:w-[70%]",
+                  "border border-white/40 bg-transparent text-white/60 shadow-none",
                   "hover:bg-white hover:text-accent-foreground",
                 )}
               >
