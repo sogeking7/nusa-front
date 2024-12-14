@@ -11,7 +11,7 @@ export function ListRow({ employee, className }: ListRowProps) {
   return (
     <div
       className={twMerge(
-        "flex items-center gap-2 p-4 transition-colors hover:bg-white/10 md:gap-4 md:py-4 md:pl-7 md:pr-9",
+        "flex items-center gap-2 p-4 text-white transition-colors hover:bg-white/10 md:gap-4 md:py-4 md:pl-7 md:pr-9",
         className,
       )}
     >
@@ -23,17 +23,15 @@ export function ListRow({ employee, className }: ListRowProps) {
         )}
       </Avatar>
       <div className="min-w-0 flex-1">
-        <p className="font-medium text-gray-200 max-md:text-[10px]">
-          {employee.name}
-        </p>
-        <p className="text-sm text-gray-500 max-md:text-[10px]">
+        <p className="font-medium max-md:text-[10px]">{employee.name}</p>
+        <p className="text-sm text-[#898989] max-md:text-[10px]">
           {employee.position}
         </p>
       </div>
-      <div className="flex-1 text-center text-gray-300 max-md:text-right max-md:text-[10px]">
+      <div className="flex-1 text-center max-md:text-right max-md:text-[10px]">
         {employee.institution}
       </div>
-      <div className="flex-1 text-center text-gray-300 max-md:text-right max-md:text-[10px]">
+      <div className="flex-1 text-center max-md:text-right max-md:text-[10px]">
         {employee.department}
       </div>
     </div>
