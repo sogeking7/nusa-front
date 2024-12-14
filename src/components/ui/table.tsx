@@ -6,7 +6,11 @@ const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <table ref={ref} className={cn("w-full text-sm caption-bottom", className)} {...props} />
+  <table
+    ref={ref}
+    className={cn("w-full caption-bottom text-sm", className)}
+    {...props}
+  />
 ));
 Table.displayName = "Table";
 
@@ -42,7 +46,7 @@ const TableFooter = React.forwardRef<
     ref={ref}
     className={cn(
       "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
-      className
+      className,
     )}
     {...props}
   />
@@ -56,8 +60,8 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "border-b-none odd:bg-muted transition-colors  data-[state=selected]:bg-muted",
-      className
+      "border-b-none transition-colors odd:bg-muted data-[state=selected]:bg-muted",
+      className,
     )}
     {...props}
   />
@@ -72,7 +76,7 @@ const TableHead = React.forwardRef<
     ref={ref}
     className={cn(
       "h-12 px-3 text-left align-middle font-medium text-accent-foreground [&:has([role=checkbox])]:pr-0",
-      className
+      className,
     )}
     {...props}
   />

@@ -28,7 +28,7 @@ export default function ListContainer() {
 
   return (
     <div className="max-w-3xl rounded-lg border border-white/20 bg-inherit backdrop-blur-sm">
-      <div className="flex w-full space-x-4 p-7 pr-9">
+      <div className="flex w-full space-x-2 p-3 md:space-x-4 md:p-7 md:pr-9">
         <Input
           leftIcon={<SearchIcon size={20} className="text-white/40" />}
           type="text"
@@ -37,7 +37,7 @@ export default function ListContainer() {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full"
         />
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" className="shrink-0">
           <AlignRight />
         </Button>
       </div>

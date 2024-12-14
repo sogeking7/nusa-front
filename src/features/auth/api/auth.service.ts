@@ -40,7 +40,7 @@ export const AuthService = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       return {
         success: true,
@@ -58,7 +58,7 @@ export const AuthService = () => {
     try {
       const { data } = await apiPayload().post<CreateUserResponse>(
         `${url}/register`,
-        body
+        body,
       );
       return {
         success: true,
@@ -90,7 +90,7 @@ export const AuthService = () => {
   const refreshToken: Refresh = async () => {
     try {
       const { data } = await apiPayload().post<RefreshResponse>(
-        `${url}/refresh-token`
+        `${url}/refresh-token`,
       );
       return {
         success: true,

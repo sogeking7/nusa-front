@@ -53,8 +53,8 @@ const PaginationLink = ({
         variant: "light",
         size,
       }),
-      isActive ? "text-primary hover:text-primary border-primary" : "",
-      className
+      isActive ? "border-primary text-primary hover:text-primary" : "",
+      className,
     )}
     {...props}
   />

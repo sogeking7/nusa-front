@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const inputWrapperVariants = cva(
-  "relative flex items-center w-full rounded-full border border-white/20 bg-transparent focus-within:ring-1 focus-within:ring-[#B3F040]",
+  "relative flex items-center w-full rounded-full border border-white/20 bg-transparent focus-within:ring-1 focus-within:ring-primary-green",
   {
     variants: {
       size: {

@@ -35,7 +35,7 @@ const api = (access_token: string | null | undefined) => {
                   "Content-Type": "application/json",
                 },
                 withCredentials: true,
-              }
+              },
             );
 
             const newAccessToken = refreshResponse.data.access_token;
@@ -56,7 +56,7 @@ const api = (access_token: string | null | undefined) => {
         }
       }
       return Promise.reject(error);
-    }
+    },
   );
   return instance;
 };
