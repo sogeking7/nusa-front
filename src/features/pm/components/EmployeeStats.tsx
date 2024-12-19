@@ -33,22 +33,21 @@ export function EmployeeStatsCard({
   };
 
   return (
-    <Card className={cn("rounded-lg border border-white/20", className)}>
-      <CardHeader className="p-5 pb-0">
-        <CardTitle className="text-xl font-semibold text-white">
+    <Card className={cn("!rounded-xl border border-white/20", className)}>
+      <CardHeader className="space-y-3 !p-4">
+        <CardTitle className="!text-base font-medium text-white">
           {title}
         </CardTitle>
+        <div className="h-[1px] w-10 bg-primary-purple" />
         <p className="mt-1 text-right text-sm text-zinc-400">{subtitle}</p>
       </CardHeader>
-      <CardContent className="space-y-4 p-4 sm:p-5">
+      <CardContent className="space-y-4 !p-4">
         {stats.map((stat, index) => (
-          <div key={index} className="flex items-center justify-between">
-            <span
-              className={cn("text-base font-medium", getColorClass(stat.color))}
-            >
+          <div key={index} className="flex justify-between gap-3">
+            <span className={cn("text-sm", getColorClass(stat.color))}>
               {stat.label}
             </span>
-            <span className="text-zinc-400">
+            <span className="flex-shrink-0 text-sm text-zinc-400">
               {stat.startValue} / {stat.endValue}
             </span>
           </div>

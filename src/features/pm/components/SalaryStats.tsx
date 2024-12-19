@@ -18,21 +18,27 @@ export function SalaryStats({ salaryRange }: SalaryStatsProps) {
 
   return (
     <Card className="rounded-lg border border-white/20">
-      <CardContent className="space-y-5 p-4 sm:p-5">
-        <div className="flex flex-col items-start">
-          <span className="font-medium text-primary-purple">Средняя</span>
+      <CardContent className="space-y-3 !p-4">
+        <div className="flex flex-col items-start gap-1">
+          <span className="text-sm font-medium text-primary-purple">
+            Средняя
+          </span>
           <span className="font-light tracking-wider text-white/50">
             {formatCurrency(salaryRange.average)}
           </span>
         </div>
-        <div className="flex flex-col items-start">
-          <span className="font-medium text-primary-green">Высокая</span>
+        <div className="flex flex-col items-start gap-1">
+          <span className="text-sm font-medium text-primary-green">
+            Высокая
+          </span>
           <span className="font-light tracking-wider text-white/50">
             {formatCurrency(salaryRange.high)}
           </span>
         </div>
-        <div className="flex flex-col items-start">
-          <span className="font-medium text-primary-orange">Низкая</span>
+        <div className="flex flex-col items-start gap-1">
+          <span className="text-sm font-medium text-primary-orange">
+            Низкая
+          </span>
           <span className="font-light tracking-wider text-white/50">
             {formatCurrency(salaryRange.low)}
           </span>

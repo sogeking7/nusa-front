@@ -38,11 +38,14 @@ const employeeStats = [
 export default function HomePage() {
   return (
     <>
-      <h1 className="mb-3 text-sm text-white md:mb-8 md:text-5xl">
+      <h1 className="mb-2 text-white md:mb-6 md:text-3xl">
         Панель управления кадрами
       </h1>
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[2fr_auto_1fr]">
-        <ListContainer />
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+        <div className="col-span-6">
+          <ListContainer />
+        </div>
+
         {/* <div className="flex max-h-56 w-full max-w-[422px] items-center justify-between space-x-8 rounded-lg border border-white/20 p-5 pl-9">
         <div className="flex flex-col space-y-6">
         {chartData.map((data, index) => {
@@ -57,8 +60,8 @@ export default function HomePage() {
             })}
             </div>
             </div> */}
-        <div className="space-y-5">
-          <h2 className="font-bold text-white">Состав по полу</h2>
+        <div className="col-span-3 space-y-4">
+          <h2 className="font-medium text-white">Состав по полу</h2>
           {/* <DonutChart /> */}
           <SalaryCard
             title="Заработные платы по должностям"
@@ -71,11 +74,11 @@ export default function HomePage() {
             stats={employeeStats}
           />
         </div>
-        <div className="space-y-4">
-          <h2 className="font-bold text-white">Заработные платы</h2>
+        <div className="col-span-3 space-y-4">
+          <h2 className="font-medium text-white">Заработные платы</h2>
           <SalaryStats salaryRange={mockData.salaryRange} />
           <div className="space-y-4">
-            <h2 className="font-bold text-white">Свод по заработной плате</h2>
+            <h2 className="font-medium text-white">Свод по заработной плате</h2>
             <SummaryCard
               label="Начислено"
               value={mockData.salarySummary.accrued}

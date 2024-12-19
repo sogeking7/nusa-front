@@ -22,11 +22,11 @@ export function SalaryCard({
   return (
     <Card
       className={cn(
-        "relative cursor-pointer rounded-lg border border-white/20",
+        "relative cursor-pointer !rounded-xl border border-white/20",
         className,
       )}
     >
-      <CardContent className="p-4 sm:p-5">
+      <CardContent className="!p-4">
         <Button
           variant="outline"
           size="icon"
@@ -35,15 +35,16 @@ export function SalaryCard({
           <ArrowUpRight />
         </Button>
 
-        <div className="space-y-2 text-white">
-          <h2 className="font-bold">{title}</h2>
+        <div className="space-y-3 pr-12 text-white">
+          <h2 className="font-medium">{title}</h2>
           <div className="h-[1px] w-10 bg-primary-purple" />
-          <p className="font-medium">{subtitle}</p>
         </div>
-
-        <p className="mt-3 font-light tracking-wide text-white/50">
-          {typeof value === "number" ? value.toLocaleString() : value}
-        </p>
+        <div className="mt-3">
+          <p className="text-white">{subtitle}</p>
+          <p className="mt-1 font-light tracking-wide text-white/50">
+            {typeof value === "number" ? value.toLocaleString() : value}
+          </p>
+        </div>
       </CardContent>
     </Card>
   );
