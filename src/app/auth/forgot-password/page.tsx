@@ -1,10 +1,7 @@
-import { ForgotPasswordForm } from "@/features/auth/components/ForgotPasswordForm";
-import { Suspense } from "react";
+"use client";
 
-export default async function CreateAccount() {
-  return (
-    <Suspense fallback={"Loading..."}>
-      <ForgotPasswordForm />
-    </Suspense>
-  );
+import { ForgotPasswordForm } from "@/features/auth/components/ForgotPasswordForm";
+
+export default function CreateAccount() {
+  return <ForgotPasswordForm />;
 }

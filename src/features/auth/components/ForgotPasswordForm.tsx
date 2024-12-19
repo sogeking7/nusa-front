@@ -47,10 +47,10 @@ export const ForgotPasswordForm = () => {
     },
   });
 
-  const onSubmit = async (values: FormData) => {};
+  const onSubmit = async (values: FormData) => { };
 
   return (
-    <div className="w-full max-w-lg px-4">
+    <div className="w-full max-w-lg p-2">
       <div>
         <h1 className="text-sm text-[#D9D9D966]">Восстановление пароля</h1>
         <div className="mt-3 h-[1px] w-10 bg-[#E31E24]" />
@@ -65,12 +65,12 @@ export const ForgotPasswordForm = () => {
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="flex w-full items-center gap-16">
-                  <FormLabel className="hidden text-base text-white md:block md:min-w-16">
+                <FormItem className="flex w-full items-center gap-10">
+                  <FormLabel className="hidden text-sm text-white lg:block lg:min-w-16">
                     Логин
                   </FormLabel>
                   <div className="flex w-full flex-col space-y-2">
-                    <FormControl className="w-full">
+                    <FormControl>
                       <Input placeholder="Почта" {...field} />
                     </FormControl>
                     <FormMessage />
@@ -83,12 +83,12 @@ export const ForgotPasswordForm = () => {
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem className="flex w-full items-center gap-16">
-                  <FormLabel className="hidden text-base text-white md:block md:min-w-16">
+                <FormItem className="flex w-full items-center gap-10">
+                  <FormLabel className="hidden text-sm text-white lg:block lg:min-w-16">
                     Пароль
                   </FormLabel>
                   <div className="flex w-full flex-col space-y-2">
-                    <FormControl className="w-full">
+                    <FormControl>
                       <PasswordInput placeholder="Новый пароль" {...field} />
                     </FormControl>
                     <FormMessage />
@@ -101,12 +101,12 @@ export const ForgotPasswordForm = () => {
               control={form.control}
               name="passwordConfirm"
               render={({ field }) => (
-                <FormItem className="flex w-full items-center gap-16">
-                  <FormLabel className="invisible hidden text-base text-white md:block md:min-w-16">
+                <FormItem className="flex w-full items-center gap-10">
+                  <FormLabel className="invisible hidden text-sm text-white lg:block lg:min-w-16">
                     Пароль
                   </FormLabel>
                   <div className="flex w-full flex-col space-y-2">
-                    <FormControl className="w-full">
+                    <FormControl>
                       <PasswordInput
                         placeholder="Повторите пароль"
                         {...field}

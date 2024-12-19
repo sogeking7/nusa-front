@@ -10,6 +10,10 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "main-page-desktop": "url('/image-cover-1.png')",
+        "main-page-mobile": "url('/image-cover-mobile.png')",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
