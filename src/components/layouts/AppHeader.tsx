@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { BellIcon, MoonIcon, PanelRight, SearchIcon } from "lucide-react";
+import { BellIcon, MoonIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/ui/Container";
 import { AppLeftSheet } from "./AppLeftSheet";
@@ -15,18 +15,11 @@ export default function AppHeader() {
   const router = useRouter();
 
   return (
-    <header className="flex h-[90px] w-full items-center justify-between bg-transparent md:border-b-[1px] md:border-b-white/20">
-      <Link
-        href={"/home"}
-        className="flex-shrink-0 max-md:hidden md:px-6 lg:px-8"
-      >
-        <img alt="logo" src={"/rezerv-logo.svg"} className="size-[56px]" />
+    <header className="fixed top-0 z-50 flex h-16 w-full items-center justify-between bg-[#1C1C1D] md:border-b-[1px] md:border-b-white/20">
+      <Link href={"/home"} className="flex-shrink-0 px-4 max-md:hidden">
+        <img alt="logo" src={"/rezerv-logo.svg"} className="size-11" />
       </Link>
-
-      <Container
-        variant={"largePadded"}
-        className="flex items-center justify-between gap-4"
-      >
+      <Container className="flex items-center justify-between gap-4">
         <div className="flex flex-1 items-center gap-4">
           <AppLeftSheet />
           <div className="w-full md:max-w-sm">

@@ -10,8 +10,7 @@ const inputWrapperVariants = cva(
   {
     variants: {
       size: {
-        default: "h-12",
-        lg: "h-14",
+        default: "h-9",
       },
     },
     defaultVariants: {
@@ -21,12 +20,11 @@ const inputWrapperVariants = cva(
 );
 
 const inputVariants = cva(
-  "w-full bg-transparent text-sm text-white placeholder-[#FFFFFF66] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  "w-full bg-transparent text-base md:text-sm text-white placeholder-[#FFFFFF66] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       size: {
-        default: "h-12",
-        lg: "h-14",
+        default: "h-9",
       },
     },
     defaultVariants: {
@@ -37,7 +35,7 @@ const inputVariants = cva(
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
-    VariantProps<typeof inputWrapperVariants> {
+  VariantProps<typeof inputWrapperVariants> {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
@@ -55,8 +53,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           className={cn(
             inputVariants({ size }),
-            leftIcon ? "pl-10" : "pl-7",
-            rightIcon ? "pr-10" : "pr-7",
+            leftIcon ? "pl-10" : "pl-4",
+            rightIcon ? "pr-10" : "pr-4",
             className,
           )}
           ref={ref}

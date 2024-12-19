@@ -9,17 +9,15 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid min-h-screen w-full grid-cols-[104px_1fr] grid-rows-[90px_1fr] bg-[#1C1C1D] text-white lg:grid-cols-[120px_1fr]">
+    <div className="full grid min-h-[100svh] grid-cols-[72px_1fr] grid-rows-[auto_1fr] bg-[#1C1C1D] pt-16 text-white">
       <div className="col-span-2">
         <AppHeader />
       </div>
-      <div className="col-span-1 max-md:hidden">
+      <div className="relative col-span-1 h-full max-md:hidden">
         <AppSidebar />
       </div>
       <div className="col-span-2 md:col-span-1">
-        <Container variant={"largePadded"} className="py-6 lg:py-8">
-          {children}
-        </Container>
+        <Container className="py-6">{children}</Container>
       </div>
       <div className="col-span-2 md:col-span-1 md:hidden">
         <AppMobilebar />

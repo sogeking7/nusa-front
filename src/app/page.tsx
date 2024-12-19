@@ -7,17 +7,17 @@ export default function Home() {
   return (
     <div className="relative min-h-[100svh] bg-[#CACACA]">
       <div className="md:bg-main-page-desktop bg-main-page-mobile absolute h-[250px] w-full bg-cover bg-center bg-no-repeat md:h-[300px]"></div>
-      <Container className="relative min-h-[100svh]">
+      <Container className="relative min-h-[100svh] max-w-screen-lg">
         <div className="relative flex h-[250px] flex-col justify-center gap-4 md:h-[300px] md:flex-row md:justify-end md:gap-0">
           <img
             src={"/rezerv-logo.svg"}
             alt="rezerv-logo"
             className={cn(
-              "size-[100px] md:size-[200px]",
+              "size-24 md:size-44",
               "absolute translate-y-1/3 max-md:right-0 max-md:top-0 md:bottom-0 md:left-0 md:translate-y-1/2",
             )}
           />
-          <div className="flex w-full max-w-lg flex-col justify-center text-3xl uppercase text-[#D9D9D9] md:text-5xl md:leading-snug">
+          <div className="flex w-full max-w-sm flex-col justify-center text-3xl uppercase text-[#D9D9D9] md:text-5xl md:leading-snug">
             <h1>Analytical</h1>
             <h1>monitoring</h1>
             <h1>system</h1>
@@ -37,7 +37,7 @@ export default function Home() {
               Казахстан
             </h2>
           </div>
-          <div className="w-full max-w-lg md:flex-shrink-0">
+          <div className="w-full max-w-sm md:flex-shrink-0">
             <p className="mb-24 max-w-sm text-sm text-[#525252] max-sm:text-center">
               Централизованное отображение данных, полученных от разных
               интеграторов со всех филиалов и транслирование данных в реальном

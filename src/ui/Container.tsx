@@ -2,15 +2,15 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const containerVariants = cva("mx-auto px-4 sm:px-6 lg:px-8", {
+const containerVariants = cva("mx-auto px-4 w-full", {
   variants: {
     variant: {
-      largePadded: "px-4 container max-w-screen-2xl sm:px-6 lg:px-8",
-      fullMobileConstrainedPadded: "max-w-7xl sm:px-6 lg:px-8",
-      constrainedPadded: "max-w-[1440px] px-4 sm:px-6 lg:px-8",
-      fullMobileBreakpointPadded: "container mx-auto sm:px-6 lg:px-8",
-      breakpointPadded: "container mx-auto px-4 sm:px-6 lg:px-8",
-      narrowConstrainedPadded: "px-4 sm:px-6 lg:px-8 max-w-3xl",
+      largePadded: "px-4 container max-w-screen-2xl",
+      fullMobileConstrainedPadded: "max-w-7xl",
+      constrainedPadded: "max-w-[1440px] px-4",
+      fullMobileBreakpointPadded: "container mx-auto",
+      breakpointPadded: "container mx-auto px-4",
+      narrowConstrainedPadded: "px-4 max-w-3xl",
     },
   },
   defaultVariants: {
@@ -20,7 +20,7 @@ const containerVariants = cva("mx-auto px-4 sm:px-6 lg:px-8", {
 
 export interface ContainerProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof containerVariants> {
+  VariantProps<typeof containerVariants> {
   asChild?: boolean;
 }
 
