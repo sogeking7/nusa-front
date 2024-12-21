@@ -1,9 +1,9 @@
-import { DonutChart } from "@/components/ui/donut-chart";
 import { EmployeeStatsCard } from "@/features/pm/components/EmployeeStats";
 import ListContainer from "@/features/pm/components/ListContainer";
 import { SalaryCard } from "@/features/pm/components/SalaryCard";
 import { SalaryStats } from "@/features/pm/components/SalaryStats";
 import { SummaryCard } from "@/features/pm/components/SummaryCard";
+import { GenderChart } from "@/features/pm/components/GenderChart";
 
 const mockData = {
   genderStats: {
@@ -42,27 +42,12 @@ export default function HomePage() {
         Панель управления кадрами
       </h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-        <div className="col-span-6">
+        <div className="col-span-full lg:col-span-5">
           <ListContainer />
         </div>
-
-        {/* <div className="flex max-h-56 w-full max-w-[422px] items-center justify-between space-x-8 rounded-lg border border-white/20 p-5 pl-9">
-        <div className="flex flex-col space-y-6">
-        {chartData.map((data, index) => {
-          return (
-            <div key={index} className="flex items-center">
-            <p className="min-w-36 font-medium">{data.label}:</p>
-            <span className="ml-2 text-sm" style={{ color: data.color }}>
-            {data.value}
-            </span>
-            </div>
-            );
-            })}
-            </div>
-            </div> */}
-        <div className="col-span-3 space-y-4">
+        <div className="col-span-full lg:col-span-4 space-y-4">
           <h2 className="font-medium text-white">Состав по полу</h2>
-          {/* <DonutChart /> */}
+          <GenderChart />
           <SalaryCard
             title="Заработные платы по должностям"
             subtitle="Главный специалист"
@@ -74,7 +59,7 @@ export default function HomePage() {
             stats={employeeStats}
           />
         </div>
-        <div className="col-span-3 space-y-4">
+        <div className="col-span-full lg:col-span-3 space-y-4">
           <h2 className="font-medium text-white">Заработные платы</h2>
           <SalaryStats salaryRange={mockData.salaryRange} />
           <div className="space-y-4">

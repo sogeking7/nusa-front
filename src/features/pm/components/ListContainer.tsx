@@ -27,7 +27,7 @@ export default function ListContainer() {
   );
 
   return (
-    <div className="max-w-3xl rounded-xl border border-white/20 bg-inherit backdrop-blur-sm">
+    <div className="rounded-xl border border-white/20 bg-inherit backdrop-blur-sm">
       <div className="flex w-full space-x-2 p-4 md:space-x-4">
         <Input
           leftIcon={<SearchIcon size={20} className="text-white/40" />}
