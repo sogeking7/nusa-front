@@ -9,7 +9,7 @@ export default function AuthLayout({
 }) {
   return (
     <div className="min-h-[100svh] w-full bg-[#1C1C1D]">
-      <div className="md:bg-main-page-desktop bg-main-page-mobile absolute h-[215px] w-full bg-cover bg-center bg-no-repeat md:h-[300px]"></div>
+      <div className="absolute h-[215px] w-full bg-main-page-mobile bg-cover bg-center bg-no-repeat md:h-[300px] md:bg-main-page-desktop"></div>
       <Container className="relative h-[215px] max-w-screen-lg md:h-[300px]">
         <Link href="/">
           <img

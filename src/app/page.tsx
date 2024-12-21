@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="relative min-h-[100svh] bg-[#CACACA]">
-      <div className="md:bg-main-page-desktop bg-main-page-mobile absolute h-[250px] w-full bg-cover bg-center bg-no-repeat md:h-[300px]"></div>
+      <div className="absolute h-[250px] w-full bg-main-page-mobile bg-cover bg-center bg-no-repeat md:h-[300px] md:bg-main-page-desktop"></div>
       <Container className="relative min-h-[100svh] max-w-screen-lg">
         <div className="relative flex h-[250px] flex-col justify-center gap-4 md:h-[300px] md:flex-row md:justify-end md:gap-0">
           <img

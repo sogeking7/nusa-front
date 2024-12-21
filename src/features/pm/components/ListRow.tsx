@@ -26,8 +26,8 @@ export function ListRow({ employee, className }: ListRowProps) {
         <p className="text-sm font-medium">{employee.name}</p>
         <p className="text-sm text-[#898989]">{employee.position}</p>
       </div>
-      <div className="text-sm">{employee.institution}</div>
-      <div className="text-sm">{employee.department}</div>
+      <div className="flex-1 text-center text-sm">{employee.institution}</div>
+      <div className="flex-1 text-center text-sm">{employee.department}</div>
     </div>
   );
 }
