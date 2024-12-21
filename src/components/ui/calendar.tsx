@@ -42,23 +42,23 @@ export function WorkSchedule() {
   const offsetDays = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
 
   return (
-    <Card className="h-fit w-full max-w-md rounded-lg border border-white/20 font-sans text-white">
-      <CardContent className="px-5 py-[30px]">
+    <Card className="h-fit w-full rounded-lg border border-white/20 font-sans text-white">
+      <CardContent className="p-4 lg:p-6">
         <div className="mb-2 flex justify-between">
-          <div className="space-y-1">
-            <h2 className="text-2xl font-bold">График работы</h2>
-            <div className="flex items-center gap-4">
-              <span className="shrink-0 text-lg font-bold">
+          <div className="lg:space-y-3">
+            <h2 className="text-2xl font-bold max-lg:hidden">График работы</h2>
+            <div className="flex gap-3 max-lg:flex-col lg:items-center lg:gap-4">
+              <span className="shrink-0 font-bold lg:text-xl">
                 {data.shift} смена
               </span>
               <div className="flex shrink-0 items-center">
-                <span className="mx-2 text-2xl">
+                <span className="text-lg lg:text-2xl">
                   {data.month} {data.year}
                 </span>
               </div>
             </div>
           </div>
-          <div className="shrink-0 text-2xl">
+          <div className="flex shrink-0 flex-col gap-3 lg:text-2xl">
             <h2 className="mb-1 font-bold">Итог/норма</h2>
             <div className="text-right">
               {data.workDays}/{data.totalDays}
@@ -86,7 +86,7 @@ export function WorkSchedule() {
 
         <div className="grid grid-cols-7 gap-2">
           {DAYS_OF_WEEK.map((day) => (
-            <div key={day} className="py-2 text-center text-xl">
+            <div key={day} className="py-2 text-center lg:text-xl">
               {day}
             </div>
           ))}
@@ -100,8 +100,10 @@ export function WorkSchedule() {
           {data.days.map((day, index) => (
             <div
               key={index}
-              className={`rounded-[10px] p-2 text-center text-black ${
-                day.isWorkDay ? "bg-primary-green" : "bg-primary-green/40"
+              className={`cursor-pointer rounded-[10px] p-2 text-center text-black transition-colors duration-150 ${
+                day.isWorkDay
+                  ? "bg-primary-green hover:bg-primary-green/80"
+                  : "bg-primary-green/40 hover:bg-primary-green/60"
               } `}
             >
               {day.date.getDate()}

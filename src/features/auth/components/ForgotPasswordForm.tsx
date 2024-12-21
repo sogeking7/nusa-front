@@ -47,7 +47,7 @@ export const ForgotPasswordForm = () => {
     },
   });
 
-  const onSubmit = async (values: FormData) => { };
+  const onSubmit = async (values: FormData) => {};
 
   return (
     <div className="w-full max-w-lg p-2">

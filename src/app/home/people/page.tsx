@@ -45,7 +45,7 @@ export default function HomePage() {
         <div className="col-span-full lg:col-span-5">
           <ListContainer />
         </div>
-        <div className="col-span-full lg:col-span-4 space-y-4">
+        <div className="col-span-full space-y-4 lg:col-span-4">
           <h2 className="font-medium text-white">Состав по полу</h2>
           <GenderChart />
           <SalaryCard
@@ -59,7 +59,7 @@ export default function HomePage() {
             stats={employeeStats}
           />
         </div>
-        <div className="col-span-full lg:col-span-3 space-y-4">
+        <div className="col-span-full space-y-4 lg:col-span-3">
           <h2 className="font-medium text-white">Заработные платы</h2>
           <SalaryStats salaryRange={mockData.salaryRange} />
           <div className="space-y-4">

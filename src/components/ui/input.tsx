@@ -35,7 +35,7 @@ const inputVariants = cva(
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
-  VariantProps<typeof inputWrapperVariants> {
+    VariantProps<typeof inputWrapperVariants> {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
