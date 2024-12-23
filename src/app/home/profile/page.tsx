@@ -30,21 +30,23 @@ export default function Page() {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1fr_1fr]">
-      <ProfileCard data={profileData} />
-      <div className="flex flex-col space-y-3">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+      <div className="col-span-5">
+        <ProfileCard data={profileData} />
+      </div>
+      <div className="col-span-4 flex flex-col space-y-3">
         <WorkSchedule />
         <Card className={"cursor-pointer !rounded-xl border border-white/20"}>
-          <CardContent className="flex items-center justify-between p-4 lg:p-5">
-            <h2 className="font-medium text-white">Награды</h2>
+          <CardContent className="flex items-center justify-between !p-4">
+            <h2 className="font-semibold text-white">Награды</h2>
             <Button variant="outline" size="icon">
               <ArrowUpRight />
             </Button>
           </CardContent>
         </Card>
         <Card className={"cursor-pointer !rounded-xl border border-white/20"}>
-          <CardContent className="flex items-center justify-between p-4 lg:p-5">
-            <h2 className="font-medium text-white">Дисциплинарки</h2>
+          <CardContent className="flex items-center justify-between !p-4">
+            <h2 className="font-semibold text-white">Дисциплинарки</h2>
             <Button variant="outline" size="icon">
               <ArrowUpRight />
             </Button>
@@ -53,7 +55,7 @@ export default function Page() {
       </div>
       <Card
         className={
-          "relative h-fit cursor-pointer !rounded-xl border border-white/20"
+          "relative col-span-3 h-fit cursor-pointer !rounded-xl border border-white/20"
         }
       >
         <CardContent className="!p-4">
@@ -64,7 +66,7 @@ export default function Page() {
           >
             <ArrowUpRight />
           </Button>
-          <h2 className="mb-5 text-2xl font-semibold text-white">
+          <h2 className="mb-5 font-semibold text-white">
             Кадровые перемещения
           </h2>
           <div className="space-y-4 text-sm text-white">

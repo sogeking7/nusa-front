@@ -42,24 +42,20 @@ export function WorkSchedule() {
   const offsetDays = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
 
   return (
-    <Card className="h-fit w-full rounded-lg border border-white/20 font-sans text-white">
-      <CardContent className="p-4 lg:p-6">
+    <Card className="h-fit w-full rounded-lg border border-white/20 p-4 font-sans text-white">
+      <CardContent className="!p-0">
         <div className="mb-2 flex justify-between">
-          <div className="lg:space-y-3">
-            <h2 className="text-2xl font-bold max-lg:hidden">График работы</h2>
+          <div className="flex shrink-0 flex-col gap-3">
+            <h2 className="font-semibold max-lg:hidden">График работы</h2>
             <div className="flex gap-3 max-lg:flex-col lg:items-center lg:gap-4">
-              <span className="shrink-0 font-bold lg:text-xl">
-                {data.shift} смена
+              <span className="">{data.shift} смена</span>
+              <span className="">
+                {data.month} {data.year}
               </span>
-              <div className="flex shrink-0 items-center">
-                <span className="text-lg lg:text-2xl">
-                  {data.month} {data.year}
-                </span>
-              </div>
             </div>
           </div>
-          <div className="flex shrink-0 flex-col gap-3 lg:text-2xl">
-            <h2 className="mb-1 font-bold">Итог/норма</h2>
+          <div className="flex shrink-0 flex-col gap-3">
+            <h2 className="font-semibold">Итог/норма</h2>
             <div className="text-right">
               {data.workDays}/{data.totalDays}
             </div>
@@ -100,11 +96,10 @@ export function WorkSchedule() {
           {data.days.map((day, index) => (
             <div
               key={index}
-              className={`cursor-pointer rounded-[10px] p-2 text-center text-black transition-colors duration-150 ${
-                day.isWorkDay
+              className={`cursor-pointer rounded-[10px] p-2 text-center text-black transition-colors duration-150 ${day.isWorkDay
                   ? "bg-primary-green hover:bg-primary-green/80"
                   : "bg-primary-green/40 hover:bg-primary-green/60"
-              } `}
+                } `}
             >
               {day.date.getDate()}
             </div>
