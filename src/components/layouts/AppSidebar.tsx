@@ -27,7 +27,7 @@ export const AppSidebar = () => {
         <Link key={href} href={href}>
           <Button
             size="icon"
-            className={`${pathname === href ? "bg-accent text-accent-foreground" : ""}`}
+            className={`${pathname === href ? "size-12 bg-accent text-accent-foreground" : "size-12"}`}
             variant="outline"
           >
             <Icon />
