@@ -35,6 +35,7 @@
     --primary-orange: 28 74% 50%;
     --primary-purple: 262 97% 76%;
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -68,8 +69,10 @@
 
 @layer base {
   * {
+    font-weight: 300;
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
