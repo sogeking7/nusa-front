@@ -13,7 +13,7 @@ export default function HomeLayout({
       <div className="col-span-2">
         <AppHeader />
       </div>
-      <div className="relative col-span-1 h-full max-md:hidden">
+      <div className="relative col-span-1 max-md:hidden">
         <AppSidebar />
       </div>
       <div className="col-span-2 h-full md:col-span-1">

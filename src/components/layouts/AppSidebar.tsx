@@ -22,7 +22,7 @@ export const AppSidebar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-1/2 flex h-full -translate-y-1/2 flex-col justify-center gap-6 p-4">
+    <nav className="fixed top-1/2 flex h-full pt-16 -translate-y-1/2 flex-col justify-center gap-6 p-4">
       {links.map(({ href, icon: Icon }) => (
         <Link key={href} href={href}>
           <Button

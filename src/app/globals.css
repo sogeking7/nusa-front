@@ -73,7 +73,8 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html {
+    background-color: #1c1c1d;
+    /* @apply bg-background text-foreground; */
   }
 }
