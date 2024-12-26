@@ -21,7 +21,12 @@ export function SummaryCard({
   };
 
   return (
-    <Card className={cn("!rounded-xl border border-white/20", className)}>
+    <Card
+      className={cn(
+        "group !rounded-xl border border-white/20 transition-colors duration-200 hover:border-primary-green",
+        className,
+      )}
+    >
       <CardContent className="space-y-3 !p-4">
         <div>
           <h2
@@ -32,7 +37,7 @@ export function SummaryCard({
           >
             {label}
           </h2>
-          <div className="mt-2 h-[1px] w-10 bg-primary-purple" />
+          <div className="mt-2 h-[1px] w-10 bg-primary-purple transition-all duration-500 group-hover:w-3/4" />
         </div>
         <p className="text-2xl font-light tracking-wider text-white/50">
           {typeof value === "number" ? value.toLocaleString() : value}
