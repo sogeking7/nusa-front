@@ -24,9 +24,9 @@ export function ProfileCard({ data }: ProfileCardProps) {
 
   return (
     <Card className="w-full space-y-4 rounded-lg border border-white/20 p-4 text-white lg:space-y-10">
-      <CardHeader className="flex h-full flex-row items-start gap-4">
+      <CardHeader className="flex h-full flex-row gap-4">
         <div className="h-24 w-20 shrink-0 rounded-md bg-[#D9D9D9] md:h-40 md:w-32"></div>
-        <div className="h-full w-px items-stretch bg-white/20"></div>
+        <div className="min-h-full border-[1px] border-white/20"></div>
         <div className="flex w-full max-w-sm flex-col space-y-3">
           <h1 className="text-sm font-semibold lg:text-xl">{data.name}</h1>
           <table className="text-sm text-white">

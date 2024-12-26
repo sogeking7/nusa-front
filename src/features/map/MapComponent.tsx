@@ -7,16 +7,66 @@ import geojsonData from "./data/kazakhstan.json";
 import { Icon } from "leaflet";
 import { MapCard } from "./MapCard";
 
-const locations = [
-  { name: "Центральный аппарат", city: "г. Астана", count: 11, coordinates: [51.1694, 71.4491] },
-  { name: "Сигнал", city: "г. Уральск", count: 47, coordinates: [51.227, 51.318] },
-  { name: "Комета", city: "г. Алматы", count: 35, coordinates: [43.222, 76.8512] },
-  { name: "Новая Энергия", city: "г. Шымкент", count: 20, coordinates: [42.3417, 69.5901] },
-  { name: "Северный Ветер", city: "г. Караганда", count: 15, coordinates: [49.8019, 73.0878] },
-  { name: "Светлый Мир", city: "г. Павлодар", count: 18, coordinates: [52.2868, 76.9456] },
-  { name: "Золотой Путь", city: "г. Костанай", count: 22, coordinates: [53.2144, 63.6264] },
-  { name: "Горизонт", city: "г. Атырау", count: 25, coordinates: [47.0969, 51.9003] },
-  { name: "Лидер", city: "г. Семей", count: 30, coordinates: [50.4417, 80.2222] },
+const locations: {
+  name: string;
+  city: string;
+  count: number;
+  coordinates: [number, number];
+}[] = [
+  {
+    name: "Центральный аппарат",
+    city: "г. Астана",
+    count: 11,
+    coordinates: [51.1694, 71.4491],
+  },
+  {
+    name: "Сигнал",
+    city: "г. Уральск",
+    count: 47,
+    coordinates: [51.227, 51.318],
+  },
+  {
+    name: "Комета",
+    city: "г. Алматы",
+    count: 35,
+    coordinates: [43.222, 76.8512],
+  },
+  {
+    name: "Новая Энергия",
+    city: "г. Шымкент",
+    count: 20,
+    coordinates: [42.3417, 69.5901],
+  },
+  {
+    name: "Северный Ветер",
+    city: "г. Караганда",
+    count: 15,
+    coordinates: [49.8019, 73.0878],
+  },
+  {
+    name: "Светлый Мир",
+    city: "г. Павлодар",
+    count: 18,
+    coordinates: [52.2868, 76.9456],
+  },
+  {
+    name: "Золотой Путь",
+    city: "г. Костанай",
+    count: 22,
+    coordinates: [53.2144, 63.6264],
+  },
+  {
+    name: "Горизонт",
+    city: "г. Атырау",
+    count: 25,
+    coordinates: [47.0969, 51.9003],
+  },
+  {
+    name: "Лидер",
+    city: "г. Семей",
+    count: 30,
+    coordinates: [50.4417, 80.2222],
+  },
 ];
 
 const markerIcon = new Icon({
@@ -24,11 +74,11 @@ const markerIcon = new Icon({
   iconSize: [40, 40],
 });
 
-const mapCenter = [48.5196, 66.9237];
+const mapCenter: [number, number] = [48.5196, 66.9237];
 
 const initialMaxBounds: [[number, number], [number, number]] = [
   [40.568, 20.491],
-  [55.385, 120.315]
+  [55.385, 120.315],
 ];
 
 const zoomFourBounds: [[number, number], [number, number]] = [
@@ -36,7 +86,13 @@ const zoomFourBounds: [[number, number], [number, number]] = [
   [55.385, 90.315],
 ];
 
-const DynamicZoomHandler = ({ setMaxBounds }: { setMaxBounds: React.Dispatch<React.SetStateAction<[[number, number], [number, number]]>> }) => {
+const DynamicZoomHandler = ({
+  setMaxBounds,
+}: {
+  setMaxBounds: React.Dispatch<
+    React.SetStateAction<[[number, number], [number, number]]>
+  >;
+}) => {
   const map = useMap();
 
   useEffect(() => {
@@ -63,7 +119,13 @@ const DynamicZoomHandler = ({ setMaxBounds }: { setMaxBounds: React.Dispatch<Rea
   return null;
 };
 
-const CustomMarker = ({ position, title }: { position: [number, number]; title: string }) => {
+const CustomMarker = ({
+  position,
+  title,
+}: {
+  position: [number, number];
+  title: string;
+}) => {
   return (
     <Marker position={position} icon={markerIcon}>
       <Tooltip>{title}</Tooltip>
@@ -71,7 +133,7 @@ const CustomMarker = ({ position, title }: { position: [number, number]; title: 
   );
 };
 
-const onEachRegion = (region, layer) => {
+const onEachRegion = (region: any, layer: any) => {
   const name = region.properties.name;
 
   if (name) {
@@ -94,7 +156,8 @@ const onEachRegion = (region, layer) => {
 };
 
 export const MapComponent = () => {
-  const [maxBounds, setMaxBounds] = useState<[[number, number], [number, number]]>(initialMaxBounds);
+  const [maxBounds, setMaxBounds] =
+    useState<[[number, number], [number, number]]>(initialMaxBounds);
 
   useEffect(() => {
     const handleResize = () => {
@@ -114,10 +177,10 @@ export const MapComponent = () => {
   }, []);
 
   return (
-    <div className="relative md:h-[560px] h-full w-full">
+    <div className="relative h-full w-full md:h-[560px]">
       <MapCard locations={locations} />
       <MapContainer
-        className="focus:ring-0 relative z-10 max-md:h-[290px] md:h-[560px] h-full w-full !bg-transparent"
+        className="relative z-10 h-full w-full !bg-transparent focus:ring-0 max-md:h-[290px] md:h-[560px]"
         center={mapCenter}
         zoom={5}
         zoomControl={false}

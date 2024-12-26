@@ -34,28 +34,25 @@ export default function Page() {
       <div className="col-span-5">
         <ProfileCard data={profileData} />
       </div>
-      <div className="col-span-4 flex flex-col space-y-3">
+      <div className="col-span-5 flex flex-col space-y-3 lg:col-span-4">
         <WorkSchedule />
-        <Card className={"cursor-pointer !rounded-xl border border-white/20"}>
-          <CardContent className="flex items-center justify-between !p-4">
-            <h2 className="font-semibold text-white">Награды</h2>
-            <Button variant="outline" size="icon">
-              <ArrowUpRight />
-            </Button>
-          </CardContent>
-        </Card>
-        <Card className={"cursor-pointer !rounded-xl border border-white/20"}>
-          <CardContent className="flex items-center justify-between !p-4">
-            <h2 className="font-semibold text-white">Дисциплинарки</h2>
-            <Button variant="outline" size="icon">
-              <ArrowUpRight />
-            </Button>
-          </CardContent>
-        </Card>
+        {["Награды", "Дисциплинарки"].map((title) => (
+          <Card
+            key={title}
+            className={"cursor-pointer !rounded-xl border border-white/20"}
+          >
+            <CardContent className="flex items-center justify-between !p-4">
+              <h2 className="font-semibold text-white">{title}</h2>
+              <Button variant="outline" size="icon">
+                <ArrowUpRight />
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
       </div>
       <Card
         className={
-          "relative col-span-3 h-fit cursor-pointer !rounded-xl border border-white/20"
+          "relative col-span-5 h-fit cursor-pointer !rounded-xl border border-white/20 lg:col-span-3"
         }
       >
         <CardContent className="!p-4">
