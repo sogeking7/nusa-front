@@ -7,7 +7,7 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-export const AppMobilebar = (props: {}) => {
+export const AppMobilebar = () => {
   return (
     <nav className="flex h-full flex-row justify-around gap-6 border-t-[1px] border-t-white/20 px-4 py-3 sm:px-6">
       <Button size={"icon"} className="h-12 w-12" variant={"outline"}>
