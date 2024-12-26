@@ -12,12 +12,12 @@ export const BudgetCard = (props: {
   endClassName?: string;
 }) => {
   return (
-    <Card className="border border-white/20">
+    <Card className="group border border-white/20 transition-colors duration-200 hover:border-primary-green">
       <CardHeader className="p-4 pb-3">
         <CardTitle>
           <div className="space-y-1 text-white">
             <h2 className="text-base font-medium">{props.title}</h2>
-            <div className="h-[1px] w-10 bg-primary-purple" />
+            <div className="h-[1px] w-10 bg-primary-purple transition-all duration-500 group-hover:w-3/4" />
           </div>
         </CardTitle>
       </CardHeader>
