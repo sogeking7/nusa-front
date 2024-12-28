@@ -28,7 +28,7 @@ export function FinancialTable({ data }: FinancialTableProps) {
             <TableHead
               colSpan={2}
               rowSpan={2}
-              className="border-b border-r border-white/20 text-center"
+              className="border-b-2 border-r border-white/20 border-b-primary-purple text-center"
             >
               Остаток на 09.01.2024
             </TableHead>
@@ -41,7 +41,7 @@ export function FinancialTable({ data }: FinancialTableProps) {
             <TableHead
               colSpan={2}
               rowSpan={2}
-              className="border-b border-white/20 text-center"
+              className="border-b-2 border-white/20 border-b-primary-purple text-center"
             >
               Остаток на 09.01.2024
             </TableHead>
@@ -49,13 +49,13 @@ export function FinancialTable({ data }: FinancialTableProps) {
           <TableRow>
             <TableHead
               colSpan={2}
-              className="border-b border-r border-white/20 text-center text-green-500"
+              className="border-b border-r border-white/20 text-center text-primary-green"
             >
               Дебет
             </TableHead>
             <TableHead
               colSpan={2}
-              className="border-b border-r border-white/20 text-center text-red-500"
+              className="border-b border-r border-white/20 text-center text-[#FE7070]"
             >
               Кредит
             </TableHead>
@@ -90,34 +90,34 @@ export function FinancialTable({ data }: FinancialTableProps) {
             <TableRow className="bg-inherit" key={record.id}>
               <TableCell
                 className={cn(
-                  "border-r border-white/20",
+                  "border-b border-r border-white/20",
                   record.isSubItem && "pl-8",
                 )}
               >
                 {record.name}
               </TableCell>
-              <TableCell className="border-r border-white/20 text-center">
+              <TableCell className="border-b border-r border-white/20 text-center">
                 {record.balanceStart.quantity}
               </TableCell>
-              <TableCell className="border-r border-white/20 text-center">
+              <TableCell className="border-b border-r border-white/20 text-center">
                 {record.balanceStart.sum.toLocaleString()}
               </TableCell>
-              <TableCell className="border-r border-white/20 text-center">
+              <TableCell className="border-b border-r border-white/20 text-center">
                 {record.debit.quantity}
               </TableCell>
-              <TableCell className="border-r border-white/20 text-center">
+              <TableCell className="border-b border-r border-white/20 text-center">
                 {record.debit.sum.toLocaleString()}
               </TableCell>
-              <TableCell className="border-r border-white/20 text-center">
+              <TableCell className="border-b border-r border-white/20 text-center">
                 {record.credit.quantity}
               </TableCell>
-              <TableCell className="border-r border-white/20 text-center">
+              <TableCell className="border-b border-r border-white/20 text-center">
                 {record.credit.sum.toLocaleString()}
               </TableCell>
-              <TableCell className="border-r border-white/20 text-center">
+              <TableCell className="border-b border-r border-white/20 text-center">
                 {record.balanceEnd.quantity}
               </TableCell>
-              <TableCell className="text-center">
+              <TableCell className="border-b border-white/20 text-center">
                 {record.balanceEnd.sum.toLocaleString()}
               </TableCell>
             </TableRow>

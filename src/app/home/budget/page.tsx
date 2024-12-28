@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <>
       <h1 className="mb-2 text-white md:mb-6 md:text-3xl">Общий бюджет</h1>
-      <div className="grid grid-cols-12 gap-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
         <h2 className="col-span-full">Активы</h2>
         <div className="col-span-6">
           <BudgetCard
@@ -39,7 +39,7 @@ export default function Page() {
           />
         </div>
         <div className="col-span-6 grid gap-4">
-          <h2 className="col-span-full flex items-center gap-4">
+          <h2 className="col-span-full flex gap-4 max-lg:flex-col lg:items-center">
             <Select defaultValue="1310">
               <SelectTrigger className="w-20 rounded-xl">
                 <SelectValue placeholder="Theme" />
@@ -50,11 +50,13 @@ export default function Page() {
                 <SelectItem value="1110">1110</SelectItem>
               </SelectContent>
             </Select>
-            <p>Обратно сальдовая ведомость по счету</p>
+            <div className="flex items-center gap-2">
+              <p>Обратно сальдовая ведомость по счету</p>
 
-            <Button variant="outline" size="icon" className="">
-              <ArrowUpRight />
-            </Button>
+              <Button variant="outline" size="icon" className="shrink-0">
+                <ArrowUpRight />
+              </Button>
+            </div>
           </h2>
           <BudgetCard
             title="Сальдо на начало периода"

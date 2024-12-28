@@ -30,7 +30,7 @@ export function StatsCard({
           <div
             className={cn(
               "flex items-center gap-0.5 text-sm",
-              isPositive ? "text-green-500" : "text-red-500",
+              isPositive ? "text-green-500" : "text-[#FE7070]",
             )}
           >
             <span className="font-medium">
