@@ -10,9 +10,10 @@ export const BudgetCard = (props: {
   endBudget: number | string;
   startClassName?: string;
   endClassName?: string;
+  className?: string;
 }) => {
   return (
-    <Card className="group border border-white/20 transition-colors duration-200 hover:border-primary-green">
+    <Card className={cn("group border border-white/20 transition-colors duration-200 hover:border-primary-green", props.className)}>
       <CardHeader className="p-4 pb-3">
         <CardTitle>
           <div className="space-y-1 text-white">
