@@ -16,7 +16,7 @@ export default function Page() {
           <StatsCard title="Транспорт" value="640" change={-0.45} />
         </div>
       </div>
-      <div className="flex w-full items-center gap-3">
+      <div className="flex w-full items-center gap-3 max-lg:flex-col">
         <h2 className="lg:shrink-0">
           Материальный отчет по товароматериальным счетам
         </h2>
