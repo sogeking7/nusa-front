@@ -15,7 +15,6 @@ import { usePathname } from "next/navigation";
 const links = [
   { href: "/home/map", icon: LayoutGridIcon },
   { href: "/home/people", icon: UsersIcon },
-  { href: "/home/codepen", icon: CodepenIcon },
   { href: "/home/budget", icon: PieChartIcon },
   { href: "/home/warehouse", icon: ArchiveIcon },
 ];

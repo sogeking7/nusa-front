@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "../ui/button";
 import {
+  ArchiveIcon,
   BellIcon,
   CodepenIcon,
   LayoutGridIcon,
@@ -82,52 +83,52 @@ export const AppLeftSheet = () => {
               <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
-                  onClick={() => router.push("#")}
+                  onClick={() => router.push("/home/map")}
                   variant={"outline"}
                 >
                   <LayoutGridIcon />
                 </Button>
                 <Link href="#" className="text-white">
-                  Layout grid icon
+                  Филиалы
                 </Link>
               </div>
 
               <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
-                  onClick={() => router.push("#")}
+                  onClick={() => router.push("/home/people")}
                   variant={"outline"}
                 >
                   <UsersIcon />
                 </Button>
                 <Link href="#" className="text-white">
-                  Users icon
+                  Панель управления кадрами
                 </Link>
               </div>
 
               <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
-                  onClick={() => router.push("#")}
-                  variant={"outline"}
-                >
-                  <CodepenIcon />
-                </Button>
-                <Link href="#" className="text-white">
-                  Codepen icon
-                </Link>
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <Button
-                  size={"icon"}
-                  onClick={() => router.push("#")}
+                  onClick={() => router.push("/home/budget")}
                   variant={"outline"}
                 >
                   <PieChartIcon />
                 </Button>
                 <Link href="#" className="text-white">
-                  PieChart icon
+                  Бюджет
+                </Link>
+              </div>
+
+              <div className="flex items-center space-x-3">
+                <Button
+                  size={"icon"}
+                  onClick={() => router.push("/home/warehouse")}
+                  variant={"outline"}
+                >
+                  <ArchiveIcon />
+                </Button>
+                <Link href="#" className="text-white">
+                  Склад
                 </Link>
               </div>
             </div>

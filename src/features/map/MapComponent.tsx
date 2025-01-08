@@ -201,6 +201,7 @@ export const MapComponent = () => {
           />
         ))}
         <DynamicZoomHandler setMaxBounds={setMaxBounds} />
+        {/* @ts-ignore */}
         <GeoJSON data={geojsonData.features} onEachFeature={onEachRegion} />
       </MapContainer>
     </div>
