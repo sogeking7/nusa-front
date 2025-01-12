@@ -1,44 +1,41 @@
 import { User } from "@/types";
 import { Response } from "@/types/api";
 
-export type CreateUser = (body: {
-  fullname: string;
+export type Login = (body: {
   username: string;
-  about: string;
-  city: string;
-  email: string;
   password: string;
-}) => Promise<Response<CreateUserResponse>>;
-
-export type CreateUserResponse = {
-  uuid: string;
-  email: string;
-  is_active: boolean;
-};
-
-export type Login = (body: FormData) => Promise<Response<LoginResponse>>;
+}) => Promise<Response<LoginResponse>>;
 
 export type LoginResponse = {
   access_token: string;
   token_type: string;
-  refresh_token: string;
 };
 
-export type Logout = () => Promise<Response<LogoutResponse>>;
+export type TestToken = () => Promise<Response<TestTokenResponse>>;
 
-export type LogoutResponse = {
+export type TestTokenResponse = User;
+
+export type RecoverPassword = (params: {
+  email: string;
+}) => Promise<Response<RecoverPasswordResponse>>;
+
+export type RecoverPasswordResponse = {
   message: string;
 };
 
-export type GetMe = (token?: string) => Promise<Response<GetMeResponse>>;
+export type ResetPassword = (body: {
+  token: string;
+  new_password: string;
+}) => Promise<Response<ResetPasswordResponse>>;
 
-export type GetMeResponse = User;
-
-export type Refresh = () => Promise<Response<RefreshResponse>>;
-
-export type RefreshResponse = {
+export type ResetPasswordResponse = {
   message: string;
-  user: User;
-  refreshedToken: string;
-  exp: number;
+};
+
+export type RecoverPasswordHTML = (params: {
+  email: string;
+}) => Promise<Response<RecoverPasswordHTMLResponse>>;
+
+export type RecoverPasswordHTMLResponse = {
+  message: string;
 };

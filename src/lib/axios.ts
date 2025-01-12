@@ -7,6 +7,7 @@ const api = (access_token: string | null | undefined) => {
     baseURL: API_URL,
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
       Authorization: access_token ? `Bearer ${access_token}` : undefined,
     },
     withCredentials: true,

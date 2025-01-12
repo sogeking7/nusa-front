@@ -17,24 +17,25 @@ import {
 import { PasswordInput } from "@/components/ui/password-input";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { AuthService } from "../api/auth.service";
 
-const createAccountSchema = z.object({
+const loginSchema = z.object({
   email: z.string().email("Неверный адрес электронной почты"),
   password: z
     .string()
-    .min(8, { message: "Пароль должен содержать минимум 8 символов" })
-    .regex(/[A-Z]/, {
-      message: "Пароль должен содержать хотя бы одну заглавную букву",
-    }),
+    .min(6, { message: "Пароль должен содержать минимум 6 символов" }),
+  // .regex(/[A-Z]/, {
+  //   message: "Пароль должен содержать хотя бы одну заглавную букву",
+  // }),
 });
 
-type FormData = z.infer<typeof createAccountSchema>;
+type FormData = z.infer<typeof loginSchema>;
 
 export const LoginForm = () => {
   const router = useRouter();
 
   const form = useForm<FormData>({
-    resolver: zodResolver(createAccountSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -42,7 +43,11 @@ export const LoginForm = () => {
   });
 
   const onSubmit = async (values: FormData) => {
-    router.push("/home");
+    await AuthService().login({
+      username: values.email,
+      password: values.password,
+    });
+    // router.push("/home");
   };
 
   return (

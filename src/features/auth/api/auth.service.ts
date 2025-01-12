@@ -1,24 +1,26 @@
 import { apiPayload } from "@/lib/axios";
 import { isAxiosError } from "axios";
 import {
-  CreateUser,
-  CreateUserResponse,
-  GetMe,
-  GetMeResponse,
   Login,
   LoginResponse,
-  Logout,
-  LogoutResponse,
-  Refresh,
-  RefreshResponse,
-} from "@/features/auth/api/auth.service.types";
+  RecoverPassword,
+  RecoverPasswordHTML,
+  RecoverPasswordHTMLResponse,
+  RecoverPasswordResponse,
+  ResetPassword,
+  ResetPasswordResponse,
+  TestToken,
+  TestTokenResponse,
+} from "./auth.service.types";
 
 export const AuthService = () => {
-  const url = "/user";
+  const url = "/login";
 
-  const getMe: GetMe = async () => {
+  const testToken: TestToken = async () => {
     try {
-      const { data } = await apiPayload().get<GetMeResponse>(`${url}/me`);
+      const { data } = await apiPayload().post<TestTokenResponse>(
+        `${url}/test-token`,
+      );
       return {
         success: true,
         data: data,
@@ -33,12 +35,18 @@ export const AuthService = () => {
 
   const login: Login = async (body) => {
     try {
+      const formData = new FormData();
+
+      Object.entries(body).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
       const { data } = await apiPayload().post<LoginResponse>(
-        `${url}/token`,
-        body,
+        `${url}/access-token`,
+        formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/x-www-form-urlencoded",
           },
         },
       );
@@ -54,11 +62,13 @@ export const AuthService = () => {
     }
   };
 
-  const create: CreateUser = async (body) => {
+  const recoverPassword: RecoverPassword = async (params) => {
     try {
-      const { data } = await apiPayload().post<CreateUserResponse>(
-        `${url}/register`,
-        body,
+      const { data } = await apiPayload().post<RecoverPasswordResponse>(
+        `/password-recovery`,
+        {
+          params,
+        },
       );
       return {
         success: true,
@@ -72,9 +82,10 @@ export const AuthService = () => {
     }
   };
 
-  const logout: Logout = async () => {
+  const resetPassword: ResetPassword = async () => {
     try {
-      const { data } = await apiPayload().post<LogoutResponse>(`${url}/logout`);
+      const { data } =
+        await apiPayload().post<ResetPasswordResponse>(`/reset-password`);
       return {
         success: true,
         data,
@@ -87,10 +98,13 @@ export const AuthService = () => {
     }
   };
 
-  const refreshToken: Refresh = async () => {
+  const recoverPasswordHTMl: RecoverPasswordHTML = async (params) => {
     try {
-      const { data } = await apiPayload().post<RefreshResponse>(
-        `${url}/refresh-token`,
+      const { data } = await apiPayload().post<RecoverPasswordHTMLResponse>(
+        `/password-recovery-html-content`,
+        {
+          params,
+        },
       );
       return {
         success: true,
@@ -106,9 +120,9 @@ export const AuthService = () => {
 
   return {
     login,
-    create,
-    logout,
-    getMe,
-    refreshToken,
+    testToken,
+    recoverPassword,
+    resetPassword,
+    recoverPasswordHTMl,
   };
 };
