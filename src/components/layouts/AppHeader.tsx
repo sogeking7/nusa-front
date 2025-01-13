@@ -49,7 +49,7 @@ export default function AppHeader() {
           <Button variant="outline" size="icon">
             <BellIcon />
           </Button>
-          <Link href="/home/profile">
+          <Link href="/home/me">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
               <AvatarFallback>CN</AvatarFallback>

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,6 +18,8 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { AuthService } from "../api/auth.service";
+import { UsersService } from "@/features/users/api/users.service";
+import { useAuth } from "../providers/client";
 
 const loginSchema = z.object({
   email: z.string().email("Неверный адрес электронной почты"),
@@ -33,6 +35,9 @@ type FormData = z.infer<typeof loginSchema>;
 
 export const LoginForm = () => {
   const router = useRouter();
+  const [error, setError] = useState("");
+
+  const { user, updateUser } = useAuth();
 
   const form = useForm<FormData>({
     resolver: zodResolver(loginSchema),
@@ -43,11 +48,24 @@ export const LoginForm = () => {
   });
 
   const onSubmit = async (values: FormData) => {
-    await AuthService().login({
+    const { data, success } = await AuthService().login({
       username: values.email,
       password: values.password,
     });
-    // router.push("/home");
+    if (success) {
+      localStorage.setItem("access-token", data.access_token);
+      const me = await UsersService().getUserMe();
+      if (me.success) {
+        console.log(me.data);
+        setError("");
+        updateUser(me.data);
+        router.push("/home/me");
+      } else {
+        setError(me.data?.detail || "Произошла какая-то ошибка");
+      }
+    } else {
+      setError(data?.detail || "Неправильное имя пользователя или пароль");
+    }
   };
 
   return (
@@ -62,6 +80,7 @@ export const LoginForm = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col items-end gap-3"
           >
+            <FormMessage className="mb-2 w-full text-left">{error}</FormMessage>
             <FormField
               control={form.control}
               name="email"
@@ -110,6 +129,7 @@ export const LoginForm = () => {
 
             <div className="mt-6 flex w-full flex-col gap-4 md:max-w-[350px] md:flex-row">
               <Button
+                disabled={form.formState.isSubmitting}
                 type="submit"
                 className={cn(
                   "md:w-1/2",
@@ -117,7 +137,7 @@ export const LoginForm = () => {
                   "hover:bg-white hover:text-accent-foreground",
                 )}
               >
-                Вход
+                {form.formState.isSubmitting ? "Загрузка..." : "Вход"}
               </Button>
               <Button
                 onClick={() => router.push("/auth/forgot-password")}

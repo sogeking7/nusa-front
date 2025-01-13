@@ -5,7 +5,7 @@ export type SuccessResponse<T> = {
 
 export type ErrorResponse = {
   success: false;
-  data: string;
+  data: any;
 };
 
 export type Response<T> = SuccessResponse<T> | ErrorResponse;

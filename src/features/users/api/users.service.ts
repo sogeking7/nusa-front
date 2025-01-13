@@ -58,7 +58,7 @@ export const UsersService = () => {
 
   const getUserMe: GetUserMe = async () => {
     try {
-      const { data } = await apiPayload().get<GetUserMeResponse>(`${url}/`);
+      const { data } = await apiPayload().get<GetUserMeResponse>(`${url}/me`);
       return {
         success: true,
         data: data,
@@ -74,7 +74,7 @@ export const UsersService = () => {
   const deleteUserMe: DeleteUserMe = async () => {
     try {
       const { data } = await apiPayload().delete<DeleteUserMeResponse>(
-        `${url}/`,
+        `${url}/me`,
       );
       return {
         success: true,
@@ -90,7 +90,7 @@ export const UsersService = () => {
   const updateUserMe: UpdateUserMe = async () => {
     try {
       const { data } = await apiPayload().patch<UpdateUserMeResponse>(
-        `${url}/`,
+        `${url}/me`,
       );
       return {
         success: true,
@@ -107,7 +107,7 @@ export const UsersService = () => {
   const updatePasswordMe: UpdatePasswordMe = async () => {
     try {
       const { data } = await apiPayload().patch<UpdatePasswordMeResponse>(
-        `${url}/`,
+        `${url}/me/password`,
       );
       return {
         success: true,
@@ -123,7 +123,9 @@ export const UsersService = () => {
 
   const registerUser: RegisterUser = async () => {
     try {
-      const { data } = await apiPayload().post<RegisterUserResponse>(`${url}/`);
+      const { data } = await apiPayload().post<RegisterUserResponse>(
+        `${url}/signup`,
+      );
       return {
         success: true,
         data: data,
