@@ -51,7 +51,7 @@ export default function AppHeader() {
           </Button>
           <Link href="/home/me">
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarImage src="/berkut.jpg" alt="@shadcn" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </Link>

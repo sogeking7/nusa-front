@@ -7,6 +7,7 @@ import { AvatarImage, Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Mail, User, Shield, Edit, Key } from "lucide-react";
+import { LogoutBtn } from "@/features/auth/components/LogoutBtn";
 
 export type User = {
   email: string;
@@ -20,16 +21,16 @@ export default function MePage() {
   const { user } = useAuth();
 
   if (!user) {
-    return <div>Loading...</div>;
+    return <div>You must be logged in</div>;
   }
 
   return (
     <div className="container mx-auto py-8">
-      <Card className="mx-auto max-w-2xl">
+      <Card className="mx-auto max-w-xl">
         <CardHeader className="text-center">
           <div className="mb-4 flex justify-center">
             <Avatar className="h-24 w-24">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarImage src="/berkut.jpg" alt="@shadcn" />
               <AvatarFallback className="text-4xl">
                 {user.full_name
                   ? user.full_name[0].toUpperCase()
@@ -97,6 +98,9 @@ export default function MePage() {
               <Key className="h-4 w-4" />
               <span>Change Password</span>
             </Button>
+          </div>
+          <div className="mt-6 space-y-2">
+            <LogoutBtn />
           </div>
         </CardContent>
       </Card>
