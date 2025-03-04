@@ -22,27 +22,27 @@ export default function Home() {
             <h1>monitoring</h1>
             <h1>system</h1>
           </div> */}
-          <h2 className="text-xs text-[#FFFFFF99] md:hidden md:text-[#525252]">
+          {/* <h2 className="text-xs text-[#FFFFFF99] md:hidden md:text-[#525252]">
             РГП на ПХВ «Резерв» Комитета <br />
             по государственным <br />
             материальным резервам Министерства <br />
             по чрезвычайным ситуациям Республики Казахстан
-          </h2>
+          </h2> */}
         </div>
         <div className="flex w-full justify-center gap-12 pt-10 md:justify-between">
           <div className="flex items-end max-md:hidden md:max-w-[390px]">
-            <h2 className="text-sm text-[#FFFFFF99] md:text-[#525252]">
+            {/* <h2 className="text-sm text-[#FFFFFF99] md:text-[#525252]">
               РГП на ПХВ «Резерв» Комитета по государственным материальным
               резервам Министерства по чрезвычайным ситуациям Республики
               Казахстан
-            </h2>
+            </h2> */}
           </div>
           <div className="w-full max-w-sm md:flex-shrink-0">
-            <p className="mb-24 max-w-sm text-sm text-[#525252] max-sm:text-center">
+            {/* <p className="mb-24 max-w-sm text-sm text-[#525252] max-sm:text-center">
               Централизованное отображение данных, полученных от разных
               интеграторов со всех филиалов и транслирование данных в реальном
               времени
-            </p>
+            </p> */}
             <Link href={"/auth/login"}>
               <Button
                 variant={"link"}

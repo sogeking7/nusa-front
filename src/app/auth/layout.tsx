@@ -28,11 +28,11 @@ export default function AuthLayout({
           {/* <h1 className="text-wrap break-words text-5xl uppercase leading-snug tracking-wide text-[#D9D9D9]">
             Analytical monitoring system
           </h1> */}
-          <p className="mt-12 text-sm text-[#525252]">
+          {/* <p className="mt-12 text-sm text-[#525252]">
             Централизованное отображение данных, полученных от разных
             интеграторов со всех филиалов и транслирование данных в реальном
             времени
-          </p>
+          </p> */}
         </div>
       </Container>
     </div>
