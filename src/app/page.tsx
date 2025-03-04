@@ -9,19 +9,19 @@ export default function Home() {
       <div className="absolute h-[250px] w-full bg-main-page-mobile bg-cover bg-center bg-no-repeat md:h-[300px] md:bg-main-page-desktop"></div>
       <Container className="relative min-h-[100svh] max-w-screen-lg">
         <div className="relative flex h-[250px] flex-col justify-center gap-4 md:h-[300px] md:flex-row md:justify-end md:gap-0">
-          <img
+          {/* <img
             src={"/rezerv-logo.svg"}
             alt="rezerv-logo"
             className={cn(
               "size-24 md:size-44",
               "absolute translate-y-1/3 max-md:right-0 max-md:top-0 md:bottom-0 md:left-0 md:translate-y-1/2",
             )}
-          />
-          <div className="flex w-full max-w-sm flex-col justify-center text-3xl uppercase text-[#D9D9D9] md:text-5xl md:leading-snug">
+          /> */}
+          {/* <div className="flex w-full max-w-sm flex-col justify-center text-3xl uppercase text-[#D9D9D9] md:text-5xl md:leading-snug">
             <h1>Analytical</h1>
             <h1>monitoring</h1>
             <h1>system</h1>
-          </div>
+          </div> */}
           <h2 className="text-xs text-[#FFFFFF99] md:hidden md:text-[#525252]">
             РГП на ПХВ «Резерв» Комитета <br />
             по государственным <br />

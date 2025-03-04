@@ -17,7 +17,7 @@ export default function AppHeader() {
   return (
     <header className="fixed top-0 z-50 flex h-16 w-full items-center justify-between bg-[#1C1C1D] md:border-b-[1px] md:border-b-white/20">
       <Link href={"/home/map"} className="flex-shrink-0 px-4 max-md:hidden">
-        <img alt="logo" src={"/rezerv-logo.svg"} className="size-11" />
+        {/* <img alt="logo" src={"/rezerv-logo.svg"} className="size-11" /> */}
       </Link>
       <Container className="flex items-center justify-between gap-4">
         <div className="flex flex-1 items-center gap-4">
