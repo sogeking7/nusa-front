@@ -2,29 +2,42 @@
 
 import { Input } from "@/components/ui/input";
 import { List } from "@/features/pm/components/List";
-import { Employee } from "@/features/pm/types";
+import { StaffService } from "@/features/pm/api/staff.service";
+import { Staff } from "@/features/pm/api/staff.service.types";
 import { SearchIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AlignRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const MOCK_EMPLOYEES: Employee[] = Array(8)
-  .fill(null)
-  .map((_, i) => ({
-    id: `emp-${i}`,
-    name: "Жарасова Д.",
-    position: "Менеджер",
-    department: "Отдел",
-    institution: "Учреждение",
-  }));
-
 export default function ListContainer() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [employees] = useState<Employee[]>(MOCK_EMPLOYEES);
+  const [employees, setEmployees] = useState<Staff[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const filteredEmployees = employees.filter((employee) =>
-    employee.name.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+  useEffect(() => {
+    const fetchStaff = async () => {
+      const staffService = StaffService();
+      const response = await staffService.getStaff();
+
+      if (response.success) {
+        setEmployees(response.data.data);
+      } else {
+        console.error("Failed to fetch staff:", response.data);
+      }
+      setIsLoading(false);
+    };
+
+    fetchStaff();
+  }, []);
+
+  const filteredEmployees = employees.filter((employee) => {
+    const searchLower = searchQuery.toLowerCase();
+    return (
+      `${employee.firstname} ${employee.lastname}`.toLowerCase().includes(searchLower) ||
+      employee.department.toLowerCase().includes(searchLower) ||
+      employee.institution.toLowerCase().includes(searchLower)
+    );
+  });
 
   return (
     <div className="rounded-xl border border-white/20 bg-inherit backdrop-blur-sm">
@@ -41,7 +54,11 @@ export default function ListContainer() {
           <AlignRight />
         </Button>
       </div>
-      <List employees={filteredEmployees} />
+      {isLoading ? (
+        <div className="p-4 text-center text-white/60">Загрузка...</div>
+      ) : (
+        <List employees={filteredEmployees} />
+      )}
     </div>
   );
 }

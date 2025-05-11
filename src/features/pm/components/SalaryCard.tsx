@@ -17,6 +17,7 @@ export function SalaryCard({
   title,
   subtitle,
   value,
+  onClick,
   className,
 }: SalaryCardProps) {
   return (
@@ -25,12 +26,17 @@ export function SalaryCard({
         "relative cursor-pointer !rounded-xl border border-white/20",
         className,
       )}
+      onClick={onClick}
     >
       <CardContent className="!p-4">
         <Button
           variant="outline"
           size="icon"
           className="absolute right-4 top-4"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClick?.();
+          }}
         >
           <ArrowUpRight />
         </Button>

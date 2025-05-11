@@ -37,7 +37,7 @@ export const LoginForm = () => {
   const router = useRouter();
   const [error, setError] = useState("");
 
-  const { user, updateUser } = useAuth();
+  const { updateUser } = useAuth();
 
   const form = useForm<FormData>({
     resolver: zodResolver(loginSchema),

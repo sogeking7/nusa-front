@@ -1,9 +1,13 @@
+"use client";
+
 import { EmployeeStatsCard } from "@/features/pm/components/EmployeeStats";
 import ListContainer from "@/features/pm/components/ListContainer";
 import { SalaryCard } from "@/features/pm/components/SalaryCard";
 import { SalaryStats } from "@/features/pm/components/SalaryStats";
 import { SummaryCard } from "@/features/pm/components/SummaryCard";
 import { GenderChart } from "@/features/pm/components/GenderChart";
+import { StaffSalaryDialog } from "@/features/pm/components/StaffSalaryDialog";
+import { useState } from "react";
 
 const mockData = {
   genderStats: {
@@ -36,6 +40,8 @@ const employeeStats = [
 ];
 
 export default function HomePage() {
+  const [isSalaryDialogOpen, setIsSalaryDialogOpen] = useState(false);
+
   return (
     <>
       <h1 className="mb-2 text-white md:mb-6 md:text-3xl">
@@ -52,6 +58,7 @@ export default function HomePage() {
             title="Заработные платы по должностям"
             subtitle="Главный специалист"
             value="258 000, 00 ₸"
+            onClick={() => setIsSalaryDialogOpen(true)}
           />
           <EmployeeStatsCard
             title="Работники за отчетный период"
@@ -82,6 +89,11 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      <StaffSalaryDialog
+        isOpen={isSalaryDialogOpen}
+        onClose={() => setIsSalaryDialogOpen(false)}
+      />
     </>
   );
 }
