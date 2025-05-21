@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { WorkSchedule } from "@/components/ui/calendar";
 import { Card, CardContent } from "@/components/ui/card";
 import { ProfileCard } from "@/features/profile/ProfileCard";
 import { StaffService } from "@/features/pm/api/staff.service";
@@ -9,12 +8,15 @@ import { StaffInfo } from "@/features/pm/api/staff.service.types";
 import { StaffMovementsDialog } from "@/features/pm/components/StaffMovementsDialog";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { WorkSchedule } from "@/ui/WorkSchedule";
 
 interface StaffProfileClientProps {
   staffId: string;
 }
 
-export default function StaffProfileClient({ staffId }: StaffProfileClientProps) {
+export default function StaffProfileClient({
+  staffId,
+}: StaffProfileClientProps) {
   const [staffInfo, setStaffInfo] = useState<StaffInfo | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -126,7 +128,9 @@ export default function StaffProfileClient({ staffId }: StaffProfileClientProps)
               </div>
               <div className="flex justify-start">
                 <span className="flex-1">{staffInfo.institution}</span>
-                <span className="flex-1 text-[#898989]">{staffInfo.position}</span>
+                <span className="flex-1 text-[#898989]">
+                  {staffInfo.position}
+                </span>
               </div>
             </div>
           </CardContent>

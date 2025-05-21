@@ -6,10 +6,12 @@ import {
   GetStaffMovements,
   GetStaffSalaries,
   GetStaffResponse,
+  GetEmployeeReport,
   MOCK_STAFF_DATA,
   MOCK_STAFF_INFO,
   MOCK_STAFF_MOVEMENTS,
-  MOCK_STAFF_SALARIES
+  MOCK_STAFF_SALARIES,
+  MOCK_EMPLOYEE_REPORT,
 } from "./staff.service.types";
 
 export const StaffService = () => {
@@ -121,10 +123,49 @@ export const StaffService = () => {
     }
   };
 
+  const getEmployeeReport: GetEmployeeReport = async ({
+    period_start,
+    period_end,
+    branches,
+  }) => {
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    try {
+      // In the future, this will be replaced with:
+      // const { data } = await apiPayload().get('/employees-report', {
+      //   params: {
+      //     period_start,
+      //     period_end,
+      //     branches: branches?.join(',')
+      //   }
+      // });
+      // return { success: true, data };
+
+      // For now, return mock data
+      console.log("Employee report params:", {
+        period_start,
+        period_end,
+        branches,
+      });
+
+      return {
+        success: true,
+        data: MOCK_EMPLOYEE_REPORT,
+      };
+    } catch (e: unknown) {
+      return {
+        success: false,
+        data: isAxiosError(e) ? e.message : (e as Error).message,
+      };
+    }
+  };
+
   return {
     getStaff,
     getStaffInfo,
     getStaffMovements,
     getStaffSalaries,
+    getEmployeeReport,
   };
 };

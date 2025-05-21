@@ -78,3 +78,28 @@
     /* @apply bg-background text-foreground; */
   }
 }
+
+/* Calendar custom styling */
+.rdp-day_range_start,
+.rdp-day_range_end {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.rdp-day_range_middle {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+}
+
+/* Fix for visual bug with same day numbers in different months */
+.rdp-months {
+  pointer-events: auto !important;
+}
+
+.rdp-month:nth-child(1) [aria-selected="true"] {
+  visibility: visible !important;
+}
+
+.rdp-month:nth-child(2) [aria-selected="true"] {
+  visibility: visible !important;
+}

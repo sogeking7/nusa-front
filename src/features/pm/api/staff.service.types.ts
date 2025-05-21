@@ -47,6 +47,17 @@ export interface StaffSalary {
   salary: number;
 }
 
+export interface EmployeeReport {
+  dropped_out: number;
+  dropped_out_year: number;
+  hired: number;
+  hired_year: number;
+  vacancies: number;
+  vacancies_year: number;
+  civil_workers: number;
+  civil_workers_year: number;
+}
+
 export type GetStaff = (params?: {
   skip?: number;
   limit?: number;
@@ -69,9 +80,17 @@ export type GetStaffMovements = (params: {
 
 export type GetStaffMovementsResponse = StaffMovement[];
 
-export type GetStaffSalaries = () => Promise<Response<GetStaffSalariesResponse>>;
+export type GetStaffSalaries = () => Promise<
+  Response<GetStaffSalariesResponse>
+>;
 
 export type GetStaffSalariesResponse = StaffSalary[];
+
+export type GetEmployeeReport = (params: {
+  period_start?: string;
+  period_end?: string;
+  branches?: string[];
+}) => Promise<Response<EmployeeReport>>;
 
 // Mock data for testing
 export const MOCK_STAFF_DATA: Staff[] = [
@@ -81,7 +100,7 @@ export const MOCK_STAFF_DATA: Staff[] = [
     lastname: "Жарасова",
     department: "Отдел разработки",
     institution: "Учреждение А",
-    gender: "female"
+    gender: "female",
   },
   {
     staff_id: "2",
@@ -89,7 +108,7 @@ export const MOCK_STAFF_DATA: Staff[] = [
     lastname: "Ибраев",
     department: "Отдел маркетинга",
     institution: "Учреждение Б",
-    gender: "male"
+    gender: "male",
   },
   {
     staff_id: "3",
@@ -97,7 +116,7 @@ export const MOCK_STAFF_DATA: Staff[] = [
     lastname: "Нурланова",
     department: "Отдел продаж",
     institution: "Учреждение А",
-    gender: "female"
+    gender: "female",
   },
   {
     staff_id: "4",
@@ -105,8 +124,8 @@ export const MOCK_STAFF_DATA: Staff[] = [
     lastname: "Садыков",
     department: "Отдел разработки",
     institution: "Учреждение Б",
-    gender: "male"
-  }
+    gender: "male",
+  },
 ];
 
 // Mock data for staff info
@@ -128,7 +147,7 @@ export const MOCK_STAFF_INFO: Record<string, StaffInfo> = {
     phone: "+7 701 234 56 78",
     mail: "zharasova@example.com",
     schedule_type: "Пятидневная рабочая неделя",
-    worked_out: "19/20"
+    worked_out: "19/20",
   },
   "2": {
     full_name: "Ибраев Алишер Маратович",
@@ -147,7 +166,7 @@ export const MOCK_STAFF_INFO: Record<string, StaffInfo> = {
     phone: "+7 702 345 67 89",
     mail: "ibraev@example.com",
     schedule_type: "Пятидневная рабочая неделя",
-    worked_out: "18/20"
+    worked_out: "18/20",
   },
   "3": {
     full_name: "Нурланова Айгуль Сериковна",
@@ -166,7 +185,7 @@ export const MOCK_STAFF_INFO: Record<string, StaffInfo> = {
     phone: "+7 705 456 78 90",
     mail: "nurlanova@example.com",
     schedule_type: "Пятидневная рабочая неделя",
-    worked_out: "20/20"
+    worked_out: "20/20",
   },
   "4": {
     full_name: "Садыков Марат Аскарович",
@@ -185,8 +204,8 @@ export const MOCK_STAFF_INFO: Record<string, StaffInfo> = {
     phone: "+7 707 567 89 01",
     mail: "sadykov@example.com",
     schedule_type: "Пятидневная рабочая неделя",
-    worked_out: "17/20"
-  }
+    worked_out: "17/20",
+  },
 };
 
 // Mock data for staff movements
@@ -199,7 +218,7 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
       department: "Отдел разработки",
       worker_type: "Постоянный сотрудник",
       event: "Принят на работу",
-      document: "Приказ №123 от 01.03.2018"
+      document: "Приказ №123 от 01.03.2018",
     },
     {
       position: "Разработчик",
@@ -208,7 +227,7 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
       department: "Отдел разработки",
       worker_type: "Постоянный сотрудник",
       event: "Повышение",
-      document: "Приказ №456 от 15.05.2020"
+      document: "Приказ №456 от 15.05.2020",
     },
     {
       position: "Ведущий разработчик",
@@ -217,8 +236,8 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
       department: "Отдел разработки",
       worker_type: "Постоянный сотрудник",
       event: "Повышение",
-      document: "Приказ №789 от 10.11.2022"
-    }
+      document: "Приказ №789 от 10.11.2022",
+    },
   ],
   "2": [
     {
@@ -228,7 +247,7 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
       department: "Отдел маркетинга",
       worker_type: "Постоянный сотрудник",
       event: "Принят на работу",
-      document: "Приказ №234 от 15.06.2019"
+      document: "Приказ №234 от 15.06.2019",
     },
     {
       position: "Маркетолог",
@@ -237,8 +256,8 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
       department: "Отдел маркетинга",
       worker_type: "Постоянный сотрудник",
       event: "Повышение",
-      document: "Приказ №567 от 01.09.2021"
-    }
+      document: "Приказ №567 от 01.09.2021",
+    },
   ],
   "3": [
     {
@@ -248,8 +267,8 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
       department: "Отдел продаж",
       worker_type: "Постоянный сотрудник",
       event: "Принят на работу",
-      document: "Приказ №345 от 10.01.2020"
-    }
+      document: "Приказ №345 от 10.01.2020",
+    },
   ],
   "4": [
     {
@@ -259,7 +278,7 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
       department: "Отдел разработки",
       worker_type: "Постоянный сотрудник",
       event: "Принят на работу",
-      document: "Приказ №678 от 01.09.2017"
+      document: "Приказ №678 от 01.09.2017",
     },
     {
       position: "Старший инженер",
@@ -268,7 +287,7 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
       department: "Отдел разработки",
       worker_type: "Постоянный сотрудник",
       event: "Перевод в другое учреждение",
-      document: "Приказ №901 от 01.02.2021"
+      document: "Приказ №901 от 01.02.2021",
     },
     {
       position: "Старший разработчик",
@@ -277,9 +296,9 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
       department: "Отдел разработки",
       worker_type: "Постоянный сотрудник",
       event: "Перевод в другое учреждение",
-      document: "Приказ №234 от 15.06.2023"
-    }
-  ]
+      document: "Приказ №234 от 15.06.2023",
+    },
+  ],
 };
 
 // Mock data for staff salaries
@@ -332,5 +351,17 @@ export const MOCK_STAFF_SALARIES: StaffSalary[] = [
     salary_type: "Основное начисление",
     positions_amount: 1,
     salary: 170000,
-  }
+  },
 ];
+
+// Mock employee report data
+export const MOCK_EMPLOYEE_REPORT: EmployeeReport = {
+  dropped_out: 15,
+  dropped_out_year: 25,
+  hired: 20,
+  hired_year: 35,
+  vacancies: 10,
+  vacancies_year: 18,
+  civil_workers: 5,
+  civil_workers_year: 8,
+};
