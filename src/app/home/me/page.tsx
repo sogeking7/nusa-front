@@ -1,13 +1,13 @@
 "use client";
 
-import { useAuth } from "@/features/auth/providers/client";
+import { useAuth } from "@/contexts/AuthContext";
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AvatarImage, Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Mail, User, Shield, Edit, Key } from "lucide-react";
-import { LogoutBtn } from "@/features/auth/components/LogoutBtn";
+import { LogoutBtn } from "@/features/auth/Logout/LogoutBtn";
 
 export type User = {
   email: string;

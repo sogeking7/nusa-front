@@ -3,7 +3,12 @@ import { StaffService } from "../api/staff.service";
 import { StaffMovement } from "../api/staff.service.types";
 import { StaffMovementsTable } from "./StaffMovementsTable";
 import { useEffect, useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface StaffMovementsDialogProps {
   staffId: string;
@@ -28,7 +33,9 @@ export function StaffMovementsDialog({
 
       try {
         const staffService = StaffService();
-        const response = await staffService.getStaffMovements({ staff_id: staffId });
+        const response = await staffService.getStaffMovements({
+          staff_id: staffId,
+        });
 
         if (response.success) {
           setMovements(response.data);
@@ -54,15 +61,15 @@ export function StaffMovementsDialog({
         </DialogHeader>
 
         {isLoading ? (
-          <div className="flex h-40  items-center justify-center">
+          <div className="flex h-40 items-center justify-center">
             <p className="text-white">Загрузка...</p>
           </div>
         ) : error ? (
-          <div className="flex h-40  items-center justify-center">
+          <div className="flex h-40 items-center justify-center">
             <p className="text-red-500">{error}</p>
           </div>
         ) : movements.length === 0 ? (
-          <div className="flex h-40  items-center justify-center">
+          <div className="flex h-40 items-center justify-center">
             <p className="text-white">Нет данных о перемещениях</p>
           </div>
         ) : (

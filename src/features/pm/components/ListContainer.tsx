@@ -33,7 +33,9 @@ export default function ListContainer() {
   const filteredEmployees = employees.filter((employee) => {
     const searchLower = searchQuery.toLowerCase();
     return (
-      `${employee.firstname} ${employee.lastname}`.toLowerCase().includes(searchLower) ||
+      `${employee.firstname} ${employee.lastname}`
+        .toLowerCase()
+        .includes(searchLower) ||
       employee.department.toLowerCase().includes(searchLower) ||
       employee.institution.toLowerCase().includes(searchLower)
     );

@@ -28,10 +28,10 @@ export function GenderChart() {
 
   return (
     <Card className={cn("!rounded-xl border border-white/20")}>
-      <CardContent className="flex flex-wrap justify-center items-center gap-6 !p-4">
+      <CardContent className="flex flex-wrap items-center justify-center gap-6 !p-4">
         <ChartContainer
           config={chartConfig}
-          className="flex-shrink-0 relative aspect-square w-full max-w-[170px] !p-0"
+          className="relative aspect-square w-full max-w-[170px] flex-shrink-0 !p-0"
         >
           <RadialBarChart
             data={chartData}
@@ -87,13 +87,13 @@ export function GenderChart() {
         <div className={"text-sm"}>
           <p className={"flex justify-between gap-6"}>
             <span className={"text-white"}>{chartConfig.male.label}</span>
-            <span style={{ color: chartConfig.male.color}}>
+            <span style={{ color: chartConfig.male.color }}>
               {chartData[0].male}
             </span>
           </p>
           <p className={"flex justify-between gap-6"}>
             <span className={"text-white"}>{chartConfig.female.label}</span>
-            <span style={{ color: chartConfig.female.color}}>
+            <span style={{ color: chartConfig.female.color }}>
               {chartData[0].female}
             </span>
           </p>

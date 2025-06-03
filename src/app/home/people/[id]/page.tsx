@@ -8,6 +8,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function StaffProfilePage({ params }: { params: { id: string } }) {
+export default function StaffProfilePage({
+  params,
+}: {
+  params: { id: string };
+}) {
   return <StaffProfileClient staffId={params.id} />;
 }

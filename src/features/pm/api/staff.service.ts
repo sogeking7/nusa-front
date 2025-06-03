@@ -1,4 +1,4 @@
-import { apiPayload } from "@/lib/axios";
+import { apiPayload } from "@/lib/api-service/axios";
 import { isAxiosError } from "axios";
 import {
   GetStaff,

@@ -14,14 +14,22 @@ interface StaffSalaryTableProps {
 
 export function StaffSalaryTable({ data }: StaffSalaryTableProps) {
   return (
-    <div className="scrollbar-thin text-white scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded max-h-[400px] overflow-auto">
+    <div className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded max-h-[400px] overflow-auto text-white">
       <Table className="border border-white/20 bg-inherit">
         <TableHeader className="border border-white/20 bg-[#1c1c1d]">
           <TableRow>
-            <TableHead className="border-r border-white/20">Должность</TableHead>
-            <TableHead className="border-r border-white/20">Подразделение</TableHead>
-            <TableHead className="border-r border-white/20">Тип начисления</TableHead>
-            <TableHead className="border-r border-white/20">Кол-во штатных единиц</TableHead>
+            <TableHead className="border-r border-white/20">
+              Должность
+            </TableHead>
+            <TableHead className="border-r border-white/20">
+              Подразделение
+            </TableHead>
+            <TableHead className="border-r border-white/20">
+              Тип начисления
+            </TableHead>
+            <TableHead className="border-r border-white/20">
+              Кол-во штатных единиц
+            </TableHead>
             <TableHead>Оклад (₸)</TableHead>
           </TableRow>
         </TableHeader>

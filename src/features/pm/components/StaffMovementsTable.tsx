@@ -14,14 +14,20 @@ interface StaffMovementsTableProps {
 
 export function StaffMovementsTable({ data }: StaffMovementsTableProps) {
   return (
-    <div className="scrollbar-thin text-white scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded max-h-[400px] overflow-auto">
+    <div className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded max-h-[400px] overflow-auto text-white">
       <Table className="border border-white/20 bg-inherit">
         <TableHeader className="border border-white/20 bg-[#1c1c1d]">
           <TableRow>
             <TableHead className="border-r border-white/20">Дата</TableHead>
-            <TableHead className="border-r border-white/20">Должность</TableHead>
-            <TableHead className="border-r border-white/20">Подразделение</TableHead>
-            <TableHead className="border-r border-white/20">Учреждение</TableHead>
+            <TableHead className="border-r border-white/20">
+              Должность
+            </TableHead>
+            <TableHead className="border-r border-white/20">
+              Подразделение
+            </TableHead>
+            <TableHead className="border-r border-white/20">
+              Учреждение
+            </TableHead>
             <TableHead className="border-r border-white/20">Событие</TableHead>
             <TableHead>Документ</TableHead>
           </TableRow>

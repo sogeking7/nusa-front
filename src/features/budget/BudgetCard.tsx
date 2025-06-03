@@ -13,7 +13,12 @@ export const BudgetCard = (props: {
   className?: string;
 }) => {
   return (
-    <Card className={cn("group border border-white/20 transition-colors duration-200 hover:border-primary-green", props.className)}>
+    <Card
+      className={cn(
+        "group border border-white/20 transition-colors duration-200 hover:border-primary-green",
+        props.className,
+      )}
+    >
       <CardHeader className="p-4 pb-3">
         <CardTitle>
           <div className="space-y-1 text-white">

@@ -15,10 +15,7 @@ interface StaffSalaryDialogProps {
   onClose: () => void;
 }
 
-export function StaffSalaryDialog({
-  isOpen,
-  onClose,
-}: StaffSalaryDialogProps) {
+export function StaffSalaryDialog({ isOpen, onClose }: StaffSalaryDialogProps) {
   const [salaries, setSalaries] = useState<StaffSalary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,7 +50,9 @@ export function StaffSalaryDialog({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-4xl">
         <DialogHeader>
-          <DialogTitle className="text-xl">Заработные платы по должностям</DialogTitle>
+          <DialogTitle className="text-xl">
+            Заработные платы по должностям
+          </DialogTitle>
         </DialogHeader>
 
         {isLoading ? (

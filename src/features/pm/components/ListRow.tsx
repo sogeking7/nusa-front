@@ -26,12 +26,15 @@ export function ListRow({ employee, className }: ListRowProps) {
     >
       <Avatar className="shrink-0">
         <AvatarFallback>
-          {employee.firstname[0]}{employee.lastname[0]}
+          {employee.firstname[0]}
+          {employee.lastname[0]}
         </AvatarFallback>
       </Avatar>
       <div className="min-w-0 flex-1">
         <p className="text-sm font-medium">{fullName}</p>
-        <p className="text-sm text-[#898989]">{employee.gender === 'male' ? 'Мужской' : 'Женский'}</p>
+        <p className="text-sm text-[#898989]">
+          {employee.gender === "male" ? "Мужской" : "Женский"}
+        </p>
       </div>
       <div className="flex-1 text-center text-sm">{employee.institution}</div>
       <div className="flex-1 text-center text-sm">{employee.department}</div>

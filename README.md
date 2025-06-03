@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 📦 Резерв 1С — API Endpoints
 
-## Getting Started
+### 👥 Staff
 
-First, run the development server:
+1. **`GET /staff_info/{guid}/{date}`**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **`GET /staff/{bin}/{date}`**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. **`GET /staff_movements/{guid}`**
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+4. **`GET /staff-salary/`**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    * ✅ **Ожидаемый формат:**
+      **`GET /staff-salary/{date_from}/{date_to}/{bin}`**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+5. **`GET /salary_summary/{date_from}/{date_to}/{bin}`**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+6. **`GET /employees_neport/{date_from}/{date_to}/{bin}`**
+
+---
+
+### 🏦 Финансы
+
+7. **`GET /turnover_balance/{date_from}/{date_to}/{bin}`**
+
+
+8. **`GET /assets/{date_from}/{date_to}/{bin}`**
+
+
+9. **`GET /obligations-capital/{date_from}/{date_to}/{bin}`**
+
+---
+
+### 📦 Склад
+
+10. **`GET /material_report/{date_from}/{date_to}/{bin}`**
+
+---
+
+### 📝 Примечания
+
+* `guid` — уникальный идентификатор сотрудника.
+* `bin` — БИН организации.
+* `date`, `date_from`, `date_to` — даты в формате `YYYY-MM-DD`.
+
+---

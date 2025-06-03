@@ -87,11 +87,10 @@ export default function Page() {
             endClassName="text-primary-orange/60"
           />
         </div>
-        <div className="col-span-6 grid gap-4">
-        </div>
+        <div className="col-span-6 grid gap-4"></div>
         <div className="col-span-6 grid gap-4">
           <h2 className="col-span-full">Обязательтсво и капитал</h2>
-          <BudgetLargeCard >
+          <BudgetLargeCard>
             <BudgetCard
               className="!border-none"
               title="краткосрочных обьязательств"
