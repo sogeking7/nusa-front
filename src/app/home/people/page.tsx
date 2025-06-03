@@ -1,9 +1,17 @@
+"use client";
+
 import { EmployeeStatsCard } from "@/features/pm/components/EmployeeStats";
 import ListContainer from "@/features/pm/components/ListContainer";
 import { SalaryCard } from "@/features/pm/components/SalaryCard";
 import { SalaryStats } from "@/features/pm/components/SalaryStats";
 import { SummaryCard } from "@/features/pm/components/SummaryCard";
 import { GenderChart } from "@/features/pm/components/GenderChart";
+import { StaffSalaryDialog } from "@/features/pm/components/StaffSalaryDialog";
+import { useState } from "react";
+import { useFilter } from "@/contexts/FilterContext";
+import { useQuery } from "@tanstack/react-query";
+import { StaffService } from "@/features/pm/api/staff.service";
+import { format } from "date-fns";
 
 const mockData = {
   genderStats: {
@@ -23,19 +31,61 @@ const mockData = {
   },
 };
 
-const employeeStats = [
-  { label: "Принято", startValue: 15, endValue: 10, color: "green" as const },
-  { label: "Выбыло", startValue: 15, endValue: 10, color: "orange" as const },
-  { label: "Вакансии", startValue: 15, endValue: 10 },
-  { label: "Работники по совместительству", startValue: 15, endValue: 10 },
-  {
-    label: "Гражданско-правововые договора",
-    startValue: 15,
-    endValue: 10,
-  },
-];
-
 export default function HomePage() {
+  const [isSalaryDialogOpen, setIsSalaryDialogOpen] = useState(false);
+  const { startDate, endDate, branch } = useFilter();
+  const staffService = StaffService();
+
+  // Format the dates for the API
+  const formattedStartDate = startDate
+    ? format(startDate, "yyyy-MM-dd")
+    : undefined;
+  const formattedEndDate = endDate ? format(endDate, "yyyy-MM-dd") : undefined;
+
+  // Determine if we should make the API call
+  const shouldFetch = Boolean(startDate && endDate);
+
+  // Get employee report data with filters
+  const { data: employeeReport, isLoading: isLoadingReport } = useQuery({
+    queryKey: ["employeeReport", formattedStartDate, formattedEndDate, branch],
+    queryFn: () =>
+      staffService.getEmployeeReport({
+        period_start: formattedStartDate,
+        period_end: formattedEndDate,
+        branches: branch ? [branch] : undefined,
+      }),
+    enabled: shouldFetch,
+  });
+
+  // Prepare employee stats data from API or use empty values if not loaded
+  const employeeStats =
+    shouldFetch && employeeReport?.success
+      ? [
+          {
+            label: "Принято",
+            startValue: employeeReport.data.hired_year,
+            endValue: employeeReport.data.hired,
+            color: "green" as const,
+          },
+          {
+            label: "Выбыло",
+            startValue: employeeReport.data.dropped_out_year,
+            endValue: employeeReport.data.dropped_out,
+            color: "orange" as const,
+          },
+          {
+            label: "Вакансии",
+            startValue: employeeReport.data.vacancies_year,
+            endValue: employeeReport.data.vacancies,
+          },
+          {
+            label: "Гражданско-правововые договора",
+            startValue: employeeReport.data.civil_workers_year,
+            endValue: employeeReport.data.civil_workers,
+          },
+        ]
+      : [];
+
   return (
     <>
       <h1 className="mb-2 text-white md:mb-6 md:text-3xl">
@@ -52,12 +102,24 @@ export default function HomePage() {
             title="Заработные платы по должностям"
             subtitle="Главный специалист"
             value="258 000, 00 ₸"
+            onClick={() => setIsSalaryDialogOpen(true)}
           />
-          <EmployeeStatsCard
-            title="Работники за отчетный период"
-            subtitle="В начале года / за отчетный квартал"
-            stats={employeeStats}
-          />
+          {shouldFetch ? (
+            <EmployeeStatsCard
+              title="Работники за отчетный период"
+              subtitle="С начала года / за отчетный квартал"
+              stats={employeeStats}
+              isLoading={isLoadingReport}
+            />
+          ) : (
+            <EmployeeStatsCard
+              title="Работники за отчетный период"
+              subtitle="Выберите период для отображения данных"
+              stats={[]}
+              isLoading={false}
+              isEmpty
+            />
+          )}
         </div>
         <div className="col-span-full space-y-4 lg:col-span-3">
           <h2 className="font-medium text-white">Заработные платы</h2>
@@ -82,6 +144,11 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      <StaffSalaryDialog
+        isOpen={isSalaryDialogOpen}
+        onClose={() => setIsSalaryDialogOpen(false)}
+      />
     </>
   );
 }

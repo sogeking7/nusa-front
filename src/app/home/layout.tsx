@@ -19,7 +19,7 @@ export default function HomeLayout({
       <div className="col-span-2 h-full md:col-span-1">
         <Container className="h-full w-full py-6">{children}</Container>
       </div>
-      <div className="fixed bottom-0 w-full  md:hidden bg-[#1C1C1D] z-[2000]">
+      <div className="fixed bottom-0 z-[2000] w-full bg-[#1C1C1D] md:hidden">
         <AppMobilebar />
       </div>
     </div>

@@ -1,4 +1,3 @@
-import { ScheduleData, CalendarDay } from "@/components/ui/calendar";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -9,6 +8,20 @@ export function cn(...inputs: ClassValue[]) {
 const DAYS_IN_WEEK = 7;
 const MONDAY = 1;
 const FRIDAY = 5;
+
+export interface CalendarDay {
+  date: Date;
+  isWorkDay: boolean;
+}
+
+export interface ScheduleData {
+  shift: number;
+  month: string;
+  year: number;
+  workDays: number;
+  totalDays: number;
+  days: CalendarDay[];
+}
 
 export function generateScheduleData(date: Date = new Date()): ScheduleData {
   const year = date.getFullYear();

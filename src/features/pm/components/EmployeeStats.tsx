@@ -13,6 +13,8 @@ interface EmployeeStatsCardProps {
   subtitle: string;
   stats: StatItem[];
   className?: string;
+  isLoading?: boolean;
+  isEmpty?: boolean;
 }
 
 export function EmployeeStatsCard({
@@ -20,6 +22,8 @@ export function EmployeeStatsCard({
   subtitle,
   stats,
   className,
+  isLoading = false,
+  isEmpty = false,
 }: EmployeeStatsCardProps) {
   const getColorClass = (color?: StatItem["color"]) => {
     switch (color) {
@@ -39,19 +43,29 @@ export function EmployeeStatsCard({
           {title}
         </CardTitle>
         <div className="h-[1px] w-10 bg-primary-purple" />
-        <p className="mt-1 text-right text-sm text-zinc-400">{subtitle}</p>
+        <p className="mt-1 text-center text-sm text-zinc-400">{subtitle}</p>
       </CardHeader>
       <CardContent className="space-y-4 !p-4">
-        {stats.map((stat, index) => (
-          <div key={index} className="flex justify-between gap-3">
-            <span className={cn("text-sm", getColorClass(stat.color))}>
-              {stat.label}
-            </span>
-            <span className="flex-shrink-0 text-sm text-zinc-400">
-              {stat.startValue} / {stat.endValue}
-            </span>
+        {isLoading ? (
+          <div className="flex items-center justify-center py-4">
+            <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
           </div>
-        ))}
+        ) : isEmpty ? (
+          <div className="py-4 text-center text-sm text-zinc-400">
+            Нет данных для отображения
+          </div>
+        ) : (
+          stats.map((stat, index) => (
+            <div key={index} className="flex justify-between gap-3">
+              <span className={cn("text-sm", getColorClass(stat.color))}>
+                {stat.label}
+              </span>
+              <span className="flex-shrink-0 text-sm text-zinc-400">
+                {stat.startValue} / {stat.endValue}
+              </span>
+            </div>
+          ))
+        )}
       </CardContent>
     </Card>
   );
