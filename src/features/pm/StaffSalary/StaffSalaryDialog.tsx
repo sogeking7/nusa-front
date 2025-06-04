@@ -8,10 +8,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { StaffSalaryTable } from "./StaffSalaryTable";
-import { useEffect } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { staffService } from "@/lib/api-service";
 import { useFilter } from "@/contexts/FilterContext";
+import { format } from "date-fns";
 
 interface StaffSalaryDialogProps {
   isOpen: boolean;
@@ -21,27 +21,27 @@ interface StaffSalaryDialogProps {
 export function StaffSalaryDialog({ isOpen, onClose }: StaffSalaryDialogProps) {
   const { startDate, endDate, institution } = useFilter();
 
+  const shouldFetch = !!(startDate && endDate && institution);
+
   const {
     data: salaries,
-    mutate,
-    isPending,
+    isLoading,
     error,
-  } = useMutation({
-    mutationFn: async (data: {
-      bin: string;
-      dateFrom: string;
-      dateTo: string;
-    }) => staffService.getStaffSalary(data.bin, data.dateFrom, data.dateTo),
+    isError,
+  } = useQuery({
+    queryKey: ["staffSalaries", institution?.bin, startDate],
+    queryFn: () => {
+      if (!shouldFetch) {
+        throw new Error("Invalid query");
+      }
+      return staffService.getStaffSalary(
+        institution.bin,
+        format(startDate, "yyyy-MM-dd"),
+        format(endDate, "yyyy-MM-dd"),
+      );
+    },
+    enabled: shouldFetch,
   });
-
-  useEffect(() => {
-    if (!startDate || !endDate || !institution) return;
-    mutate({
-      bin: institution.bin,
-      dateFrom: startDate.toString(),
-      dateTo: endDate.toString(),
-    });
-  }, [isOpen]);
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -52,11 +52,11 @@ export function StaffSalaryDialog({ isOpen, onClose }: StaffSalaryDialogProps) {
           </DialogTitle>
         </DialogHeader>
 
-        {isPending ? (
+        {isLoading ? (
           <div className="flex h-40 items-center justify-center">
             <p className="text-white">Загрузка...</p>
           </div>
-        ) : error ? (
+        ) : isError ? (
           <div className="flex h-40 items-center justify-center">
             <p className="text-red-500">{error.message}</p>
           </div>
