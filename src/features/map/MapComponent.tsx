@@ -116,33 +116,38 @@ export const MapComponent = () => {
   }, []);
 
   return (
-    <div className="relative h-full w-full md:h-[560px]">
-      <MapCard locations={MOCK_MAP_LOCATIONS} />
-      <MapContainer
-        className="relative z-10 h-full w-full !bg-transparent focus:ring-0 max-md:h-[290px] md:h-[560px]"
-        center={mapCenter}
-        zoom={5}
-        zoomControl={false}
-        scrollWheelZoom
-        dragging
-        doubleClickZoom={false}
-        attributionControl={false}
-        maxZoom={5}
-        minZoom={4}
-        maxBounds={maxBounds}
-        maxBoundsViscosity={0.3}
-      >
-        {MOCK_MAP_LOCATIONS.map((loc, index) => (
-          <CustomMarker
-            key={index}
-            title={loc.name}
-            position={loc.coordinates}
-          />
-        ))}
-        <DynamicZoomHandler setMaxBounds={setMaxBounds} />
-        {/* @ts-ignore */}
-        <GeoJSON data={geojsonData.features} onEachFeature={onEachRegion} />
-      </MapContainer>
+    <div className="flex h-full w-full max-md:flex-col max-md:gap-4 md:relative">
+      <h1 className="text-white md:absolute md:left-0 md:top-0 md:z-10 md:mb-6 md:text-3xl">
+        Филиалы
+      </h1>
+      <div className="relative h-full w-full md:h-[560px]">
+        <MapCard locations={MOCK_MAP_LOCATIONS} />
+        <MapContainer
+          className="relative z-10 h-full w-full !bg-transparent focus:ring-0 max-md:h-[290px] md:h-[560px]"
+          center={mapCenter}
+          zoom={5}
+          zoomControl={false}
+          scrollWheelZoom
+          dragging
+          doubleClickZoom={false}
+          attributionControl={false}
+          maxZoom={5}
+          minZoom={4}
+          maxBounds={maxBounds}
+          maxBoundsViscosity={0.3}
+        >
+          {MOCK_MAP_LOCATIONS.map((loc, index) => (
+            <CustomMarker
+              key={index}
+              title={loc.name}
+              position={loc.coordinates}
+            />
+          ))}
+          <DynamicZoomHandler setMaxBounds={setMaxBounds} />
+          {/* @ts-ignore */}
+          <GeoJSON data={geojsonData.features} onEachFeature={onEachRegion} />
+        </MapContainer>
+      </div>
     </div>
   );
 };

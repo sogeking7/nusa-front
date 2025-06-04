@@ -12,6 +12,7 @@ import {
   MOCK_SALARY_SUMMARY,
   MOCK_STAFF_DATA,
   MOCK_STAFF_INFO,
+  MOCK_STAFF_MOVEMENTS,
   MOCK_STAFF_SALARIES,
 } from "@/lib/api-service/api/1c/mock";
 
@@ -63,19 +64,26 @@ export const staffService = {
     return res.data;
   },
 
-  getStaffInfo: async (guid: string, date: string) => {
+  getStaffInfo: async (guid: string) => {
     if (IS_MOCK) {
       await new Promise((res) => setTimeout(res, 300));
       return MOCK_STAFF_INFO.find((s) => s.id_number === guid);
     }
 
-    const localVarPath = `/staff-info/${guid}/${date}`;
+    const localVarPath = `/staff-info/${guid}`;
     const res = await api1C.get<StaffInfoModel>(`${url}${localVarPath}`);
     return res.data;
   },
 
   getStaffMovements: async (guid: string) => {
+    if (IS_MOCK) {
+      await new Promise((res) => setTimeout(res, 300));
+      return MOCK_STAFF_MOVEMENTS;
+    }
     const localVarPath = `/staff-movements/${guid}`;
-    return await api1C.get<Array<StaffMovementModel>>(`${url}${localVarPath}`);
+    const res = await api1C.get<Array<StaffMovementModel>>(
+      `${url}${localVarPath}`,
+    );
+    return res.data;
   },
 };

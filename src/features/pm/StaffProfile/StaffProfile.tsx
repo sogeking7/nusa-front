@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ProfileData } from "./model";
 import { StaffInfoModel } from "@/lib/api-service";
@@ -6,7 +8,7 @@ interface ProfileCardProps {
   staffInfo: StaffInfoModel;
 }
 
-export function ProfileCard({ staffInfo }: ProfileCardProps) {
+export default function StaffProfile({ staffInfo }: ProfileCardProps) {
   const data: ProfileData = {
     name: staffInfo.full_name,
     position: staffInfo.position,

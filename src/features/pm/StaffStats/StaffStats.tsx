@@ -28,10 +28,10 @@ export default function StaffStats() {
       return staffService.getEmployeesReport(
         institution.bin,
         format(startDate, "yyyy-MM-dd"),
-        format(endDate, "yyyy-MM-dd")
+        format(endDate, "yyyy-MM-dd"),
       );
     },
-    enabled: shouldFetch
+    enabled: shouldFetch,
   });
 
   const getColorClass = (color: StatItem["color"]) => {
@@ -47,29 +47,29 @@ export default function StaffStats() {
 
   const employeeStats: Array<StatItem> | null = employeeReport
     ? [
-      {
-        label: "Принято",
-        startValue: employeeReport.hired_year,
-        endValue: employeeReport.hired,
-        color: "green" as const
-      },
-      {
-        label: "Выбыло",
-        startValue: employeeReport.dropped_out_year,
-        endValue: employeeReport.dropped_out,
-        color: "orange" as const
-      },
-      {
-        label: "Вакансии",
-        startValue: employeeReport.vacancies_year,
-        endValue: employeeReport.vacancies
-      },
-      {
-        label: "Гражданско-правововые договора",
-        startValue: employeeReport.civil_workers_year,
-        endValue: employeeReport.civil_workers
-      }
-    ]
+        {
+          label: "Принято",
+          startValue: employeeReport.hired_year,
+          endValue: employeeReport.hired,
+          color: "green" as const,
+        },
+        {
+          label: "Выбыло",
+          startValue: employeeReport.dropped_out_year,
+          endValue: employeeReport.dropped_out,
+          color: "orange" as const,
+        },
+        {
+          label: "Вакансии",
+          startValue: employeeReport.vacancies_year,
+          endValue: employeeReport.vacancies,
+        },
+        {
+          label: "Гражданско-правововые договора",
+          startValue: employeeReport.civil_workers_year,
+          endValue: employeeReport.civil_workers,
+        },
+      ]
     : null;
 
   return (
@@ -79,11 +79,11 @@ export default function StaffStats() {
           Работники за отчетный период
         </CardTitle>
         <div className="h-[1px] w-10 bg-primary-purple" />
-        {employeeStats &&
+        {employeeStats && (
           <p className="mt-1 text-right text-sm text-white">
             С начала года / за отчетный квартал
           </p>
-        }
+        )}
       </CardHeader>
       <CardContent className="!p-0">
         {isLoading ? (

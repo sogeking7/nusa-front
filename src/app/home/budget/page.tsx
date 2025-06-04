@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -9,9 +11,16 @@ import {
 import { BudgetCard } from "@/features/budget/BudgetCard";
 import { BudgetLargeCard } from "@/features/budget/BudgetLargeCard";
 import { ArrowUpRight } from "lucide-react";
-import React from "react";
+import { useState } from "react";
+import ACCOUNTS from "@/features/budget/data/accounts.json";
 
 export default function Page() {
+  const [selectedCode, setSelectedCode] = useState<string | undefined>(
+    ACCOUNTS[0].code,
+  );
+
+  const selectedItem = ACCOUNTS.find((opt) => opt.code === selectedCode);
+
   return (
     <>
       <h1 className="mb-2 text-white md:mb-6 md:text-3xl">Общий бюджет</h1>
@@ -40,15 +49,17 @@ export default function Page() {
           />
         </div>
         <div className="col-span-6 grid gap-4">
-          <h2 className="col-span-full flex gap-4 max-lg:flex-col lg:items-center">
-            <Select defaultValue="1310">
-              <SelectTrigger className="w-20 rounded-xl">
-                <SelectValue placeholder="Theme" />
+          <div className="col-span-full flex gap-4 max-lg:flex-col lg:items-center">
+            <Select value={selectedCode} onValueChange={setSelectedCode}>
+              <SelectTrigger className="w-[300px] rounded-xl">
+                <SelectValue className="truncate" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="1310">1310</SelectItem>
-                <SelectItem value="1210">1210</SelectItem>
-                <SelectItem value="1110">1110</SelectItem>
+                {ACCOUNTS.map(({ code, name }) => (
+                  <SelectItem key={code} value={code}>
+                    {code + " " + name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <div className="flex items-center gap-2">
@@ -58,7 +69,7 @@ export default function Page() {
                 <ArrowUpRight />
               </Button>
             </div>
-          </h2>
+          </div>
           <BudgetCard
             title="Сальдо на начало периода"
             startText="Дебет"

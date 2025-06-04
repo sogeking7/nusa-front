@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
@@ -8,7 +10,7 @@ interface ListRowProps {
   className?: string;
 }
 
-export function ListRow({ employee, className }: ListRowProps) {
+export function StaffListTableRow({ employee, className }: ListRowProps) {
   const router = useRouter();
   const fullName = `${employee.firstname} ${employee.lastname}`;
 

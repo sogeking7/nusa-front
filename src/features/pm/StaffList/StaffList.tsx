@@ -1,7 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { List } from "@/features/pm/List";
+import { StaffListTable } from "@/features/pm/StaffList/StaffListTable";
 import { SearchIcon } from "lucide-react";
 import { useState } from "react";
 import { AlignRight } from "lucide-react";
@@ -11,7 +11,7 @@ import { useFilter } from "@/contexts/FilterContext";
 import { staffService } from "@/lib/api-service";
 import { format } from "date-fns";
 
-export default function ListContainer() {
+export default function StaffList() {
   const [searchQuery, setSearchQuery] = useState("");
   const { institution, startDate, endDate } = useFilter();
 
@@ -62,7 +62,9 @@ export default function ListContainer() {
       {isLoading && (
         <div className="p-4 text-center text-white/60">Загрузка...</div>
       )}
-      {!isLoading && employees && <List employees={filteredEmployees} />}
+      {!isLoading && employees && (
+        <StaffListTable employees={filteredEmployees} />
+      )}
     </div>
   );
 }

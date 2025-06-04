@@ -78,4 +78,4 @@ export const formatCurrency = (amount: number) => {
       maximumFractionDigits: 2,
     }).format(amount) + " ₸"
   );
-}
+};

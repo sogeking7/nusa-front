@@ -3,13 +3,13 @@
 import { useState, use } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { staffService } from "@/lib/api-service";
-import { ProfileCard } from "@/features/profile/ProfileCard";
 import { WorkSchedule } from "@/ui/WorkSchedule";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
-import { StaffMovementsDialog } from "@/features/pm/StaffMovementsDialog";
+import { StaffMovementsDialog } from "@/features/pm/StaffMovement/StaffMovementsDialog";
 import GoBackButton from "@/components/custom/GoBackButton";
+import StaffProfile from "@/features/pm/StaffProfile/StaffProfile";
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id: staffId } = use(params);
@@ -21,7 +21,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
     error,
   } = useQuery({
     queryKey: ["staff-info", staffId],
-    queryFn: () => staffService.getStaffInfo(staffId, "20250401"),
+    queryFn: () => staffService.getStaffInfo(staffId),
   });
 
   if (isLoading) {
@@ -55,7 +55,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
           <GoBackButton />
         </div>
         <div className="col-span-5">
-          <ProfileCard staffInfo={staffInfo} />
+          <StaffProfile staffInfo={staffInfo} />
         </div>
         <div className="col-span-5 flex flex-col space-y-3 lg:col-span-4">
           <WorkSchedule />
@@ -77,7 +77,6 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
           className={
             "relative col-span-5 h-fit cursor-pointer !rounded-xl border border-white/20 lg:col-span-3"
           }
-          onClick={() => setIsMovementsDialogOpen(true)}
         >
           <CardContent className="!p-4">
             <Button
@@ -113,7 +112,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
       <StaffMovementsDialog
         staffId={staffId}
         isOpen={isMovementsDialogOpen}
-        onClose={() => setIsMovementsDialogOpen(false)}
+        onCloseAction={() => setIsMovementsDialogOpen(false)}
       />
     </div>
   );
