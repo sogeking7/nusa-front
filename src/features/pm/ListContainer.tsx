@@ -1,7 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { List } from "@/features/pm/components/List";
+import { List } from "@/features/pm/List";
 import { SearchIcon } from "lucide-react";
 import { useState } from "react";
 import { AlignRight } from "lucide-react";

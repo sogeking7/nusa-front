@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -29,9 +31,7 @@ export function StaffSalaryDialog({ isOpen, onClose }: StaffSalaryDialogProps) {
       bin: string;
       dateFrom: string;
       dateTo: string;
-    }) =>
-      (await staffService.getStaffSalary(data.bin, data.dateFrom, data.dateTo))
-        .data,
+    }) => staffService.getStaffSalary(data.bin, data.dateFrom, data.dateTo),
   });
 
   useEffect(() => {

@@ -69,3 +69,13 @@ export function generateScheduleData(date: Date = new Date()): ScheduleData {
     days,
   };
 }
+
+export const formatCurrency = (amount: number) => {
+  return (
+    new Intl.NumberFormat("ru-RU", {
+      style: "decimal",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount) + " ₸"
+  );
+}

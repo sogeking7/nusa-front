@@ -8,7 +8,7 @@ import { WorkSchedule } from "@/ui/WorkSchedule";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
-import { StaffMovementsDialog } from "@/features/pm/components/StaffMovementsDialog";
+import { StaffMovementsDialog } from "@/features/pm/StaffMovementsDialog";
 import GoBackButton from "@/components/custom/GoBackButton";
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {

@@ -308,3 +308,21 @@ export const MOCK_INSTITUTIONS: Array<InstitutionModel> = [
     name: "Филиал в Актюбинской области",
   },
 ];
+
+export const MOCK_SALARY_SUMMARY: any = {
+  genderStats: {
+    total: 97,
+    men: 57,
+    women: 40,
+  },
+  salaryRange: {
+    average: 180000.0,
+    high: 300000.0,
+    low: 130000.0,
+  },
+  salarySummary: {
+    accrued: 971096193.46,
+    withheld: 43585304.5,
+    transferred: 1789111191.02,
+  },
+};

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ProfileData } from "../pm/model";
+import { ProfileData } from "./model";
 import { StaffInfoModel } from "@/lib/api-service";
 
 interface ProfileCardProps {
