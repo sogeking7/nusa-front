@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { StaffService } from "../api/staff.service";
-import { StaffMovement } from "../api/staff.service.types";
 import { StaffMovementsTable } from "./StaffMovementsTable";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { staffService } from "@/lib/api-service";
+import { useMutation } from "@tanstack/react-query";
 
 interface StaffMovementsDialogProps {
   staffId: string;
@@ -21,36 +21,19 @@ export function StaffMovementsDialog({
   isOpen,
   onClose,
 }: StaffMovementsDialogProps) {
-  const [movements, setMovements] = useState<StaffMovement[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    data: movements,
+    mutate,
+    isPending,
+    isError,
+    error,
+  } = useMutation({
+    mutationFn: async (data: { staffId }) =>
+      (await staffService.getStaffMovements(data.staffId)).data,
+  });
 
   useEffect(() => {
-    const fetchMovements = async () => {
-      if (!isOpen) return;
-
-      setIsLoading(true);
-
-      try {
-        const staffService = StaffService();
-        const response = await staffService.getStaffMovements({
-          staff_id: staffId,
-        });
-
-        if (response.success) {
-          setMovements(response.data);
-          setError(null);
-        } else {
-          setError(response.data as string);
-        }
-      } catch (err) {
-        setError("Failed to fetch staff movements");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchMovements();
+    mutate({ staffId });
   }, [staffId, isOpen]);
 
   return (
@@ -60,15 +43,15 @@ export function StaffMovementsDialog({
           <DialogTitle className="text-xl">Кадровые перемещения</DialogTitle>
         </DialogHeader>
 
-        {isLoading ? (
+        {isPending ? (
           <div className="flex h-40 items-center justify-center">
             <p className="text-white">Загрузка...</p>
           </div>
-        ) : error ? (
+        ) : isError ? (
           <div className="flex h-40 items-center justify-center">
-            <p className="text-red-500">{error}</p>
+            <p className="text-red-500">{error.message}</p>
           </div>
-        ) : movements.length === 0 ? (
+        ) : !movements || movements.length === 0 ? (
           <div className="flex h-40 items-center justify-center">
             <p className="text-white">Нет данных о перемещениях</p>
           </div>

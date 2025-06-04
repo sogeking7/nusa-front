@@ -5,10 +5,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { StaffService } from "../api/staff.service";
-import { StaffSalary } from "../api/staff.service.types";
 import { StaffSalaryTable } from "./StaffSalaryTable";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { staffService } from "@/lib/api-service";
+import { useFilter } from "@/contexts/FilterContext";
 
 interface StaffSalaryDialogProps {
   isOpen: boolean;
@@ -16,34 +17,30 @@ interface StaffSalaryDialogProps {
 }
 
 export function StaffSalaryDialog({ isOpen, onClose }: StaffSalaryDialogProps) {
-  const [salaries, setSalaries] = useState<StaffSalary[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { startDate, endDate, institution } = useFilter();
+
+  const {
+    data: salaries,
+    mutate,
+    isPending,
+    error,
+  } = useMutation({
+    mutationFn: async (data: {
+      bin: string;
+      dateFrom: string;
+      dateTo: string;
+    }) =>
+      (await staffService.getStaffSalary(data.bin, data.dateFrom, data.dateTo))
+        .data,
+  });
 
   useEffect(() => {
-    const fetchSalaries = async () => {
-      if (!isOpen) return;
-
-      setIsLoading(true);
-
-      try {
-        const staffService = StaffService();
-        const response = await staffService.getStaffSalaries();
-
-        if (response.success) {
-          setSalaries(response.data);
-          setError(null);
-        } else {
-          setError(response.data as string);
-        }
-      } catch (err) {
-        setError("Failed to fetch staff salaries");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchSalaries();
+    if (!startDate || !endDate || !institution) return;
+    mutate({
+      bin: institution.bin,
+      dateFrom: startDate.toString(),
+      dateTo: endDate.toString(),
+    });
   }, [isOpen]);
 
   return (
@@ -55,15 +52,15 @@ export function StaffSalaryDialog({ isOpen, onClose }: StaffSalaryDialogProps) {
           </DialogTitle>
         </DialogHeader>
 
-        {isLoading ? (
+        {isPending ? (
           <div className="flex h-40 items-center justify-center">
             <p className="text-white">Загрузка...</p>
           </div>
         ) : error ? (
           <div className="flex h-40 items-center justify-center">
-            <p className="text-red-500">{error}</p>
+            <p className="text-red-500">{error.message}</p>
           </div>
-        ) : salaries.length === 0 ? (
+        ) : !salaries || salaries.length === 0 ? (
           <div className="flex h-40 items-center justify-center">
             <p className="text-white">Нет данных о заработных платах</p>
           </div>

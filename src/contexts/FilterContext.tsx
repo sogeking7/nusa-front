@@ -1,14 +1,15 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
+import { InstitutionModel } from "@/lib/api-service";
 
 type FilterContextType = {
-  startDate: Date | undefined;
-  endDate: Date | undefined;
-  branch: string;
-  setStartDate: (date: Date | undefined) => void;
-  setEndDate: (date: Date | undefined) => void;
-  setBranch: (branch: string) => void;
+  startDate?: Date;
+  endDate?: Date;
+  institution: InstitutionModel | null;
+  setStartDate: (date?: Date) => void;
+  setEndDate: (date?: Date) => void;
+  setInstitution: (institution: InstitutionModel | null) => void;
 };
 
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
@@ -16,17 +17,17 @@ const FilterContext = createContext<FilterContextType | undefined>(undefined);
 export function FilterProvider({ children }: { children: ReactNode }) {
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
-  const [branch, setBranch] = useState('РГП на ПХВ "Резерва МЧС РК; Филиал...');
+  const [institution, setInstitution] = useState<InstitutionModel | null>(null);
 
   return (
     <FilterContext.Provider
       value={{
         startDate,
         endDate,
-        branch,
+        institution,
         setStartDate,
         setEndDate,
-        setBranch,
+        setInstitution,
       }}
     >
       {children}

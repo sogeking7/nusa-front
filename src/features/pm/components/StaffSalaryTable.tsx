@@ -6,10 +6,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { StaffSalary } from "../api/staff.service.types";
+import { StaffSalaryModel } from "@/lib/api-service";
 
 interface StaffSalaryTableProps {
-  data: StaffSalary[];
+  data: StaffSalaryModel[];
 }
 
 export function StaffSalaryTable({ data }: StaffSalaryTableProps) {

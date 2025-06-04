@@ -1,9 +1,9 @@
 import { twMerge } from "tailwind-merge";
 import { ListRow } from "./ListRow";
-import { Staff } from "../api/staff.service.types";
+import { StaffModel } from "@/lib/api-service";
 
 interface ListProps {
-  employees: Staff[];
+  employees: StaffModel[];
   className?: string;
 }
 

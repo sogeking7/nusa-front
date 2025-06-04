@@ -1,101 +1,16 @@
-import { Response } from "@/types/api";
-
-export interface Staff {
-  staff_id: string;
-  firstname: string;
-  lastname: string;
-  department: string;
-  institution: string;
-  gender: string;
-}
-
-export interface StaffInfo {
-  full_name: string;
-  position: string;
-  institution: string;
-  department: string;
-  salary: number;
-  birth_date: string;
-  gender: string;
-  nationality: string;
-  id_number: string;
-  worker_type: string;
-  hire_date: string;
-  education: string;
-  birthplace: string;
-  phone: string;
-  mail: string;
-  schedule_type: string;
-  worked_out: string;
-}
-
-export interface StaffMovement {
-  position: string;
-  institution: string;
-  date: string;
-  department: string;
-  worker_type: string;
-  event: string;
-  document: string;
-}
-
-export interface StaffSalary {
-  position: string;
-  department: string;
-  salary_type: string;
-  positions_amount: number;
-  salary: number;
-}
-
-export interface EmployeeReport {
-  dropped_out: number;
-  dropped_out_year: number;
-  hired: number;
-  hired_year: number;
-  vacancies: number;
-  vacancies_year: number;
-  civil_workers: number;
-  civil_workers_year: number;
-}
-
-export type GetStaff = (params?: {
-  skip?: number;
-  limit?: number;
-}) => Promise<Response<GetStaffResponse>>;
-
-export type GetStaffResponse = {
-  data: Staff[];
-  count: number;
-};
-
-export type GetStaffInfo = (params: {
-  staff_id: string;
-}) => Promise<Response<GetStaffInfoResponse>>;
-
-export type GetStaffInfoResponse = StaffInfo;
-
-export type GetStaffMovements = (params: {
-  staff_id: string;
-}) => Promise<Response<GetStaffMovementsResponse>>;
-
-export type GetStaffMovementsResponse = StaffMovement[];
-
-export type GetStaffSalaries = () => Promise<
-  Response<GetStaffSalariesResponse>
->;
-
-export type GetStaffSalariesResponse = StaffSalary[];
-
-export type GetEmployeeReport = (params: {
-  period_start?: string;
-  period_end?: string;
-  branches?: string[];
-}) => Promise<Response<EmployeeReport>>;
+import {
+  EmployeesReportModel,
+  InstitutionModel,
+  StaffInfoModel,
+  StaffModel,
+  StaffMovementModel,
+  StaffSalaryModel,
+} from "@/lib/api-service";
 
 // Mock data for testing
-export const MOCK_STAFF_DATA: Staff[] = [
+export const MOCK_STAFF_DATA: Array<StaffModel> = [
   {
-    staff_id: "1",
+    staff_id: "900815300455",
     firstname: "Динара",
     lastname: "Жарасова",
     department: "Отдел разработки",
@@ -103,7 +18,7 @@ export const MOCK_STAFF_DATA: Staff[] = [
     gender: "female",
   },
   {
-    staff_id: "2",
+    staff_id: "881220300455",
     firstname: "Алишер",
     lastname: "Ибраев",
     department: "Отдел маркетинга",
@@ -111,7 +26,7 @@ export const MOCK_STAFF_DATA: Staff[] = [
     gender: "male",
   },
   {
-    staff_id: "3",
+    staff_id: "920410300455",
     firstname: "Айгуль",
     lastname: "Нурланова",
     department: "Отдел продаж",
@@ -119,7 +34,7 @@ export const MOCK_STAFF_DATA: Staff[] = [
     gender: "female",
   },
   {
-    staff_id: "4",
+    staff_id: "870725300455",
     firstname: "Марат",
     lastname: "Садыков",
     department: "Отдел разработки",
@@ -129,8 +44,8 @@ export const MOCK_STAFF_DATA: Staff[] = [
 ];
 
 // Mock data for staff info
-export const MOCK_STAFF_INFO: Record<string, StaffInfo> = {
-  "1": {
+export const MOCK_STAFF_INFO: Array<StaffInfoModel> = [
+  {
     full_name: "Жарасова Динара Алиевна",
     position: "Ведущий разработчик",
     institution: "Учреждение А",
@@ -149,7 +64,7 @@ export const MOCK_STAFF_INFO: Record<string, StaffInfo> = {
     schedule_type: "Пятидневная рабочая неделя",
     worked_out: "19/20",
   },
-  "2": {
+  {
     full_name: "Ибраев Алишер Маратович",
     position: "Маркетолог",
     institution: "Учреждение Б",
@@ -168,7 +83,7 @@ export const MOCK_STAFF_INFO: Record<string, StaffInfo> = {
     schedule_type: "Пятидневная рабочая неделя",
     worked_out: "18/20",
   },
-  "3": {
+  {
     full_name: "Нурланова Айгуль Сериковна",
     position: "Менеджер по продажам",
     institution: "Учреждение А",
@@ -187,7 +102,7 @@ export const MOCK_STAFF_INFO: Record<string, StaffInfo> = {
     schedule_type: "Пятидневная рабочая неделя",
     worked_out: "20/20",
   },
-  "4": {
+  {
     full_name: "Садыков Марат Аскарович",
     position: "Старший разработчик",
     institution: "Учреждение Б",
@@ -206,10 +121,10 @@ export const MOCK_STAFF_INFO: Record<string, StaffInfo> = {
     schedule_type: "Пятидневная рабочая неделя",
     worked_out: "17/20",
   },
-};
+];
 
 // Mock data for staff movements
-export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
+export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovementModel[]> = {
   "1": [
     {
       position: "Младший разработчик",
@@ -302,7 +217,7 @@ export const MOCK_STAFF_MOVEMENTS: Record<string, StaffMovement[]> = {
 };
 
 // Mock data for staff salaries
-export const MOCK_STAFF_SALARIES: StaffSalary[] = [
+export const MOCK_STAFF_SALARIES: StaffSalaryModel[] = [
   {
     position: "Разработчик",
     department: "IT",
@@ -355,7 +270,7 @@ export const MOCK_STAFF_SALARIES: StaffSalary[] = [
 ];
 
 // Mock employee report data
-export const MOCK_EMPLOYEE_REPORT: EmployeeReport = {
+export const MOCK_EMPLOYEE_REPORT: EmployeesReportModel = {
   dropped_out: 15,
   dropped_out_year: 25,
   hired: 20,
@@ -365,3 +280,31 @@ export const MOCK_EMPLOYEE_REPORT: EmployeeReport = {
   civil_workers: 5,
   civil_workers_year: 8,
 };
+
+export const MOCK_INSTITUTIONS: Array<InstitutionModel> = [
+  {
+    guid: "1",
+    bin: "123",
+    name: 'РГП на ПХВ "Резерва МЧС РК; Филиал..."',
+  },
+  {
+    guid: "2",
+    bin: "1234",
+    name: "Филиал в городе Астана",
+  },
+  {
+    guid: "3",
+    bin: "12345",
+    name: "Филиал в городе Алматы",
+  },
+  {
+    guid: "4",
+    bin: "123456",
+    name: "Филиал в Карагандинской области",
+  },
+  {
+    guid: "5",
+    bin: "1234567",
+    name: "Филиал в Актюбинской области",
+  },
+];

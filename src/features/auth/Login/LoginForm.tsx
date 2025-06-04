@@ -43,7 +43,7 @@ export const LoginForm = () => {
 
     try {
       await authService.login(email, password).then(({ data }) => {
-        const accessToken = data["access_token"];
+        const accessToken = "access_token";
         localStorage.setItem("access-token", accessToken);
       });
 

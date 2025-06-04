@@ -10,7 +10,7 @@ import { StaffSalaryDialog } from "@/features/pm/components/StaffSalaryDialog";
 import { useState } from "react";
 import { useFilter } from "@/contexts/FilterContext";
 import { useQuery } from "@tanstack/react-query";
-import { StaffService } from "@/features/pm/api/staff.service";
+import { staffService } from "@/lib/api-service";
 import { format } from "date-fns";
 
 const mockData = {
@@ -31,35 +31,29 @@ const mockData = {
   },
 };
 
-export default function HomePage() {
+export default function Page() {
   const [isSalaryDialogOpen, setIsSalaryDialogOpen] = useState(false);
-  const { startDate, endDate, branch } = useFilter();
-  const staffService = StaffService();
+  const { startDate, endDate, institution } = useFilter();
 
-  // Format the dates for the API
-  const formattedStartDate = startDate
-    ? format(startDate, "yyyy-MM-dd")
-    : undefined;
-  const formattedEndDate = endDate ? format(endDate, "yyyy-MM-dd") : undefined;
+  const shouldFetch = !!(startDate && endDate && institution);
 
-  // Determine if we should make the API call
-  const shouldFetch = Boolean(startDate && endDate);
-
-  // Get employee report data with filters
   const { data: employeeReport, isLoading: isLoadingReport } = useQuery({
-    queryKey: ["employeeReport", formattedStartDate, formattedEndDate, branch],
-    queryFn: () =>
-      staffService.getEmployeeReport({
-        period_start: formattedStartDate,
-        period_end: formattedEndDate,
-        branches: branch ? [branch] : undefined,
-      }),
+    queryKey: ["employeeReport", startDate, endDate, institution?.bin],
+    queryFn: () => {
+      if (!shouldFetch) {
+        throw new Error("Invalid query");
+      }
+      return staffService.getEmployeesReport(
+        institution.bin,
+        format(startDate, "yyyy-MM-dd"),
+        format(endDate, "yyyy-MM-dd"),
+      );
+    },
     enabled: shouldFetch,
   });
 
-  // Prepare employee stats data from API or use empty values if not loaded
   const employeeStats =
-    shouldFetch && employeeReport?.success
+    shouldFetch && employeeReport
       ? [
           {
             label: "Принято",
@@ -87,10 +81,8 @@ export default function HomePage() {
       : [];
 
   return (
-    <>
-      <h1 className="mb-2 text-white md:mb-6 md:text-3xl">
-        Панель управления кадрами
-      </h1>
+    <div className="space-y-6">
+      <h1 className="mb-2 text-white md:text-3xl">Панель управления кадрами</h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
         <div className="col-span-full lg:col-span-5">
           <ListContainer />
@@ -149,6 +141,6 @@ export default function HomePage() {
         isOpen={isSalaryDialogOpen}
         onClose={() => setIsSalaryDialogOpen(false)}
       />
-    </>
+    </div>
   );
 }

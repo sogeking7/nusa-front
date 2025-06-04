@@ -1,11 +1,36 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ProfileData } from "../pm/types";
+import { ProfileData } from "../pm/model";
+import { StaffInfoModel } from "@/lib/api-service";
 
 interface ProfileCardProps {
-  data: ProfileData;
+  staffInfo: StaffInfoModel;
 }
 
-export function ProfileCard({ data }: ProfileCardProps) {
+export function ProfileCard({ staffInfo }: ProfileCardProps) {
+  const data: ProfileData = {
+    name: staffInfo.full_name,
+    position: staffInfo.position,
+    organization: {
+      name: staffInfo.institution,
+      department: staffInfo.department,
+      salary: `${staffInfo.salary.toLocaleString()} ₸`,
+    },
+    personalInfo: {
+      birthYear: new Date(staffInfo.birth_date).getFullYear().toString(),
+      gender: staffInfo.gender,
+      nationality: staffInfo.nationality,
+      iin: staffInfo.id_number,
+      employeeType: staffInfo.worker_type,
+      hireLocation: new Date(staffInfo.hire_date).toLocaleDateString(),
+      education: staffInfo.education,
+      birthPlace: staffInfo.birthplace,
+    },
+    contacts: {
+      phone: staffInfo.phone,
+      email: staffInfo.mail,
+    },
+  };
+
   const infoRows = [
     { label: "Год рождения", value: data.personalInfo.birthYear },
     { label: "Пол", value: data.personalInfo.gender },

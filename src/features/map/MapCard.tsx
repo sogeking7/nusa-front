@@ -1,13 +1,11 @@
+"use client";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { MapLocation } from "@/features/map/model";
 
 interface MapCard {
-  locations: {
-    name: string;
-    city: string;
-    count: number;
-    coordinates: number[];
-  }[];
+  locations: Array<MapLocation>;
 }
 
 export const MapCard: React.FC<MapCard> = ({ locations }) => (

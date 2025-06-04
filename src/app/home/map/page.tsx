@@ -1,8 +1,16 @@
+"use client";
+
+import dynamic from "next/dynamic";
+
 import { BalanceCard } from "@/features/map/BalanceCard";
-import MapComponent from "@/features/map/data/MapComponentDynamic";
 import { EventAnalyticsCard } from "@/features/map/EventAnalyticsCard";
 
-import React from "react";
+const MapComponent = dynamic(
+  () => import("@/features/map/MapComponent").then((mod) => mod.MapComponent),
+  {
+    ssr: false,
+  },
+);
 
 export default function Page() {
   return (

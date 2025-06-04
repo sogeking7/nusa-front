@@ -2,44 +2,47 @@
 
 import { Input } from "@/components/ui/input";
 import { List } from "@/features/pm/components/List";
-import { StaffService } from "@/features/pm/api/staff.service";
-import { Staff } from "@/features/pm/api/staff.service.types";
 import { SearchIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AlignRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useQuery } from "@tanstack/react-query";
+import { useFilter } from "@/contexts/FilterContext";
+import { staffService } from "@/lib/api-service";
+import { format } from "date-fns";
 
 export default function ListContainer() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [employees, setEmployees] = useState<Staff[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { institution, startDate, endDate } = useFilter();
 
-  useEffect(() => {
-    const fetchStaff = async () => {
-      const staffService = StaffService();
-      const response = await staffService.getStaff();
+  const shouldFetch = !!(startDate && institution);
 
-      if (response.success) {
-        setEmployees(response.data.data);
-      } else {
-        console.error("Failed to fetch staff:", response.data);
+  const { data: employees, isLoading } = useQuery({
+    queryKey: ["staff", institution?.bin, startDate],
+    queryFn: () => {
+      if (!shouldFetch) {
+        throw new Error("Invalid query");
       }
-      setIsLoading(false);
-    };
-
-    fetchStaff();
-  }, []);
-
-  const filteredEmployees = employees.filter((employee) => {
-    const searchLower = searchQuery.toLowerCase();
-    return (
-      `${employee.firstname} ${employee.lastname}`
-        .toLowerCase()
-        .includes(searchLower) ||
-      employee.department.toLowerCase().includes(searchLower) ||
-      employee.institution.toLowerCase().includes(searchLower)
-    );
+      return staffService.getStaff(
+        institution.bin,
+        format(startDate, "yyyy-MM-dd"),
+      );
+    },
+    enabled: shouldFetch,
   });
+
+  const filteredEmployees = employees
+    ? employees.filter((employee) => {
+        const searchLower = searchQuery.toLowerCase();
+        return (
+          `${employee.firstname} ${employee.lastname}`
+            .toLowerCase()
+            .includes(searchLower) ||
+          employee.department.toLowerCase().includes(searchLower) ||
+          employee.institution.toLowerCase().includes(searchLower)
+        );
+      })
+    : [];
 
   return (
     <div className="rounded-xl border border-white/20 bg-inherit backdrop-blur-sm">
@@ -56,11 +59,10 @@ export default function ListContainer() {
           <AlignRight />
         </Button>
       </div>
-      {isLoading ? (
+      {isLoading && (
         <div className="p-4 text-center text-white/60">Загрузка...</div>
-      ) : (
-        <List employees={filteredEmployees} />
       )}
+      {!isLoading && employees && <List employees={filteredEmployees} />}
     </div>
   );
 }

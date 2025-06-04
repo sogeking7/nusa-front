@@ -19,7 +19,7 @@ interface DatePickerWithRangeProps
   extends React.HTMLAttributes<HTMLDivElement> {
   startDate?: Date;
   endDate?: Date;
-  onRangeChange?: (start: Date | undefined, end: Date | undefined) => void;
+  onRangeChange?: (start?: Date, end?: Date) => void;
 }
 
 export function DatePickerWithRange({
@@ -43,6 +43,10 @@ export function DatePickerWithRange({
 
   const handleSelect = (selectedRange: DateRange | undefined) => {
     if (onRangeChange) {
+      if (selectedRange?.from && !selectedRange?.to) {
+        onRangeChange(selectedRange?.from, selectedRange?.from);
+        return;
+      }
       onRangeChange(selectedRange?.from, selectedRange?.to);
     } else {
       setInternalDate(selectedRange);
@@ -54,10 +58,9 @@ export function DatePickerWithRange({
       <Popover>
         <PopoverTrigger asChild>
           <Button
-            id="date"
             variant={"outline"}
             className={cn(
-              "w-[300px] justify-start text-left font-normal",
+              "w-[300px] justify-start",
               !date && "text-muted-foreground",
             )}
           >

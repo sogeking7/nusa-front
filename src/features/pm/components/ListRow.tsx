@@ -1,10 +1,10 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { twMerge } from "tailwind-merge";
-import { Staff } from "../api/staff.service.types";
 import { useRouter } from "next/navigation";
+import { StaffModel } from "@/lib/api-service";
 
 interface ListRowProps {
-  employee: Staff;
+  employee: StaffModel;
   className?: string;
 }
 

@@ -4,14 +4,26 @@ import {
   StaffModel,
   StaffSalaryModel,
   StaffMovementModel,
+  EmployeesReportModel,
+  IS_MOCK,
 } from "@/lib/api-service";
+import {
+  MOCK_STAFF_DATA,
+  MOCK_STAFF_INFO,
+} from "@/lib/api-service/api/1c/mock";
 
 const url = "";
 
 export const staffService = {
-  getStaff: async (bin: string, date: string) => {
+  getStaff: async (bin: string, date: string): Promise<Array<StaffModel>> => {
+    if (IS_MOCK) {
+      await new Promise((res) => setTimeout(res, 300));
+      return MOCK_STAFF_DATA;
+    }
+
     const localVarPath = `/staff/${bin}/${date}`;
-    return await api1C.get<Array<StaffModel>>(`${url}${localVarPath}`);
+    const res = await api1C.get<Array<StaffModel>>(`${url}${localVarPath}`);
+    return res.data;
   },
 
   getStaffSalary: async (bin: string, dateFrom: string, dateTo: string) => {
@@ -26,12 +38,18 @@ export const staffService = {
 
   getEmployeesReport: async (bin: string, dateFrom: string, dateTo: string) => {
     const localVarPath = `/employees-report/${dateFrom}/${dateTo}/${bin}`;
-    return await api1C.get<unknown>(`${url}${localVarPath}`);
+    return await api1C.get<EmployeesReportModel>(`${url}${localVarPath}`);
   },
 
   getStaffInfo: async (guid: string, date: string) => {
+    if (IS_MOCK) {
+      await new Promise((res) => setTimeout(res, 300));
+      return MOCK_STAFF_INFO.find((s) => s.id_number === guid);
+    }
+
     const localVarPath = `/staff-info/${guid}/${date}`;
-    return await api1C.get<StaffInfoModel>(`${url}${localVarPath}`);
+    const res = await api1C.get<StaffInfoModel>(`${url}${localVarPath}`);
+    return res.data;
   },
 
   getStaffMovements: async (guid: string) => {

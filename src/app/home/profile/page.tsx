@@ -1,38 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { WorkSchedule } from "@/components/ui/calendar";
 import { Card, CardContent } from "@/components/ui/card";
 import { ProfileCard } from "@/features/profile/ProfileCard";
 import { ArrowUpRight } from "lucide-react";
+import { WorkSchedule } from "@/ui/WorkSchedule";
+import { MOCK_STAFF_INFO } from "@/lib/api-service/api/1c/mock";
 
 export default function Page() {
-  const profileData = {
-    name: "Жарасова А.",
-    position: "Руководитель",
-    organization: {
-      name: "Учреждение",
-      department: "Подразделение",
-      salary: "150 000,00 ₸",
-    },
-    personalInfo: {
-      birthYear: "1990 г.",
-      gender: "Женский",
-      nationality: "Казах",
-      iin: "384578375784",
-      employeeType: "Штатный сотрудник",
-      hireLocation: "Астана",
-      education: "Назарбаев Университет",
-      birthPlace: "Астана",
-    },
-    contacts: {
-      phone: "+7 707 283 84 97",
-      email: "post@gmail.com",
-    },
-  };
-
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
       <div className="col-span-5">
-        <ProfileCard data={profileData} />
+        <ProfileCard staffInfo={MOCK_STAFF_INFO[0]} />
       </div>
       <div className="col-span-5 flex flex-col space-y-3 lg:col-span-4">
         <WorkSchedule />

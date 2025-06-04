@@ -6,10 +6,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { StaffMovement } from "../api/staff.service.types";
+import { StaffMovementModel } from "@/lib/api-service";
 
 interface StaffMovementsTableProps {
-  data: StaffMovement[];
+  data: StaffMovementModel[];
 }
 
 export function StaffMovementsTable({ data }: StaffMovementsTableProps) {

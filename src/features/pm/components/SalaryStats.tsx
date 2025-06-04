@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { SalaryRange } from "../types";
+import { SalaryRange } from "../model";
 
 interface SalaryStatsProps {
   salaryRange: SalaryRange;
