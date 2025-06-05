@@ -8,8 +8,13 @@ export const financeService = {
     return await api1C.get<unknown>(`${url}${localVarPath}`);
   },
 
-  getTurnoverBalance: async (bin: string, dateFrom: string, dateTo: string) => {
-    const localVarPath = `/turnover_balance/${dateFrom}/${dateTo}/${bin}`;
+  getTurnoverBalance: async (
+    code: string,
+    bin: string,
+    dateFrom: string,
+    dateTo: string,
+  ) => {
+    const localVarPath = `/turnover_balance/${code}/${dateFrom}/${dateTo}/${bin}`;
     return await api1C.get<unknown>(`${url}${localVarPath}`);
   },
 

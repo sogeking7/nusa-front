@@ -6,6 +6,7 @@ import {
   StaffMovementModel,
   EmployeesReportModel,
   IS_MOCK,
+  SalarySummaryModel,
 } from "@/lib/api-service";
 import {
   MOCK_EMPLOYEE_REPORT,
@@ -40,7 +41,7 @@ export const staffService = {
     const res = await api1C.get<Array<StaffSalaryModel>>(
       `${url}${localVarPath}`,
     );
-    return res.data;
+    return res.data["data"];
   },
 
   getSalarySummary: async (bin: string, dateFrom: string, dateTo: string) => {
@@ -49,8 +50,9 @@ export const staffService = {
       return MOCK_SALARY_SUMMARY;
     }
 
-    const localVarPath = `/salary-summary/${dateFrom}/${dateTo}/${bin}`;
-    return await api1C.get<any>(`${url}${localVarPath}`);
+    const localVarPath = `/salary_summary/${dateFrom}/${dateTo}/${bin}`;
+    const res = await api1C.get<SalarySummaryModel>(`${url}${localVarPath}`);
+    return res.data;
   },
 
   getEmployeesReport: async (bin: string, dateFrom: string, dateTo: string) => {
@@ -59,7 +61,7 @@ export const staffService = {
       return MOCK_EMPLOYEE_REPORT;
     }
 
-    const localVarPath = `/employees-report/${dateFrom}/${dateTo}/${bin}`;
+    const localVarPath = `/employees_report/${dateFrom}/${dateTo}/${bin}`;
     const res = await api1C.get<EmployeesReportModel>(`${url}${localVarPath}`);
     return res.data;
   },
@@ -67,7 +69,11 @@ export const staffService = {
   getStaffInfo: async (guid: string) => {
     if (IS_MOCK) {
       await new Promise((res) => setTimeout(res, 300));
-      return MOCK_STAFF_INFO.find((s) => s.id_number === guid);
+      const staffInfo = MOCK_STAFF_INFO.find((s) => s.id_number === guid);
+      if (!staffInfo) {
+        throw new Error("Staff info not found");
+      }
+      return staffInfo;
     }
 
     const localVarPath = `/staff-info/${guid}`;
@@ -80,7 +86,7 @@ export const staffService = {
       await new Promise((res) => setTimeout(res, 300));
       return MOCK_STAFF_MOVEMENTS;
     }
-    const localVarPath = `/staff-movements/${guid}`;
+    const localVarPath = `/staff_movements/${guid}`;
     const res = await api1C.get<Array<StaffMovementModel>>(
       `${url}${localVarPath}`,
     );

@@ -3,17 +3,17 @@
 import { Input } from "@/components/ui/input";
 import { StaffListTable } from "@/features/pm/StaffList/StaffListTable";
 import { SearchIcon } from "lucide-react";
-import { useState } from "react";
-import { AlignRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useFilter } from "@/contexts/FilterContext";
 import { staffService } from "@/lib/api-service";
 import { format } from "date-fns";
 
 export default function StaffList() {
+  const [page, setPage] = useState(1);
+  const pageSize = 15;
   const [searchQuery, setSearchQuery] = useState("");
-  const { institution, startDate, endDate } = useFilter();
+  const { institution, startDate } = useFilter();
 
   const shouldFetch = !!(startDate && institution);
 
@@ -31,18 +31,25 @@ export default function StaffList() {
     enabled: shouldFetch,
   });
 
-  const filteredEmployees = employees
-    ? employees.filter((employee) => {
-        const searchLower = searchQuery.toLowerCase();
-        return (
-          `${employee.firstname} ${employee.lastname}`
-            .toLowerCase()
-            .includes(searchLower) ||
-          employee.department.toLowerCase().includes(searchLower) ||
-          employee.institution.toLowerCase().includes(searchLower)
-        );
-      })
-    : [];
+  const filteredEmployees = useMemo(() => {
+    if (!employees) return [];
+
+    const searchLower = searchQuery.toLowerCase();
+
+    return employees.filter((employee) => {
+      return (
+        `${employee.firstname} ${employee.lastname}`
+          .toLowerCase()
+          .includes(searchLower) ||
+        employee.institution_name.toLowerCase().includes(searchLower)
+      );
+    });
+  }, [employees, searchQuery]);
+
+  const paginatedEmployees = useMemo(() => {
+    const startIndex = (page - 1) * pageSize;
+    return filteredEmployees.slice(startIndex, startIndex + pageSize);
+  }, [filteredEmployees, page]);
 
   return (
     <div className="rounded-xl border border-white/20 bg-inherit backdrop-blur-sm">
@@ -55,15 +62,18 @@ export default function StaffList() {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full"
         />
-        <Button variant="outline" size="icon" className="shrink-0">
-          <AlignRight />
-        </Button>
       </div>
       {isLoading && (
         <div className="p-4 text-center text-white/60">Загрузка...</div>
       )}
       {!isLoading && employees && (
-        <StaffListTable employees={filteredEmployees} />
+        <StaffListTable
+          employees={paginatedEmployees}
+          totalCount={filteredEmployees.length}
+          currentPage={page}
+          pageSize={pageSize}
+          onPageChange={setPage}
+        />
       )}
     </div>
   );

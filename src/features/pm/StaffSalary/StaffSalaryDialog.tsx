@@ -45,7 +45,7 @@ export function StaffSalaryDialog({ isOpen, onClose }: StaffSalaryDialogProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-4xl">
+      <DialogContent className="max-w-[90%]">
         <DialogHeader>
           <DialogTitle className="text-xl">
             Заработные платы по должностям

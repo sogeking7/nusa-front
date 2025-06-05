@@ -53,7 +53,9 @@ const PaginationLink = ({
         variant: "ghost",
         size,
       }),
-      isActive ? "border-primary text-primary hover:text-primary" : "",
+      isActive
+        ? "border-primary bg-accent text-accent-foreground"
+        : "hover:bg-accent/10 hover:text-accent",
       className,
     )}
     {...props}
@@ -72,7 +74,7 @@ const PaginationPrevious = ({
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
-    <span className="max-sm:hidden">Предыдущий</span>
+    <span className="max-xl:hidden">Предыдущий</span>
   </PaginationLink>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
@@ -87,7 +89,7 @@ const PaginationNext = ({
     className={cn("gap-1 pr-2.5", className)}
     {...props}
   >
-    <span className="max-sm:hidden">Следующий</span>
+    <span className="max-xl:hidden">Следующий</span>
     <ChevronRight className="h-4 w-4" />
   </PaginationLink>
 );

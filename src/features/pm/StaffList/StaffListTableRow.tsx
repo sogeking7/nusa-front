@@ -34,12 +34,14 @@ export function StaffListTableRow({ employee, className }: ListRowProps) {
       </Avatar>
       <div className="min-w-0 flex-1">
         <p className="text-sm font-medium">{fullName}</p>
-        <p className="text-sm text-[#898989]">
-          {employee.gender === "male" ? "Мужской" : "Женский"}
-        </p>
+        <p className="text-sm text-[#898989]">{employee.gender}</p>
       </div>
-      <div className="flex-1 text-center text-sm">{employee.institution}</div>
-      <div className="flex-1 text-center text-sm">{employee.department}</div>
+      <div className="flex-1 text-center text-sm">
+        {employee.institution_name}
+      </div>
+      <div className="flex-1 text-center text-sm">
+        {employee.department_name}
+      </div>
     </div>
   );
 }

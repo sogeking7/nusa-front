@@ -16,10 +16,11 @@ interface StaffSalaryTableProps {
 
 export function StaffSalaryTable({ data }: StaffSalaryTableProps) {
   return (
-    <div className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded max-h-[400px] overflow-auto text-white">
+    <div className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded max-h-[80vh] overflow-auto text-white">
       <Table className="border border-white/20 bg-inherit">
         <TableHeader className="border border-white/20 bg-[#1c1c1d]">
           <TableRow>
+            <TableHead className="border-r border-white/20">Филиал</TableHead>
             <TableHead className="border-r border-white/20">
               Должность
             </TableHead>
@@ -38,6 +39,9 @@ export function StaffSalaryTable({ data }: StaffSalaryTableProps) {
         <TableBody>
           {data.map((salary, index) => (
             <TableRow className="bg-inherit" key={index}>
+              <TableCell className="border-b border-r border-white/20">
+                {salary.organization}
+              </TableCell>
               <TableCell className="border-b border-r border-white/20">
                 {salary.position}
               </TableCell>

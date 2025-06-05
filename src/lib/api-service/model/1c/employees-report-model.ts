@@ -1,10 +1,10 @@
 export interface EmployeesReportModel {
-  dropped_out: number;
-  dropped_out_year: number;
-  hired: number;
-  hired_year: number;
-  vacancies: number;
-  vacancies_year: number;
-  civil_workers: number;
-  civil_workers_year: number;
+  dropped_out: string;
+  dropped_out_year: string;
+  hired: string;
+  hired_year: string;
+  vacancies: string;
+  vacancies_year: string;
+  civil_workers: string;
+  civil_workers_year: string;
 }

@@ -39,7 +39,6 @@ export default function StaffSalary() {
         className={cn(
           "relative cursor-pointer !rounded-xl border border-white/20",
         )}
-        onClick={() => setOpen(true)}
       >
         <CardContent className="!p-4">
           <Button
@@ -66,11 +65,9 @@ export default function StaffSalary() {
           ) : (
             staffSalary && (
               <>
-                {staffSalary.slice(4).map((s, idx) => (
+                {staffSalary.slice(0, 3).map((s, idx) => (
                   <div key={idx} className="mt-3">
-                    <p className="text-white">
-                      {s.department + " - " + s.position}
-                    </p>
+                    <p className="text-white">{s.position}</p>
                     <p className="mt-1 font-light tracking-wide text-white/50">
                       {formatCurrency(s.salary)}
                     </p>
