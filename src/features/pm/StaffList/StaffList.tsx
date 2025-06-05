@@ -63,8 +63,13 @@ export default function StaffList() {
           className="w-full"
         />
       </div>
-      {isLoading && (
-        <div className="p-4 text-center text-white/60">Загрузка...</div>
+      {(isLoading || !shouldFetch) && (
+        <div className="flex items-center justify-center pb-8 pt-4 text-center text-sm text-zinc-400">
+          {!shouldFetch && <> Выберите период и филиал</>}
+          {isLoading && (
+            <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+          )}
+        </div>
       )}
       {!isLoading && employees && (
         <StaffListTable

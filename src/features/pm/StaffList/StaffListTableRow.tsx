@@ -1,9 +1,9 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
 import { StaffModel } from "@/lib/api-service";
+import { User } from "lucide-react";
 
 interface ListRowProps {
   employee: StaffModel;
@@ -15,7 +15,7 @@ export function StaffListTableRow({ employee, className }: ListRowProps) {
   const fullName = `${employee.firstname} ${employee.lastname}`;
 
   const handleClick = () => {
-    router.push(`/home/people/${employee.staff_id}`);
+    router.push(`/home/stuff/${employee.staff_id}`);
   };
 
   return (
@@ -26,12 +26,9 @@ export function StaffListTableRow({ employee, className }: ListRowProps) {
         className,
       )}
     >
-      <Avatar className="shrink-0">
-        <AvatarFallback>
-          {employee.firstname[0]}
-          {employee.lastname[0]}
-        </AvatarFallback>
-      </Avatar>
+      <div className="flex size-10 items-center justify-center rounded-full bg-accent/10">
+        <User className="size-4" />
+      </div>
       <div className="min-w-0 flex-1">
         <p className="text-sm font-medium">{fullName}</p>
         <p className="text-sm text-[#898989]">{employee.gender}</p>

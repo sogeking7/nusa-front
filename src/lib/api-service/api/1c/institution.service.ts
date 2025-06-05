@@ -11,9 +11,9 @@ export const institutionService = {
     }
 
     const localVarPath = `/institutions`;
-    const res = await api1C.get<Array<InstitutionModel>>(
-      `${url}${localVarPath}`,
-    );
-    return res.data;
+    const res = await api1C.get<{
+      data: Array<InstitutionModel>;
+    }>(`${url}${localVarPath}`);
+    return res.data.data;
   },
 };

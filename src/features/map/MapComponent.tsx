@@ -5,8 +5,10 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, GeoJSON, useMap, Tooltip, Marker } from "react-leaflet";
 import geojsonData from "./data/kazakhstan.json";
 import { Icon } from "leaflet";
-import { MapCard } from "./MapCard";
-import { MOCK_MAP_LOCATIONS } from "@/features/map/mock";
+import { useQuery } from "@tanstack/react-query";
+import { institutionService } from "@/lib/api-service";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Card, CardContent } from "@/components/ui/card";
 
 const markerIcon = new Icon({
   iconUrl: "/marker.svg",
@@ -115,13 +117,51 @@ export const MapComponent = () => {
     };
   }, []);
 
+  const { data: institutions, isLoading } = useQuery({
+    queryKey: ["institutions"],
+    queryFn: institutionService.getInstitutions,
+  });
+
   return (
     <div className="flex h-full w-full max-md:flex-col max-md:gap-4 md:relative">
       <h1 className="text-white md:absolute md:left-0 md:top-0 md:z-10 md:mb-6 md:text-3xl">
         Филиалы
       </h1>
       <div className="relative h-full w-full md:h-[560px]">
-        <MapCard locations={MOCK_MAP_LOCATIONS} />
+        <Card className="w-full rounded-xl border border-white/20 bg-[#1C1C1D]/[15%] backdrop-blur-sm md:absolute md:left-0 md:top-1/2 md:z-20 md:max-w-md md:-translate-y-1/2 md:!rounded-3xl">
+          {isLoading && (
+            <div className="flex h-[170px] items-center justify-center text-center text-sm text-zinc-400 md:h-[326px]">
+              <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+            </div>
+          )}
+          {!isLoading && institutions && (
+            <ScrollArea className="h-[170px] md:h-[326px]">
+              <CardContent className="p-4 md:p-6">
+                <ul className="space-y-4">
+                  {institutions.map(({ name, bin }, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center justify-between gap-3"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="size-2 shrink-0 rounded-full bg-primary-green"></div>
+                        <div>
+                          <p className="text-sm text-white md:text-base">
+                            {name}
+                          </p>
+                          <p className="text-xs text-[#898989] md:text-sm">
+                            {bin}
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <ScrollBar orientation="vertical" />
+            </ScrollArea>
+          )}
+        </Card>
         <MapContainer
           className="relative z-10 h-full w-full !bg-transparent focus:ring-0 max-md:h-[290px] md:h-[560px]"
           center={mapCenter}
@@ -136,13 +176,11 @@ export const MapComponent = () => {
           maxBounds={maxBounds}
           maxBoundsViscosity={0.3}
         >
-          {MOCK_MAP_LOCATIONS.map((loc, index) => (
-            <CustomMarker
-              key={index}
-              title={loc.name}
-              position={loc.coordinates}
-            />
-          ))}
+          {!isLoading &&
+            institutions &&
+            institutions.map((loc, index) => (
+              <CustomMarker key={index} title={loc.name} position={[0, 0]} />
+            ))}
           <DynamicZoomHandler setMaxBounds={setMaxBounds} />
           {/* @ts-ignore */}
           <GeoJSON data={geojsonData.features} onEachFeature={onEachRegion} />

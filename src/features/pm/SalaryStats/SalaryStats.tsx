@@ -61,39 +61,41 @@ export default function SalaryStats() {
       <h2 className="font-medium text-white">Заработные платы</h2>
       <Card className="rounded-xl border border-white/20">
         <CardContent className="space-y-3 !p-4">
-          {isLoading ? (
-            <div className="flex items-center justify-center py-4">
-              <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+          {(isLoading || !shouldFetch) && (
+            <div className="flex items-center justify-center py-4 text-center text-sm text-zinc-400">
+              {!shouldFetch && <> Выберите период и филиал</>}
+              {isLoading && (
+                <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+              )}
             </div>
-          ) : (
-            staffSalary && (
-              <>
-                <div className="flex flex-col items-start gap-1">
-                  <span className="text-sm font-medium text-primary-purple">
-                    Средняя
-                  </span>
-                  <span className="font-light tracking-wider text-white/50">
-                    {formatCurrency(stats.average)}
-                  </span>
-                </div>
-                <div className="flex flex-col items-start gap-1">
-                  <span className="text-sm font-medium text-primary-green">
-                    Высокая
-                  </span>
-                  <span className="font-light tracking-wider text-white/50">
-                    {formatCurrency(stats.max)}
-                  </span>
-                </div>
-                <div className="flex flex-col items-start gap-1">
-                  <span className="text-sm font-medium text-primary-orange">
-                    Низкая
-                  </span>
-                  <span className="font-light tracking-wider text-white/50">
-                    {formatCurrency(stats.min)}
-                  </span>
-                </div>
-              </>
-            )
+          )}
+          {!isLoading && staffSalary && (
+            <>
+              <div className="flex flex-col items-start gap-1">
+                <span className="text-sm font-medium text-primary-purple">
+                  Средняя
+                </span>
+                <span className="font-light tracking-wider text-white/50">
+                  {formatCurrency(stats.average)}
+                </span>
+              </div>
+              <div className="flex flex-col items-start gap-1">
+                <span className="text-sm font-medium text-primary-green">
+                  Высокая
+                </span>
+                <span className="font-light tracking-wider text-white/50">
+                  {formatCurrency(stats.max)}
+                </span>
+              </div>
+              <div className="flex flex-col items-start gap-1">
+                <span className="text-sm font-medium text-primary-orange">
+                  Низкая
+                </span>
+                <span className="font-light tracking-wider text-white/50">
+                  {formatCurrency(stats.min)}
+                </span>
+              </div>
+            </>
           )}
         </CardContent>
       </Card>

@@ -27,8 +27,10 @@ export const staffService = {
     }
 
     const localVarPath = `/staff/${bin}/${date}`;
-    const res = await api1C.get<Array<StaffModel>>(`${url}${localVarPath}`);
-    return res.data;
+    const res = await api1C.get<{ data: Array<StaffModel> }>(
+      `${url}${localVarPath}`,
+    );
+    return res.data.data;
   },
 
   getStaffSalary: async (bin: string, dateFrom: string, dateTo: string) => {
@@ -38,10 +40,10 @@ export const staffService = {
     }
 
     const localVarPath = `/staff-salary/${dateFrom}/${dateTo}/${bin}`;
-    const res = await api1C.get<Array<StaffSalaryModel>>(
+    const res = await api1C.get<{ data: Array<StaffSalaryModel> }>(
       `${url}${localVarPath}`,
     );
-    return res.data["data"];
+    return res.data.data;
   },
 
   getSalarySummary: async (bin: string, dateFrom: string, dateTo: string) => {
@@ -87,9 +89,9 @@ export const staffService = {
       return MOCK_STAFF_MOVEMENTS;
     }
     const localVarPath = `/staff_movements/${guid}`;
-    const res = await api1C.get<Array<StaffMovementModel>>(
+    const res = await api1C.get<{ data: Array<StaffMovementModel> }>(
       `${url}${localVarPath}`,
     );
-    return res.data;
+    return res.data.data;
   },
 };

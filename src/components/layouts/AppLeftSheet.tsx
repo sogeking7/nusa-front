@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sheet,
   SheetContent,
@@ -10,7 +12,6 @@ import { Button } from "../ui/button";
 import {
   ArchiveIcon,
   BellIcon,
-  CodepenIcon,
   LayoutGridIcon,
   MoonIcon,
   PanelRight,
@@ -96,7 +97,7 @@ export const AppLeftSheet = () => {
               <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
-                  onClick={() => router.push("/home/people")}
+                  onClick={() => router.push("/home/stuff")}
                   variant={"outline"}
                 >
                   <UsersIcon />

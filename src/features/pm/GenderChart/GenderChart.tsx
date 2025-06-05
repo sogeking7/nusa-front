@@ -63,92 +63,92 @@ export default function GenderChart() {
       <h2 className="font-medium text-white">Состав по полу</h2>
       <Card className="rounded-xl border border-white/20">
         <CardContent className="!p-4">
-          {isLoading ? (
-            <div className="flex items-center justify-center py-4">
-              <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+          {(isLoading || !shouldFetch) && (
+            <div className="flex items-center justify-center py-4 text-center text-sm text-zinc-400">
+              {!shouldFetch && <> Выберите период и филиал</>}
+              {isLoading && (
+                <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+              )}
             </div>
-          ) : (
-            employees && (
-              <div className="flex flex-wrap items-center justify-center gap-6">
-                <ChartContainer
-                  config={chartConfig}
-                  className="relative aspect-square w-full max-w-[170px] flex-shrink-0 !p-0"
+          )}
+          {!isLoading && employees && (
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              <ChartContainer
+                config={chartConfig}
+                className="relative aspect-square w-full max-w-[170px] flex-shrink-0 !p-0"
+              >
+                <RadialBarChart
+                  data={chartData}
+                  endAngle={360}
+                  startAngle={0}
+                  innerRadius={70}
+                  outerRadius={100}
                 >
-                  <RadialBarChart
-                    data={chartData}
-                    endAngle={360}
-                    startAngle={0}
-                    innerRadius={70}
-                    outerRadius={100}
+                  <PolarRadiusAxis
+                    tick={false}
+                    tickLine={false}
+                    axisLine={false}
                   >
-                    <PolarRadiusAxis
-                      tick={false}
-                      tickLine={false}
-                      axisLine={false}
-                    >
-                      <Label
-                        content={({ viewBox }) => {
-                          if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                            return (
-                              <text
+                    <Label
+                      content={({ viewBox }) => {
+                        if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                          return (
+                            <text
+                              x={viewBox.cx}
+                              y={viewBox.cy}
+                              textAnchor="middle"
+                              dominantBaseline="middle"
+                            >
+                              <tspan
                                 x={viewBox.cx}
                                 y={viewBox.cy}
-                                textAnchor="middle"
-                                dominantBaseline="middle"
+                                className="fill-white text-4xl font-bold"
                               >
-                                <tspan
-                                  x={viewBox.cx}
-                                  y={viewBox.cy}
-                                  className="fill-white text-4xl font-bold"
-                                >
-                                  {totalCount}
-                                </tspan>
-                              </text>
-                            );
-                          }
-                        }}
-                      />
-                    </PolarRadiusAxis>
-                    <ChartTooltip
-                      cursor={false}
-                      content={<ChartTooltipContent hideLabel />}
+                                {totalCount}
+                              </tspan>
+                            </text>
+                          );
+                        }
+                      }}
                     />
-                    <RadialBar
-                      dataKey="male"
-                      stackId="a"
-                      cornerRadius={10}
-                      fill={chartConfig.male.color}
-                      className="stroke-transparent stroke-2"
-                    />
-                    <RadialBar
-                      dataKey="female"
-                      fill={chartConfig.female.color}
-                      stackId="a"
-                      cornerRadius={10}
-                      className="stroke-transparent stroke-2"
-                    />
-                  </RadialBarChart>
-                </ChartContainer>
-                <div className={"text-sm"}>
-                  <p className={"flex justify-between gap-6"}>
-                    <span className={"text-white"}>
-                      {chartConfig.male.label}
-                    </span>
-                    <span style={{ color: chartConfig.male.color }}>
-                      {chartData[0].male}
-                    </span>
-                  </p>
-                  <p className={"flex justify-between gap-6"}>
-                    <span className={"text-white"}>
-                      {chartConfig.female.label}
-                    </span>
-                    <span style={{ color: chartConfig.female.color }}>
-                      {chartData[0].female}
-                    </span>
-                  </p>
-                </div>
+                  </PolarRadiusAxis>
+                  <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent hideLabel />}
+                  />
+                  <RadialBar
+                    dataKey="male"
+                    stackId="a"
+                    cornerRadius={10}
+                    fill={chartConfig.male.color}
+                    className="stroke-transparent stroke-2"
+                  />
+                  <RadialBar
+                    dataKey="female"
+                    fill={chartConfig.female.color}
+                    stackId="a"
+                    cornerRadius={10}
+                    className="stroke-transparent stroke-2"
+                  />
+                </RadialBarChart>
+              </ChartContainer>
+              <div className={"text-sm"}>
+                <p className={"flex justify-between gap-6"}>
+                  <span className={"text-white"}>{chartConfig.male.label}</span>
+                  <span style={{ color: chartConfig.male.color }}>
+                    {chartData[0].male}
+                  </span>
+                </p>
+                <p className={"flex justify-between gap-6"}>
+                  <span className={"text-white"}>
+                    {chartConfig.female.label}
+                  </span>
+                  <span style={{ color: chartConfig.female.color }}>
+                    {chartData[0].female}
+                  </span>
+                </p>
               </div>
-            )
+            </div>
           )}
         </CardContent>
       </Card>

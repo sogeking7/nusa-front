@@ -3,7 +3,6 @@
 import React from "react";
 import { Button } from "../ui/button";
 import {
-  CodepenIcon,
   LayoutGridIcon,
   PieChartIcon,
   UsersIcon,
@@ -17,7 +16,7 @@ export const AppMobilebar = () => {
 
   const links = [
     { href: "/home/map", icon: LayoutGridIcon },
-    { href: "/home/people", icon: UsersIcon },
+    { href: "/home/stuff", icon: UsersIcon },
     { href: "/home/budget", icon: PieChartIcon },
     { href: "/home/warehouse", icon: ArchiveIcon },
   ];

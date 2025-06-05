@@ -30,30 +30,32 @@ export default function SalarySummary() {
   return (
     <div className="space-y-4">
       <h2 className="font-medium text-white">Свод по заработной плате</h2>
-      {isLoading ? (
-        <div className="flex items-center justify-center py-4">
-          <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+      {(isLoading || !shouldFetch) && (
+        <div className="flex items-center justify-center py-4 text-center text-sm text-zinc-400">
+          {!shouldFetch && <> Выберите период и филиал</>}
+          {isLoading && (
+            <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+          )}
         </div>
-      ) : (
-        salarySummary && (
-          <>
-            <SummaryCard
-              label="Начислено"
-              value={salarySummary.accrued_total}
-              color="text-primary-purple"
-            />
-            <SummaryCard
-              label="Удержано"
-              value={salarySummary.withheld_total}
-              color="text-primary-orange"
-            />
-            <SummaryCard
-              label="Перечислено"
-              value={salarySummary.transferred_total}
-              color="text-primary-green"
-            />
-          </>
-        )
+      )}
+      {!isLoading && salarySummary && (
+        <>
+          <SummaryCard
+            label="Начислено"
+            value={salarySummary.accrued_total}
+            color="text-primary-purple"
+          />
+          <SummaryCard
+            label="Удержано"
+            value={salarySummary.withheld_total}
+            color="text-primary-orange"
+          />
+          <SummaryCard
+            label="Перечислено"
+            value={salarySummary.transferred_total}
+            color="text-primary-green"
+          />
+        </>
       )}
     </div>
   );

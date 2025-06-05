@@ -85,26 +85,28 @@ export default function StaffStats() {
           </p>
         )}
       </CardHeader>
-      <CardContent className="!p-0">
-        {isLoading ? (
-          <div className="flex items-center justify-center py-4">
-            <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+      <CardContent className="p-4">
+        {(isLoading || !shouldFetch) && (
+          <div className="flex items-center justify-center pb-4 text-center text-sm text-zinc-400">
+            {!shouldFetch && <> Выберите период и филиал</>}
+            {isLoading && (
+              <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-t-2 border-white"></div>
+            )}
           </div>
-        ) : (
-          employeeStats && (
-            <div className="flex flex-col gap-4 p-4">
-              {employeeStats.map((stat, index) => (
-                <div key={index} className="flex justify-between gap-3">
-                  <span className={cn("text-sm", getColorClass(stat.color))}>
-                    {stat.label}
-                  </span>
-                  <span className="flex-shrink-0 text-sm text-zinc-400">
-                    {stat.startValue} / {stat.endValue}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )
+        )}
+        {!isLoading && employeeStats && (
+          <div className="flex flex-col gap-4">
+            {employeeStats.map((stat, index) => (
+              <div key={index} className="flex justify-between gap-3">
+                <span className={cn("text-sm", getColorClass(stat.color))}>
+                  {stat.label}
+                </span>
+                <span className="flex-shrink-0 text-sm text-zinc-400">
+                  {stat.startValue} / {stat.endValue}
+                </span>
+              </div>
+            ))}
+          </div>
         )}
       </CardContent>
     </Card>

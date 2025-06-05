@@ -8,13 +8,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useFilter } from "@/contexts/FilterContext";
-import { institutionService } from "@/lib/api-service";
+import { InstitutionModel, institutionService } from "@/lib/api-service";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 
-export function InstitutionSelector() {
-  const { institution, setInstitution } = useFilter();
+interface InstitutionSelectorProps {
+  institution: InstitutionModel | null;
+  setInstitution: (institution: InstitutionModel | null) => void;
+}
+
+export function InstitutionSelector({
+  institution,
+  setInstitution,
+}: InstitutionSelectorProps) {
   const [open, setOpen] = React.useState(false);
 
   const { data: institutions, isLoading } = useQuery({
