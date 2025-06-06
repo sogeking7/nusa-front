@@ -1,5 +1,6 @@
-import { mockData } from "@/features/warehouse/mockData";
-import { FinancialTable } from "@/features/warehouse/Table";
+"use client";
+
+import MaterialReport from "@/features/warehouse/MaterialReport/MaterialReport";
 
 export default function Page() {
   return (
@@ -7,7 +8,7 @@ export default function Page() {
       <div className="flex items-start justify-between gap-3 max-lg:flex-col">
         <h1 className="text-white md:text-3xl">Склад</h1>
       </div>
-      <FinancialTable data={mockData} />
+      <MaterialReport />
     </div>
   );
 }

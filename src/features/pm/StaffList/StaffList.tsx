@@ -11,7 +11,7 @@ import { format } from "date-fns";
 
 export default function StaffList() {
   const [page, setPage] = useState(1);
-  const pageSize = 15;
+  const pageSize = 10;
   const [searchQuery, setSearchQuery] = useState("");
   const { institution, startDate } = useFilter();
 
