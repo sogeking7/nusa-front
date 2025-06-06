@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { StaffSalaryModel } from "@/lib/api-service";
+import { cn, formatCurrency } from "@/lib/utils";
 
 interface StaffSalaryTableProps {
   data: StaffSalaryModel[];
@@ -16,29 +17,33 @@ interface StaffSalaryTableProps {
 
 export function StaffSalaryTable({ data }: StaffSalaryTableProps) {
   return (
-    <div className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded max-h-[80vh] overflow-auto text-white">
-      <Table className="border border-white/20 bg-inherit">
-        <TableHeader className="border border-white/20 bg-[#1c1c1d]">
+    <div className="max-h-[60vh] overflow-auto rounded-lg border border-white/20 text-white">
+      <Table className="border-separate border-spacing-0 border-0">
+        <TableHeader className="z-10 border-white/20 bg-[#1c1c1d]">
           <TableRow>
-            <TableHead className="border-r border-white/20">Филиал</TableHead>
-            <TableHead className="border-r border-white/20">
+            <TableHead className="border-b border-r border-white/20">
+              Филиал
+            </TableHead>
+            <TableHead className="border-b border-r border-white/20">
               Должность
             </TableHead>
-            <TableHead className="border-r border-white/20">
+            <TableHead className="border-b border-r border-white/20">
               Подразделение
             </TableHead>
-            <TableHead className="border-r border-white/20">
+            <TableHead className="border-b border-r border-white/20">
               Тип начисления
             </TableHead>
-            <TableHead className="border-r border-white/20">
+            <TableHead className="border-b border-r border-white/20">
               Кол-во штатных единиц
             </TableHead>
-            <TableHead>Оклад (₸)</TableHead>
+            <TableHead className="border-b border-white/20">
+              Оклад (₸)
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data.map((salary, index) => (
-            <TableRow className="bg-inherit" key={index}>
+            <TableRow key={index}>
               <TableCell className="border-b border-r border-white/20">
                 {salary.organization}
               </TableCell>
@@ -54,8 +59,13 @@ export function StaffSalaryTable({ data }: StaffSalaryTableProps) {
               <TableCell className="border-b border-r border-white/20 text-center">
                 {salary.positions_amount}
               </TableCell>
-              <TableCell className="border-b border-white/20 text-right">
-                {salary.salary.toLocaleString()}
+              <TableCell
+                className={cn(
+                  data.length - 1 !== index && "border-b border-white/20",
+                  "text-right",
+                )}
+              >
+                {formatCurrency(parseFloat(salary.salary))}
               </TableCell>
             </TableRow>
           ))}

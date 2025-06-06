@@ -54,7 +54,7 @@ export default function MaterialReport() {
   }
 
   return (
-    <div className="h-[600px] overflow-auto rounded-lg border border-white/20">
+    <div className="h-[80vh] overflow-auto rounded-lg border border-white/20">
       <Table className="border-separate border-spacing-0 border-0">
         <TableHeader className="z-10 border-white/20 bg-[#1c1c1d]">
           <TableRow>

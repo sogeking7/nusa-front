@@ -16,22 +16,26 @@ interface StaffMovementsTableProps {
 
 export function StaffMovementsTable({ data }: StaffMovementsTableProps) {
   return (
-    <div className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded max-h-[400px] overflow-auto text-white">
-      <Table className="border border-white/20 bg-inherit">
-        <TableHeader className="border border-white/20 bg-[#1c1c1d]">
+    <div className="max-h-[60vh] overflow-auto rounded-lg border border-white/20 text-white">
+      <Table className="border-separate border-spacing-0 border-0">
+        <TableHeader className="z-10 border-white/20 bg-[#1c1c1d]">
           <TableRow>
-            <TableHead className="border-r border-white/20">Дата</TableHead>
-            <TableHead className="border-r border-white/20">
+            <TableHead className="border-b border-r border-white/20">
+              Дата
+            </TableHead>
+            <TableHead className="border-b border-r border-white/20">
               Должность
             </TableHead>
-            <TableHead className="border-r border-white/20">
+            <TableHead className="border-b border-r border-white/20">
               Подразделение
             </TableHead>
-            <TableHead className="border-r border-white/20">
+            <TableHead className="border-b border-r border-white/20">
               Учреждение
             </TableHead>
-            <TableHead className="border-r border-white/20">Событие</TableHead>
-            <TableHead>Документ</TableHead>
+            <TableHead className="border-b border-r border-white/20">
+              Событие
+            </TableHead>
+            <TableHead className="border-b border-white/20">Документ</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

@@ -1,4 +1,5 @@
 import {
+  AssetsModel,
   EmployeesReportModel,
   InstitutionModel,
   MaterialReportModel,
@@ -1223,3 +1224,312 @@ export const MOCK_MATERIAL_REPORT: Array<MaterialReportModel> = [
     ],
   },
 ];
+
+export const MOCK_ASSETS: {
+  data: Array<AssetsModel>;
+  report_date: string;
+} = {
+  data: [
+    {
+      code: "010",
+      start_period_value: "218994215,98",
+      end_period_value: "559766880,25",
+    },
+    {
+      code: "011",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "012",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "013",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "014",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "015",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "016",
+      start_period_value: "23776128,15",
+      end_period_value: "3162960,07",
+    },
+    {
+      code: "017",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "018",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "019",
+      start_period_value: "71640057,77",
+      end_period_value: "71640057,77",
+    },
+    {
+      code: "020",
+      start_period_value: "75047642,43",
+      end_period_value: "12620333,31",
+    },
+    {
+      code: "021",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "022",
+      start_period_value: "372197952,36",
+      end_period_value: "118192874,62",
+    },
+    {
+      code: "110",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "111",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "112",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "113",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "114",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "115",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "116",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "117",
+      start_period_value: "-744693",
+      end_period_value: "",
+    },
+    {
+      code: "118",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "119",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "120",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "121",
+      start_period_value: "607638847,55",
+      end_period_value: "258403810,09",
+    },
+    {
+      code: "122",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "123",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "124",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "125",
+      start_period_value: "25502706,6",
+      end_period_value: "30299335,04",
+    },
+    {
+      code: "126",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "127",
+      start_period_value: "97226772,06",
+      end_period_value: "97226772,06",
+    },
+    {
+      code: "210",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "211",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "212",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "213",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "214",
+      start_period_value: "234363617,1",
+      end_period_value: "14130406,7",
+    },
+    {
+      code: "215",
+      start_period_value: "37985282,57",
+      end_period_value: "28679703,86",
+    },
+    {
+      code: "216",
+      start_period_value: "32570733",
+      end_period_value: "32570733",
+    },
+    {
+      code: "217",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "218",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "219",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "222",
+      start_period_value: "168390449,25",
+      end_period_value: "0,02",
+    },
+    {
+      code: "301",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "310",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "311",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "312",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "313",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "314",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "315",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "316",
+      start_period_value: "334096260,61",
+      end_period_value: "334096260,61",
+    },
+    {
+      code: "317",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "318",
+      start_period_value: "563380216,42",
+      end_period_value: "",
+    },
+    {
+      code: "319",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "321",
+      start_period_value: "98291778,2",
+      end_period_value: "214386053,5",
+    },
+    {
+      code: "410",
+      start_period_value: "1793111191,02",
+      end_period_value: "1793111191,02",
+    },
+    {
+      code: "411",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "412",
+      start_period_value: "",
+      end_period_value: "",
+    },
+    {
+      code: "413",
+      start_period_value: "1634329,12",
+      end_period_value: "1634329,12",
+    },
+    {
+      code: "414",
+      start_period_value: "-1772544227,39",
+      end_period_value: "-1267295654,62",
+    },
+    {
+      code: "415",
+      start_period_value: "",
+      end_period_value: "",
+    },
+  ],
+  report_date: "05.06.2025",
+};
