@@ -9,7 +9,7 @@ import { FilterProvider } from "@/contexts/FilterContext";
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <ProviderTanstack>
-      {process.env.NODE_ENV === "development" && <ReactQueryDevtools />}
+      {/*{process.env.NODE_ENV === "development" && <ReactQueryDevtools />}*/}
       <ProviderAuth>
         <FilterProvider>{children}</FilterProvider>
       </ProviderAuth>
