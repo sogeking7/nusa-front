@@ -36,7 +36,9 @@ export function StaffMovementsDialog({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onCloseAction()}>
       <DialogContent className="max-w-6xl">
         <DialogHeader>
-          <DialogTitle className="text-xl">Кадровые перемещения</DialogTitle>
+          <DialogTitle className="text-xl">
+            Кадровые перемещения {staffId}
+          </DialogTitle>
         </DialogHeader>
 
         {isLoading ? (

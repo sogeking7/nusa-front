@@ -42,7 +42,7 @@ export function StaffMovementsTable({ data }: StaffMovementsTableProps) {
           {data.map((movement, index) => (
             <TableRow className="bg-inherit" key={index}>
               <TableCell className="border-b border-r border-white/20">
-                {new Date(movement.date).toLocaleDateString()}
+                {movement.date}
               </TableCell>
               <TableCell className="border-b border-r border-white/20">
                 {movement.position}

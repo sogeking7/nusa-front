@@ -10,20 +10,25 @@ interface ProfileCardProps {
 
 export default function StaffProfile({ staffInfo }: ProfileCardProps) {
   const data: ProfileData = {
-    name: staffInfo.full_name,
-    position: staffInfo.position,
+    name:
+      staffInfo.lastname +
+      " " +
+      staffInfo.firstname +
+      " " +
+      staffInfo.patronymic,
+    position: staffInfo.position_name,
     organization: {
-      name: staffInfo.institution,
-      department: staffInfo.department,
+      name: staffInfo.institution_name,
+      department: staffInfo.department_name,
       salary: `${staffInfo.salary.toLocaleString()} ₸`,
     },
     personalInfo: {
-      birthYear: new Date(staffInfo.birth_date).getFullYear().toString(),
+      birthYear: staffInfo.birth_date,
       gender: staffInfo.gender,
       nationality: staffInfo.nationality,
-      iin: staffInfo.id_number,
+      iin: staffInfo.staff_iin,
       employeeType: staffInfo.worker_type,
-      hireLocation: new Date(staffInfo.hire_date).toLocaleDateString(),
+      hireLocation: staffInfo.hire_date,
       education: staffInfo.education,
       birthPlace: staffInfo.birthplace,
     },

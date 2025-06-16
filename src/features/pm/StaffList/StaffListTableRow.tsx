@@ -15,7 +15,7 @@ export function StaffListTableRow({ employee, className }: ListRowProps) {
   const fullName = `${employee.firstname} ${employee.lastname}`;
 
   const handleClick = () => {
-    router.push(`/home/stuff/${employee.staff_id}`);
+    router.push(`/home/staff/${employee.staff_id}`);
   };
 
   return (

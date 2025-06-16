@@ -7,7 +7,7 @@ export const financeService = {
   getAssets: async (bin: string, dateFrom: string, dateTo: string) => {
     if (IS_MOCK) {
       await new Promise((res) => setTimeout(res, 300));
-      return MOCK_ASSETS;
+      return MOCK_ASSETS.data;
     }
 
     const localVarPath = `/assets/${dateFrom}/${dateTo}/${bin}`;
@@ -15,7 +15,7 @@ export const financeService = {
       data: Array<AssetsModel>;
       report_date: string;
     }>(`${url}${localVarPath}`);
-    return res.data;
+    return res.data.data;
   },
 
   getTurnoverBalance: async (

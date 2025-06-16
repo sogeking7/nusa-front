@@ -97,7 +97,7 @@ export const AppLeftSheet = () => {
               <div className="flex items-center space-x-3">
                 <Button
                   size={"icon"}
-                  onClick={() => router.push("/home/stuff")}
+                  onClick={() => router.push("/home/staff")}
                   variant={"outline"}
                 >
                   <UsersIcon />

@@ -16,7 +16,7 @@ export const AppMobilebar = () => {
 
   const links = [
     { href: "/home/map", icon: LayoutGridIcon },
-    { href: "/home/stuff", icon: UsersIcon },
+    { href: "/home/staff", icon: UsersIcon },
     { href: "/home/budget", icon: PieChartIcon },
     { href: "/home/warehouse", icon: ArchiveIcon },
   ];

@@ -71,7 +71,7 @@ export const staffService = {
   getStaffInfo: async (guid: string) => {
     if (IS_MOCK) {
       await new Promise((res) => setTimeout(res, 300));
-      const staffInfo = MOCK_STAFF_INFO.find((s) => s.id_number === guid);
+      const staffInfo = MOCK_STAFF_INFO.find((s) => s.staff_id === guid);
       if (!staffInfo) {
         throw new Error("Staff info not found");
       }
@@ -79,8 +79,10 @@ export const staffService = {
     }
 
     const localVarPath = `/staff-info/${guid}`;
-    const res = await api1C.get<StaffInfoModel>(`${url}${localVarPath}`);
-    return res.data;
+    const res = await api1C.get<{ data: Array<StaffInfoModel> }>(
+      `${url}${localVarPath}`,
+    );
+    return res.data.data[0];
   },
 
   getStaffMovements: async (guid: string) => {

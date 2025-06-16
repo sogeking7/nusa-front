@@ -99,9 +99,9 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                 <span className="flex-1 text-[#898989]">Должность</span>
               </div>
               <div className="flex justify-start">
-                <span className="flex-1">{staffInfo.institution}</span>
+                <span className="flex-1">{staffInfo.institution_name}</span>
                 <span className="flex-1 text-[#898989]">
-                  {staffInfo.position}
+                  {staffInfo.position_name}
                 </span>
               </div>
             </div>
