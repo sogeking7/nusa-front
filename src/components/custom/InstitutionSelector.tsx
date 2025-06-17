@@ -46,7 +46,7 @@ export function InstitutionSelector({
       </PopoverTrigger>
       <PopoverContent className="w-[350px] p-0">
         <div className="max-h-[300px] overflow-auto">
-          {isLoading && <div className="px-4 py-2 text-center">Loading...</div>}
+          {isLoading && <div className="px-4 py-2 text-center">Загрузка...</div>}
           {!isLoading &&
             institutions &&
             institutions.map((inst) => (
