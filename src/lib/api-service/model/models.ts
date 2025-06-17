@@ -10,3 +10,4 @@ export * from "./1c/material-report-model";
 export * from "./1c/assets-model";
 
 export * from "./core/user-model";
+export * from "./core/admin-models";
