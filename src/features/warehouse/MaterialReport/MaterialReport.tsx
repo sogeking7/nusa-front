@@ -6,13 +6,14 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { useFilter } from "@/contexts/FilterContext";
 import { useQuery } from "@tanstack/react-query";
 import { warehouseService } from "@/lib/api-service";
 import { format } from "date-fns";
 import { formatCurrency } from "@/lib/utils";
+import React from "react";
 
 export default function MaterialReport() {
   const { startDate, endDate, institution } = useFilter();
@@ -28,10 +29,10 @@ export default function MaterialReport() {
       return warehouseService.getMaterialReport(
         institution.bin,
         format(startDate, "yyyy-MM-dd"),
-        format(endDate, "yyyy-MM-dd")
+        format(endDate, "yyyy-MM-dd"),
       );
     },
-    enabled: shouldFetch
+    enabled: shouldFetch,
   });
 
   if (isLoading || !shouldFetch) {
@@ -75,7 +76,8 @@ export default function MaterialReport() {
               colSpan={4}
               className="border-b border-r border-white/20 text-center"
             >
-              Оборот {format(startDate, "yyyy-MM-dd")} - {format(endDate, "yyyy-MM-dd")}
+              Оборот {format(startDate, "yyyy-MM-dd")} -{" "}
+              {format(endDate, "yyyy-MM-dd")}
             </TableHead>
             <TableHead
               colSpan={2}
@@ -129,7 +131,7 @@ export default function MaterialReport() {
         </TableHeader>
         <TableBody>
           {materialReports.map((materialReport, idx) => (
-            <>
+            <React.Fragment key={idx}>
               <TableRow className="bg-inherit" key={idx}>
                 <TableCell className="border-b border-r border-white/20 text-base font-medium">
                   {materialReport.responsible_person}
@@ -228,7 +230,7 @@ export default function MaterialReport() {
                   ))}
                 </>
               ))}
-            </>
+            </React.Fragment>
           ))}
         </TableBody>
       </Table>
