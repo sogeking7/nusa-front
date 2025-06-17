@@ -69,7 +69,6 @@ export const ProviderAuth = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Show loading while checking authentication
   if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">

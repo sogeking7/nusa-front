@@ -46,7 +46,6 @@ export function UserTable({
 }: UserTableProps) {
   return (
     <>
-      {/* Users Table */}
       <div className="max-h-[60vh] overflow-auto rounded-lg border border-white/20 text-white">
         <Table className="border-separate border-spacing-0 border-0">
           <TableHeader className="sticky top-0 z-10 border-white/20 bg-[#1c1c1d]">
@@ -155,7 +154,6 @@ export function UserTable({
         </Table>
       </div>
 
-      {/* Pagination */}
       <Pagination className="mt-6">
         <PaginationContent className="text-white">
           <PaginationItem>
@@ -175,7 +173,6 @@ export function UserTable({
             const pageNumbers: (number | string)[] = [];
 
             if (totalPages <= 7) {
-              // Show all pages if there aren't too many
               for (let i = 1; i <= totalPages; i++) {
                 pageNumbers.push(i);
               }

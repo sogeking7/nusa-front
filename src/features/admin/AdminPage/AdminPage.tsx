@@ -28,7 +28,6 @@ export default function AdminPage() {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
 
-  // Load users and roles
   const loadUsers = async (page: number = 1, limit: number = 10) => {
     try {
       setLoading(true);
@@ -167,7 +166,6 @@ export default function AdminPage() {
     loadUsers(page);
   };
 
-  // Filter users based on search term
   const filteredUsers = users.filter(
     (user) =>
       user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -194,7 +192,6 @@ export default function AdminPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="mt-4 p-0">
-          {/* Search and Actions */}
           <div className="mb-6 w-full">
             <Input
               placeholder="Поиск пользователей..."
@@ -205,7 +202,6 @@ export default function AdminPage() {
             />
           </div>
 
-          {/* User Table Component */}
           <UserTable
             users={filteredUsers}
             currentUser={user}
@@ -217,7 +213,6 @@ export default function AdminPage() {
             onDeleteUser={handleDeleteUser}
           />
 
-          {/* Edit User Dialog */}
           <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
             <DialogContent className="border-white/20 bg-[#1c1c1d]">
               <DialogHeader>
@@ -237,7 +232,6 @@ export default function AdminPage() {
             </DialogContent>
           </Dialog>
 
-          {/* Change Password Dialog */}
           <Dialog
             open={passwordDialogOpen}
             onOpenChange={setPasswordDialogOpen}

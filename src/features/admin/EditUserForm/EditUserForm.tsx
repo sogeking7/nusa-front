@@ -38,7 +38,6 @@ export function EditUserForm({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Handle role change separately if it has changed and user is not editing themselves
     const currentRole = roles.find((role) => role.user_type === user.user_type);
     const newRole = roles.find((role) => role.user_type === selectedRole);
 
@@ -51,7 +50,6 @@ export function EditUserForm({
       onUpdateRole(user.id, newRole.id);
     }
 
-    // Handle regular user data update
     const hasUserDataChanged =
       email !== user.email ||
       username !== user.username ||
@@ -61,7 +59,6 @@ export function EditUserForm({
       onSave(user.id, { email, username, is_active: isActive });
     }
 
-    // If no changes were made
     const hasRoleChanged =
       !isEditingSelf && currentRole && newRole && currentRole.id !== newRole.id;
     if (!hasUserDataChanged && !hasRoleChanged) {

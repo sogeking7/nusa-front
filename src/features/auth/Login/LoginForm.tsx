@@ -54,7 +54,6 @@ export const LoginForm = () => {
         router.push("/home/me");
       });
     } catch (error: any) {
-      // Handle API errors and show in Russian
       let errorMessage = "Произошла ошибка при входе";
 
       if (error.response?.data?.detail) {

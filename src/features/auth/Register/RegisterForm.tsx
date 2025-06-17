@@ -56,7 +56,6 @@ export const RegisterForm = () => {
         router.push("/home/me");
       });
     } catch (error: any) {
-      // Handle API errors and show in Russian
       let errorMessage = "Произошла ошибка при регистрации";
 
       if (error.response?.data?.detail) {
