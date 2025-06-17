@@ -6,7 +6,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "@/components/ui/table";
 import { useFilter } from "@/contexts/FilterContext";
 import { useQuery } from "@tanstack/react-query";
@@ -28,10 +28,10 @@ export default function MaterialReport() {
       return warehouseService.getMaterialReport(
         institution.bin,
         format(startDate, "yyyy-MM-dd"),
-        format(endDate, "yyyy-MM-dd"),
+        format(endDate, "yyyy-MM-dd")
       );
     },
-    enabled: shouldFetch,
+    enabled: shouldFetch
   });
 
   if (isLoading || !shouldFetch) {
@@ -69,20 +69,20 @@ export default function MaterialReport() {
               rowSpan={2}
               className="border-b-2 border-r border-white/20 border-b-primary-purple text-center"
             >
-              Остаток на 09.01.2024
+              Остаток на {format(startDate, "yyyy-MM-dd")}
             </TableHead>
             <TableHead
               colSpan={4}
               className="border-b border-r border-white/20 text-center"
             >
-              Оборот 01.08.2024 - 31.08.2024
+              Оборот {format(startDate, "yyyy-MM-dd")} - {format(endDate, "yyyy-MM-dd")}
             </TableHead>
             <TableHead
               colSpan={2}
               rowSpan={2}
               className="border-b-2 border-white/20 border-b-primary-purple text-center"
             >
-              Остаток на 09.01.2024
+              Остаток на {format(startDate, "yyyy-MM-dd")}
             </TableHead>
           </TableRow>
           <TableRow>
