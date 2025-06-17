@@ -8,8 +8,8 @@ import { AssetsBudgetCard } from "@/features/budget/Assets/AssetsBudgetCard";
 import { useMemo } from "react";
 
 interface IBudget {
-  startBudget: number;
-  endBudget: number;
+  startBudget: number | null;
+  endBudget: number | null;
 }
 
 export default function Assets() {
@@ -32,25 +32,17 @@ export default function Assets() {
     enabled: shouldFetch,
   });
 
-  // здесь тебе получается отправляют
-  // Активы
-  // Краткосрочные 010-100 код строки
-  // Долгосрочные 110-200
-  // Обязательство и Капитал
-  // Краткосрочные 210-300
-  // Долгосрочные 310-400
-
   const parsedData: {
     longTerm: IBudget;
     shortTerm: IBudget;
   } = useMemo(() => {
-    const shortTerm = {
-      startBudget: 0,
-      endBudget: 0,
+    const shortTerm: IBudget = {
+      startBudget: null,
+      endBudget: null,
     };
-    const longTerm = {
-      startBudget: 0,
-      endBudget: 0,
+    const longTerm: IBudget = {
+      startBudget: null,
+      endBudget: null,
     };
     if (!assets) {
       return {

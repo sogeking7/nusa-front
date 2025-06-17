@@ -10,6 +10,8 @@ import { ArrowUpRight } from "lucide-react";
 import { StaffMovementsDialog } from "@/features/pm/StaffMovement/StaffMovementsDialog";
 import GoBackButton from "@/components/custom/GoBackButton";
 import StaffProfile from "@/features/pm/StaffProfile/StaffProfile";
+import { Awards } from "@/features/pm/Awards/Awards";
+import { Disciplinary } from "@/features/pm/Disciplinary/Disciplinary";
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id: staffId } = use(params);
@@ -59,19 +61,8 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
         </div>
         <div className="col-span-5 flex flex-col space-y-3 lg:col-span-4">
           <WorkSchedule />
-          {["Награды", "Дисциплинарки"].map((title) => (
-            <Card
-              key={title}
-              className={"cursor-pointer !rounded-xl border border-white/20"}
-            >
-              <CardContent className="flex items-center justify-between !p-4">
-                <h2 className="font-semibold text-white">{title}</h2>
-                <Button variant="outline" size="icon">
-                  <ArrowUpRight />
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+          <Awards staffId={staffId} />
+          <Disciplinary staffId={staffId} />
         </div>
         <Card
           className={

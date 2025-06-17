@@ -17,7 +17,7 @@ interface BudgetCardProps {
   shouldFetch?: boolean;
 }
 
-export const AssetsBudgetCard = ({
+export const TurnoverBalanceCard = ({
   title,
   startText,
   startBudget,

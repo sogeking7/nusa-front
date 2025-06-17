@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { institutionService } from "@/lib/api-service";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
+import coordinates from "./data/coordinates.json";
 
 const markerIcon = new Icon({
   iconUrl: "/marker.svg",
@@ -178,8 +179,12 @@ export const MapComponent = () => {
         >
           {!isLoading &&
             institutions &&
-            institutions.map((loc, index) => (
-              <CustomMarker key={index} title={loc.name} position={[0, 0]} />
+            coordinates.map((loc, index) => (
+              <CustomMarker
+                key={index}
+                title={loc.name}
+                position={[loc.coordinates.latitude, loc.coordinates.longitude]}
+              />
             ))}
           <DynamicZoomHandler setMaxBounds={setMaxBounds} />
           {/* @ts-ignore */}

@@ -17,7 +17,7 @@ interface BudgetCardProps {
   shouldFetch?: boolean;
 }
 
-export const AssetsBudgetCard = ({
+export const ObligationsBudgetCard = ({
   title,
   startText,
   startBudget,
@@ -32,7 +32,7 @@ export const AssetsBudgetCard = ({
   return (
     <Card
       className={cn(
-        "group border border-white/20 transition-colors duration-200 hover:border-primary-green",
+        "group transition-colors duration-200 hover:border-primary-green",
         className,
       )}
     >
